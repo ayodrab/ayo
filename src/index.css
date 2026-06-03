@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Syne:wght@500;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: var(--bg-primary);
+  --color-brand-bg-sec: var(--bg-secondary);
+  --color-brand-text-main: var(--text-main);
+  --color-brand-text-muted: var(--text-muted);
+  --color-brand-accent: var(--accent-color);
+  --color-brand-accent-hover: var(--accent-hover);
+  --color-brand-border: var(--border-color);
+  
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-logo: "Caveat", cursive;
+}
+
+/* Base Theme Configurations */
+:root {
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --transition-speed: 0.45s;
+}
+
+/* 
+   MOTION PRACTICE: 
+   Ultra-sleek, midnight ink velvet with radiant hot coral/neon ruby accents, 
+   geometric layout, high density grids, sharp 0px corners, high-impact spacing.
+*/
+[data-theme='motion'] {
+  --bg-primary: #0b1120; /* Sophisticated deep midnight blue */
+  --bg-secondary: #151e33; /* Clean dark navy secondary */
+  --text-main: #f8fafc; /* Crisp ice white text */
+  --text-muted: #94a3b8; /* Soft slate gray */
+  --accent-color: #38bdf8; /* Elegant luminous ice blue */
+  --accent-hover: #7dd3fc;
+  --border-color: #1e293b; /* Subtle slate borders */
+  --badge-bg: rgba(56, 189, 248, 0.12);
+  
+  --font-display: "Syne", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  
+  --spacing-scale: 1.2;
+  --border-radius: 0px; /* Monolithic sharp */
+  --offset-shadow: 6px 6px 0px 0px rgba(56, 189, 248, 0.25);
+  --offset-shadow-hover: 12px 12px 0px 0px rgba(56, 189, 248, 0.4);
+}
+
+/* 
+   CHANGE FACILITATION PRACTICE:
+   Warm, intellectual, editorial paper/linen background with deep pine forest green accents,
+   soft card curves, premium heavy borders, and beautiful, expressive italic serifs.
+*/
+[data-theme='facilitation'] {
+  --bg-primary: #faf8f2; /* Nourishing sand alabaster */
+  --bg-secondary: #f3edd7; /* Deeper pebbled clay */
+  --text-main: #14291e; /* Deep rich forest moss ink */
+  --text-muted: #536b5c; /* Muted sage clay */
+  --accent-color: #15803d; /* True vibrant herbal green */
+  --accent-hover: #166534;
+  --border-color: #cbd5e1; /* Subtle, clean divider grids */
+  --badge-bg: rgba(21, 128, 61, 0.08);
+  
+  --font-display: "Fraunces", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  
+  --spacing-scale: 1.0;
+  --border-radius: 12px; /* Warm curves of human connection */
+  --offset-shadow: 5px 5px 0px 0px #15803d;
+  --offset-shadow-hover: 9px 9px 0px 0px #166534;
+}
+
+/* Global Application Overrides */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  transition: background-color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1),
+              color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1),
+              border-color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+  overflow-x: hidden;
+}
+
+/* Layout Division Grids */
+.editorial-grid {
+  border-collapse: collapse;
+}
+
+.themed-cell {
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dynamic Transitions */
+.themed-transition {
+  transition: all var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.themed-card {
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--offset-shadow);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1),
+              border-color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1),
+              color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.themed-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--offset-shadow-hover);
+}
+
+/* Editorial Ticker Tape */
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 25s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Decorative visual items */
+.circular-stamp {
+  animation: rotate-clockwise 20s linear infinite;
+}
+
+@keyframes rotate-clockwise {
+  to { transform: rotate(360deg); }
+}
+
+/* Dot Canvas Pattern - subtle paper feel */
+.dot-pattern {
+  background-image: radial-gradient(var(--border-color) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.08;
+}
+
+/* Elegant premium letter switching animation styles */
+@keyframes letter-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(1px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+.reveal-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letter-reveal 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+
+
