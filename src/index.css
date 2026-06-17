@@ -23,50 +23,54 @@
 
 /* 
    MOTION PRACTICE: 
-   Ultra-sleek, midnight ink velvet with radiant hot coral/neon ruby accents, 
-   geometric layout, high density grids, sharp 0px corners, high-impact spacing.
+   Sophisticated Iris & Midnight Amethyst. Luxurious cosmic dark with soft, breathing electric
+   periwinkle gradients and clean, premium typography.
 */
 [data-theme='motion'] {
-  --bg-primary: #0b1120; /* Sophisticated deep midnight blue */
-  --bg-secondary: #151e33; /* Clean dark navy secondary */
-  --text-main: #f8fafc; /* Crisp ice white text */
-  --text-muted: #94a3b8; /* Soft slate gray */
-  --accent-color: #38bdf8; /* Elegant luminous ice blue */
-  --accent-hover: #7dd3fc;
-  --border-color: #1e293b; /* Subtle slate borders */
-  --badge-bg: rgba(56, 189, 248, 0.12);
+  --bg-primary: #0a0712; /* Deep mysterious cosmic midnight */
+  --bg-secondary: #120e21; /* Rich velvet amethyst block */
+  --text-main: #f5f2ff; /* Creamy lavender white text */
+  --text-muted: #968fb3; /* Zinc violet slate */
+  --accent-color: #ff2a85; /* Glowing cyber raspberry-pink */
+  --accent-hover: #ff60a3;
+  --border-color: #211936; /* Soft, deep border tone */
+  --badge-bg: rgba(255, 42, 133, 0.08);
+  --glow-1: #8b5cf6; /* Vibrant violet-indigo, bold and dynamic */
+  --glow-2: #ec4899; /* Radiant warm pink, gorgeous high contrast! */
   
-  --font-display: "Syne", sans-serif;
+  --font-display: "Fraunces", serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   
-  --spacing-scale: 1.2;
-  --border-radius: 0px; /* Monolithic sharp */
-  --offset-shadow: 6px 6px 0px 0px rgba(56, 189, 248, 0.25);
-  --offset-shadow-hover: 12px 12px 0px 0px rgba(56, 189, 248, 0.4);
+  --spacing-scale: 1.1;
+  --border-radius: 20px;
+  --offset-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  --offset-shadow-hover: 0px 10px 35px rgba(167, 139, 250, 0.08);
 }
 
 /* 
    CHANGE FACILITATION PRACTICE:
-   Warm, intellectual, editorial paper/linen background with deep pine forest green accents,
-   soft card curves, premium heavy borders, and beautiful, expressive italic serifs.
+   Warm Terracotta & Clay Alabaster. Editorial peach-linen background with deep roasted cocoa accents,
+   rich amber details, and soft limestone ivory cards. Highly tactile and professional.
 */
 [data-theme='facilitation'] {
-  --bg-primary: #faf8f2; /* Nourishing sand alabaster */
-  --bg-secondary: #f3edd7; /* Deeper pebbled clay */
-  --text-main: #14291e; /* Deep rich forest moss ink */
-  --text-muted: #536b5c; /* Muted sage clay */
-  --accent-color: #15803d; /* True vibrant herbal green */
-  --accent-hover: #166534;
-  --border-color: #cbd5e1; /* Subtle, clean divider grids */
-  --badge-bg: rgba(21, 128, 61, 0.08);
+  --bg-primary: #fcf7f2; /* Soft warm peach alabaster */
+  --bg-secondary: #f6eee4; /* Creamy warm clay bisque */
+  --text-main: #25201a; /* Rich espresso roast */
+  --text-muted: #807364; /* Roasted walnut-tinted neutral */
+  --accent-color: #d97706; /* Terracotta organic amber splash */
+  --accent-hover: #b45309;
+  --border-color: #ebdcd0; /* Soft warm biscuit line */
+  --badge-bg: rgba(217, 119, 6, 0.07);
+  --glow-1: #ea580c; /* Bolder dynamic terracotta sunset */
+  --glow-2: #f43f5e; /* Vibrant warm rose/coral */
   
   --font-display: "Fraunces", serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   
   --spacing-scale: 1.0;
-  --border-radius: 12px; /* Warm curves of human connection */
-  --offset-shadow: 5px 5px 0px 0px #15803d;
-  --offset-shadow-hover: 9px 9px 0px 0px #166534;
+  --border-radius: 24px;
+  --offset-shadow: 0px 4px 16px rgba(128, 115, 100, 0.04);
+  --offset-shadow-hover: 0px 12px 28px rgba(128, 115, 100, 0.08);
 }
 
 /* Global Application Overrides */
@@ -78,6 +82,72 @@ body {
               color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1),
               border-color var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
   overflow-x: hidden;
+}
+
+/* Luxurious Film Grain/Paper Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 99;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 100px 100px;
+}
+
+/* Animated Ambient Backdrops breathing in circles */
+@keyframes breathing-glow-1 {
+  0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+  33% { transform: translate(5vw, -4vh) scale(1.15) rotate(120deg); }
+  66% { transform: translate(-3vw, 5vh) scale(0.9) rotate(240deg); }
+  100% { transform: translate(0px, 0px) scale(1) rotate(360deg); }
+}
+
+@keyframes breathing-glow-2 {
+  0% { transform: translate(0px, 0px) scale(1.1) rotate(360deg); }
+  50% { transform: translate(-6vw, 6vh) scale(0.85) rotate(180deg); }
+  100% { transform: translate(0px, 0px) scale(1.1) rotate(0deg); }
+}
+
+.ambient-breathing-1 {
+  background-color: var(--glow-1);
+  animation: breathing-glow-1 22s infinite ease-in-out;
+}
+
+.ambient-breathing-2 {
+  background-color: var(--glow-2);
+  animation: breathing-glow-2 28s infinite ease-in-out;
+}
+
+/* Specific immersive shifting for the motion theme to weave in warm sunset pulses */
+[data-theme='motion'] .ambient-breathing-1 {
+  animation: breathing-glow-1 22s infinite ease-in-out, motion-warm-shift-1 24s infinite ease-in-out;
+}
+
+[data-theme='motion'] .ambient-breathing-2 {
+  animation: breathing-glow-2 30s infinite ease-in-out, motion-warm-shift-2 28s infinite ease-in-out;
+}
+
+@keyframes motion-warm-shift-1 {
+  0% { background-color: #8b5cf6; }    /* Saturated Indigo-Violet */
+  20% { background-color: #db2777; }   /* Rich Saturated Fuchsia */
+  40% { background-color: #ff2e93; }   /* Saturated Neon Pink-Rose */
+  60% { background-color: #6366f1; }   /* Saturated Indigo Blue */
+  80% { background-color: #a855f7; }   /* Saturated Bright Amethyst */
+  100% { background-color: #8b5cf6; }  /* Return to Indigo-Violet */
+}
+
+@keyframes motion-warm-shift-2 {
+  0% { background-color: #ff0a7c; }    /* Saturated Hot Pink */
+  25% { background-color: #d946ef; }   /* Bright Magenta-Fuchsia */
+  50% { background-color: #4f46e5; }   /* Deep Royal Indigo */
+  75% { background-color: #7c3aed; }   /* Rich Violet-Purple */
+  100% { background-color: #ff0a7c; }
 }
 
 /* Layout Division Grids */
@@ -142,9 +212,7 @@ body {
 
 /* Dot Canvas Pattern - subtle paper feel */
 .dot-pattern {
-  background-image: radial-gradient(var(--border-color) 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
-  opacity: 0.08;
+  display: none;
 }
 
 /* Elegant premium letter switching animation styles */
@@ -167,5 +235,74 @@ body {
   animation: letter-reveal 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
+/* Premium Liquid Glass Utility Styles */
+.liquid-glass-motion {
+  position: relative;
+  background: linear-gradient(135deg, rgba(18, 14, 33, 0.65) 0%, rgba(10, 7, 18, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.65),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+}
 
+.liquid-glass-facilitation {
+  position: relative;
+  background: linear-gradient(135deg, rgba(252, 247, 242, 0.72) 0%, rgba(246, 238, 228, 0.85) 100%);
+  border: 1px solid rgba(128, 115, 100, 0.12);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  box-shadow: 
+    0 40px 100px rgba(128, 115, 100, 0.08),
+    0 10px 30px rgba(128, 115, 100, 0.03);
+}
 
+/* Glass toggle enhancement */
+.glass-active-thumb-motion {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.glass-active-thumb-facilitation {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+/* Highly immersive, flowing liquid glass organic metaball animations */
+@keyframes liquid-blob-1 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(40px, -60px) scale(1.15) rotate(120deg); }
+  66% { transform: translate(-30px, 30px) scale(0.9) rotate(240deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+}
+
+@keyframes liquid-blob-2 {
+  0% { transform: translate(0, 0) scale(1.1) rotate(360deg); }
+  50% { transform: translate(-50px, 50px) scale(0.85) rotate(180deg); }
+  100% { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+}
+
+@keyframes liquid-blob-3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(60px, 30px) scale(0.95) rotate(-180deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+}
+
+.animate-liquid-blob-1 {
+  animation: liquid-blob-1 18s infinite ease-in-out;
+}
+
+.animate-liquid-blob-2 {
+  animation: liquid-blob-2 22s infinite ease-in-out;
+}
+
+.animate-liquid-blob-3 {
+  animation: liquid-blob-3 20s infinite ease-in-out;
+}
