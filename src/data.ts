@@ -1,3 +1,4 @@
+// Portfolio Projects data containing relative asset paths - Revision 2
 import { PortfolioProject } from './types';
 
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [

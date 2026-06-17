@@ -1,3 +1,4 @@
+// Assets resolved for GitHub pages deploy base compatibility - Revision 2
 import React, { useState } from 'react';
 import { PortfolioProject, Theme } from '../types';
 import { PORTFOLIO_PROJECTS } from '../data';
