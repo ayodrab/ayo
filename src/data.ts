@@ -15,14 +15,14 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     longDescription: "We were approached by DigitasLBi with an exciting brief for Mastercard; make a fun, engaging video for social media with high shareability. Together with the creative team at DigitasLBi we expanded on MasterCard's famous Priceless tagline.",
     outcome: "The video was Mastercard's most popular campaign in 2017 with 2.2 million organic views, 20,000 reactions, and over 2,100 shares on Facebook alone. We designed the motion framework, character designs, and led the end-to-end creative direction of this stylized flat vector animation universe.",
     deliverables: ['Priceless Campaign', 'Motion Theory & Grammar', 'Character Design', 'Campaign Localization'],
-    image: '/src/assets/motion_project_assets/mastercard_01.webp',
+    image: 'assets/motion_project_assets/mastercard_01.webp',
     coverVimeo: 'https://vimeo.com/manage/videos/385480402',
-    hoverVideo: '/src/assets/motion_project_assets/mastercard_loop.mp4',
+    hoverVideo: 'assets/motion_project_assets/mastercard_loop.mp4',
     galleryImages: [
-      '/src/assets/motion_project_assets/mastercard_01.webp',
-      '/src/assets/motion_project_assets/mastercard_02.webp',
-      '/src/assets/motion_project_assets/mastercard_03.webp',
-      '/src/assets/motion_project_assets/mastercard_04.webp'
+      'assets/motion_project_assets/mastercard_01.webp',
+      'assets/motion_project_assets/mastercard_02.webp',
+      'assets/motion_project_assets/mastercard_03.webp',
+      'assets/motion_project_assets/mastercard_04.webp'
     ],
     blocks: [
       {
@@ -32,19 +32,19 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/mastercard_02.webp',
+        image: 'assets/motion_project_assets/mastercard_02.webp',
         title: 'Storyboarding & Expression',
         text: 'Developing character model sheets and high-fidelity flat vector cartoon styles.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/mastercard_03.webp',
+        image: 'assets/motion_project_assets/mastercard_03.webp',
         title: 'Scene Composition',
         text: 'Vibrant color palettes and custom-styled background layers accentuating character dynamics.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/mastercard_04.webp',
+        image: 'assets/motion_project_assets/mastercard_04.webp',
         title: 'Final Animation Style',
         text: 'Crisp 2D vector styling with playful physics and expressive secondary details.'
       },
@@ -73,13 +73,13 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     longDescription: 'Optiver approached us to design and animate a comprehensive global onboarding campaign for their business. Combining trading system narratives, custom character illustrations, and fluid 2D animations, we helped welcome their next general talent.',
     outcome: 'We designed the character model sheets, storyboarded key trading desk scenes, and led the end-to-end animation production of this stylized corporate universe used for international onboarding.',
     deliverables: ['Creative Direction', 'Character Design', 'Storyboarding', '2D Animation Production'],
-    image: '/src/assets/motion_project_assets/optiver_office_image.webp',
-    hoverVideo: '/src/assets/motion_project_assets/optiver_loop.mp4',
+    image: 'assets/motion_project_assets/optiver_office_image.webp',
+    hoverVideo: 'assets/motion_project_assets/optiver_loop.mp4',
     galleryImages: [
-      '/src/assets/motion_project_assets/optiver_office_image.webp',
-      '/src/assets/motion_project_assets/optiver_screenshot.webp',
-      '/src/assets/motion_project_assets/optiver_screenshot_02.webp',
-      '/src/assets/motion_project_assets/optiver_storyboard.webp'
+      'assets/motion_project_assets/optiver_office_image.webp',
+      'assets/motion_project_assets/optiver_screenshot.webp',
+      'assets/motion_project_assets/optiver_screenshot_02.webp',
+      'assets/motion_project_assets/optiver_storyboard.webp'
     ],
     blocks: [
       {
@@ -89,7 +89,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/optiver_design.webp',
+        image: 'assets/motion_project_assets/optiver_design.webp',
         title: 'Character Design & Directing Style',
         text: 'Custom character model layouts, expressions, clothing choices, and color harmonies designed to communicate high performance and approachable teamwork.'
       },
@@ -100,25 +100,25 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/optiver_storyboard.webp',
+        image: 'assets/motion_project_assets/optiver_storyboard.webp',
         title: 'Storyboard Explorations',
         text: 'Visualizing dynamic transitions and cinematic timing grids to maintain high engagement throughout the onboarding film.'
       },
       {
         type: 'video',
-        video: '/src/assets/motion_project_assets/optiver_small_loop_02.mp4',
+        video: 'assets/motion_project_assets/optiver_small_loop_02.mp4',
         title: 'Atmospheric Micro-Loops',
         text: 'Cozy and dynamic flat-vector scenic loops characterizing daily life and bicycle flows around the office head-quarters.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/optiver_screenshot.webp',
+        image: 'assets/motion_project_assets/optiver_screenshot.webp',
         title: 'Workspace Scenes & Interfaces',
         text: 'High-contrast trading desk compositions blending cartoon assets with quantitative code screens.'
       },
       {
         type: 'video',
-        video: '/src/assets/motion_project_assets/optiver_small_video_01.mp4',
+        video: 'assets/motion_project_assets/optiver_small_video_01.mp4',
         title: 'Onboarding Journeys',
         text: 'High-speed character animations depicting relocations, global airport travel gates, and welcoming graduate hubs.'
       },
@@ -147,14 +147,14 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     longDescription: 'TBWA\\Amsterdam approached us with an exciting brief for Adidas: to celebrate the launch of the new All Blacks jersey through a dynamic, character-driven animation campaign. Combining rugby’s physical power, the iconic Haka, and a bold, illustrative vector style, we crafted a high-energy film that connects the heritage of the team with the raw energy of its fans.',
     outcome: 'The campaign was rolled out globally across digital, social, and in-store displays, generating massive excitement for the new jersey. We handled the complete creative direction, character design, storyboard layout, and end-to-end animation production.',
     deliverables: ['Creative Direction', 'Character Design', 'Storyboarding', '2D Animation'],
-    image: '/src/assets/motion_project_assets/adidas_01.webp',
-    coverVideo: '/src/assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
-    hoverVideo: '/src/assets/motion_project_assets/adidas_website_thumbnail.mp4',
+    image: 'assets/motion_project_assets/adidas_01.webp',
+    coverVideo: 'assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
+    hoverVideo: 'assets/motion_project_assets/adidas_website_thumbnail.mp4',
     galleryImages: [
-      '/src/assets/motion_project_assets/adidas_01.webp',
-      '/src/assets/motion_project_assets/adidas_02.webp',
-      '/src/assets/motion_project_assets/adidas_03.webp',
-      '/src/assets/motion_project_assets/adidas_04.webp'
+      'assets/motion_project_assets/adidas_01.webp',
+      'assets/motion_project_assets/adidas_02.webp',
+      'assets/motion_project_assets/adidas_03.webp',
+      'assets/motion_project_assets/adidas_04.webp'
     ],
     blocks: [
       {
@@ -164,7 +164,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/adidas_02.webp',
+        image: 'assets/motion_project_assets/adidas_02.webp',
         title: 'Character & Style Development',
         text: 'Creating expressive character illustrations that combine the sheer physical power of rugby athletes with fluid, stylized vector curves and dramatic high-contrast lighting.'
       },
@@ -175,19 +175,19 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/adidas_03.webp',
+        image: 'assets/motion_project_assets/adidas_03.webp',
         title: 'Visual Composition & Textures',
         text: 'Developing rich textures, dramatic backdrops, and ink-like brush strokes that reflect the grit, determination, and cultural roots of the team.'
       },
       {
         type: 'video',
-        video: '/src/assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
+        video: 'assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
         title: 'Dynamic Motion Dynamics',
         text: 'The full high-energy launch loop, showcasing rapid frame-by-frame animation, sweeping camera angles, and smooth character transitions.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/adidas_04.webp',
+        image: 'assets/motion_project_assets/adidas_04.webp',
         title: 'The Jersey Reveal',
         text: 'Highlighting the intricate design details of the new Adidas jersey, integrated organically into the high-contrast illustrative style.'
       },
@@ -216,19 +216,19 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     longDescription: 'Datscha, Sweden’s market leader in digitized public register and commercial real estate data, required a bold visual entry into the UK market. Partnering with Kingdom of Something, they launched the "What’s Behind the Wall?" campaign. Historically, British property registers have been locked behind expensive and obscure bureaucratic walls. This animation follows a curious, flat-vector real estate analyst who sets out to peek over and through brick obstacles to discover real-time valuations, tax logs, and ownership lines.',
     outcome: 'Introduced Datscha to the UK commercial property sector with high-shareability and immediate brand warmth. The campaign won multiple industry accolades and set a new proptech benchmark, proving that high-contrast 2D storytelling can humanize complex public record indexing.',
     deliverables: ['Creative Direction', 'Character Art Direction', 'Scene Composition', '2D Frame-by-Frame Animation'],
-    image: '/src/assets/motion_project_assets/datscha_01.webp',
-    hoverVideo: '/src/assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
+    image: 'assets/motion_project_assets/datscha_01.webp',
+    hoverVideo: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
     galleryImages: [
-      '/src/assets/motion_project_assets/datscha_01.webp',
-      '/src/assets/motion_project_assets/datscha_02.webp',
-      '/src/assets/motion_project_assets/datscha_03.webp',
-      '/src/assets/motion_project_assets/datscha_04.webp',
-      '/src/assets/motion_project_assets/datscha_05.webp',
-      '/src/assets/motion_project_assets/datscha_06.webp',
-      '/src/assets/motion_project_assets/datscha_07.webp',
-      '/src/assets/motion_project_assets/datscha_08.webp',
-      '/src/assets/motion_project_assets/datscha_09.webp',
-      '/src/assets/motion_project_assets/datscha_10.webp'
+      'assets/motion_project_assets/datscha_01.webp',
+      'assets/motion_project_assets/datscha_02.webp',
+      'assets/motion_project_assets/datscha_03.webp',
+      'assets/motion_project_assets/datscha_04.webp',
+      'assets/motion_project_assets/datscha_05.webp',
+      'assets/motion_project_assets/datscha_06.webp',
+      'assets/motion_project_assets/datscha_07.webp',
+      'assets/motion_project_assets/datscha_08.webp',
+      'assets/motion_project_assets/datscha_09.webp',
+      'assets/motion_project_assets/datscha_10.webp'
     ],
     blocks: [
       {
@@ -238,13 +238,13 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_02.webp',
+        image: 'assets/motion_project_assets/datscha_02.webp',
         title: 'Storyboarding & Narrative Focus',
         text: 'Designing a curious investor archetype navigating through high physical barriers to find the truth behind property lines.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_03.webp',
+        image: 'assets/motion_project_assets/datscha_03.webp',
         title: 'Vector Architecture & Cityscape',
         text: 'Creating high-contrast, geometric block cities that double as interactive, structural real estate boundaries.'
       },
@@ -255,43 +255,43 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_04.webp',
+        image: 'assets/motion_project_assets/datscha_04.webp',
         title: 'Visualizing Hidden Layers',
         text: 'Mapping data matrices, zoning codes, and property tax histories onto vibrant interactive graphic systems.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_05.webp',
+        image: 'assets/motion_project_assets/datscha_05.webp',
         title: 'Character Design & Pacing',
         text: 'Character sheets detailing quirky analysts, brokers, and developers styled in clean flat-vector geometries.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_06.webp',
+        image: 'assets/motion_project_assets/datscha_06.webp',
         title: 'Seamless Urban Metaphor',
         text: 'The full neighborhood layout depicting active city circles where financial vectors are made visible.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_07.webp',
+        image: 'assets/motion_project_assets/datscha_07.webp',
         title: 'The Proptech Vision',
         text: 'Transforming dense public files and financial assets into delightful frame-by-frame 2D animation highlights.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_08.webp',
+        image: 'assets/motion_project_assets/datscha_08.webp',
         title: 'Dynamic Mapping Overlay',
         text: 'How Datscha aggregates coordinates, ownership data, and historical property changes into one beautiful layer.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_09.webp',
+        image: 'assets/motion_project_assets/datscha_09.webp',
         title: 'Intuitive Analytics',
         text: 'Fun scene composition of property experts successfully navigating the new collaborative system.'
       },
       {
         type: 'image',
-        image: '/src/assets/motion_project_assets/datscha_10.webp',
+        image: 'assets/motion_project_assets/datscha_10.webp',
         title: 'Transparent Networks',
         text: 'Tracking complicated corporate portfolios and holding company patterns with absolute visual clarity.'
       },
