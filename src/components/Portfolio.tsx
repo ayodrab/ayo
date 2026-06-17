@@ -16,6 +16,21 @@ function getVimeoEmbedUrl(url?: string): string | null {
   return url;
 }
 
+function resolveAsset(url?: string): string {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const cleanPath = url.startsWith('/') ? url.slice(1) : url;
+  const base = (import.meta as any).env?.BASE_URL || '/';
+  let pathPrefix = base;
+  if (typeof window !== 'undefined' && window.location.pathname.includes('/ayo')) {
+    pathPrefix = '/ayo/';
+  }
+  const normalizedBase = pathPrefix.endsWith('/') ? pathPrefix : `${pathPrefix}/`;
+  return `${normalizedBase}${cleanPath}`;
+}
+
 interface PortfolioProps {
   theme: Theme;
 }
@@ -72,7 +87,7 @@ function ProjectCard({ project, theme, onClick, getDottedTitle }: ProjectCardPro
         {project.hoverVideo ? (
           <video
             ref={videoRef}
-            src={project.hoverVideo}
+            src={resolveAsset(project.hoverVideo)}
             loop
             muted
             playsInline
@@ -82,7 +97,7 @@ function ProjectCard({ project, theme, onClick, getDottedTitle }: ProjectCardPro
           />
         ) : (
           <img 
-            src={project.image} 
+            src={resolveAsset(project.image)} 
             alt={project.title}
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover rounded-none transition-all duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 group-hover:scale-104 group-hover:rounded-[3.5rem]"
@@ -274,7 +289,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
                     />
                   ) : selectedProject.coverVideo ? (
                     <video
-                      src={selectedProject.coverVideo}
+                      src={resolveAsset(selectedProject.coverVideo)}
                       controls
                       autoPlay
                       playsInline
@@ -284,7 +299,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
                     />
                   ) : (
                     <img 
-                      src={selectedProject.image} 
+                      src={resolveAsset(selectedProject.image)} 
                       alt={selectedProject.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-101"
@@ -325,7 +340,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
                       case 'image':
                         return (
                           <div key={index} className="space-y-4 pt-2">
-                            {block.title && (
+                             {block.title && (
                               <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-[var(--accent-color)] font-bold block mb-1">
                                 {block.title}
                               </span>
@@ -338,7 +353,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
                                     className="relative aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900/10 dark:bg-neutral-800/10 border border-[var(--border-color)]/40 group/img shadow-sm"
                                   >
                                     <img 
-                                      src={imgUrl} 
+                                      src={resolveAsset(imgUrl)} 
                                       alt={`${block.title || 'Detail'} ${idx + 1}`}
                                       referrerPolicy="no-referrer"
                                       className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-104"
@@ -352,7 +367,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
                             ) : block.image ? (
                               <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-900/10 dark:bg-neutral-800/10 border border-[var(--border-color)]/30 group/img shadow-md">
                                 <img 
-                                  src={block.image} 
+                                  src={resolveAsset(block.image)} 
                                   alt={block.imageAlt || block.title || `Detail ${index + 1}`}
                                   referrerPolicy="no-referrer"
                                   className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-102"
@@ -388,8 +403,8 @@ export default function Portfolio({ theme }: PortfolioProps) {
                             ) : block.video ? (
                               <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-900/10 dark:bg-neutral-800/10 border border-[var(--border-color)]/30 group/vid shadow-md">
                                 <video 
-                                  src={block.video} 
-                                  poster={block.videoPoster}
+                                  src={resolveAsset(block.video)} 
+                                  poster={block.videoPoster ? resolveAsset(block.videoPoster) : undefined}
                                   controls
                                   autoPlay
                                   playsInline
