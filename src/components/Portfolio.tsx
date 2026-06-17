@@ -24,11 +24,7 @@ function resolveAsset(url?: string): string {
   }
   const cleanPath = url.startsWith('/') ? url.slice(1) : url;
   const base = (import.meta as any).env?.BASE_URL || '/';
-  let pathPrefix = base;
-  if (typeof window !== 'undefined' && window.location.pathname.includes('/ayo')) {
-    pathPrefix = '/ayo/';
-  }
-  const normalizedBase = pathPrefix.endsWith('/') ? pathPrefix : `${pathPrefix}/`;
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
   return `${normalizedBase}${cleanPath}`;
 }
 
