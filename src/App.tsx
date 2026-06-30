@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Theme } from './types';
 import Portfolio from './components/Portfolio';
+import { AnimatePresence, motion } from 'motion/react';
 
 
 type View = 'work' | 'about' | 'legal';
@@ -81,6 +82,7 @@ function AnimatedLetterHeading({ text, italicText, themeKey }: AnimatedLetterHea
 export default function App() {
   const [theme, setTheme] = useState<Theme>('motion');
   const [view, setView] = useState<View>('work');
+  const [isTheaterOpen, setIsTheaterOpen] = useState(false);
 
   // Sync state to body data-theme attribute
   useEffect(() => {
@@ -220,43 +222,86 @@ export default function App() {
       <main className="relative z-10 flex-1 flex flex-col justify-center py-12 md:py-20">
         {view === 'work' && (
           <>
-            <div className="max-w-2xl w-full grid grid-cols-1 grid-rows-1 relative min-h-[220px]">
-              {/* Slide A: Motion Practice */}
-              <div 
-                className={`col-start-1 row-start-1 space-y-4 transition-opacity duration-300 ease-in-out ${
-                  theme === 'motion'
-                    ? 'opacity-100 pointer-events-auto'
-                    : 'opacity-0 pointer-events-none'
-                }`}
-              >
-                <AnimatedLetterHeading 
-                  text="Let's choreograph" 
-                  italicText="fluid motion." 
-                  themeKey={theme} 
-                />
+            {/* Extremely Minimal, Pure Cinematic Loop Edge-to-Edge Screen-Wide Banner / Group Facilitation Banner */}
+            <div className="relative z-10 mb-12 md:mb-16 select-none">
+              {theme === 'motion' ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={() => setIsTheaterOpen(true)}
+                  className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] border-y border-[var(--border-color)]/10 overflow-hidden shadow-2xl bg-black cursor-pointer group h-[140px] sm:h-[210px] md:h-[280px] lg:h-[320px]"
+                >
+                  <div className="absolute inset-0 w-full h-full">
+                    <iframe
+                      src="https://player.vimeo.com/video/826868216?background=1&autoplay=1&loop=1&muted=1&playsinline=1&controls=0&autopause=0"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[112%] h-[240%] sm:h-[260%] md:h-[280%] scale-[1.2] sm:scale-[1.3] md:scale-[1.45] lg:scale-[1.55] pointer-events-none"
+                      allow="autoplay; fullscreen"
+                    />
+                    {/* Subtle, soft ambient top/bottom fade blends */}
+                    <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[var(--bg-primary)]/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[var(--bg-primary)]/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-black/0 pointer-events-none" />
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.99, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] border-y border-[var(--border-color)]/10 overflow-hidden shadow-2xl bg-neutral-900 h-[140px] sm:h-[210px] md:h-[280px] lg:h-[320px] group"
+                >
+                  <img
+                    src="assets/facilitation_project_assets/group_facilitation_banner.jpg"
+                    alt="Collective Leadership & Group Facilitation Arena"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-500 grayscale-[10%] group-hover:grayscale-0"
+                  />
+                  {/* Subtle, soft ambient top/bottom face blends and vignettes */}
+                  <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[var(--bg-primary)]/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[var(--bg-primary)]/30 to-transparent pointer-events-none" />
+                </motion.div>
+              )}
+            </div>
 
-                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                  I design purposeful motion to help values-driven organizations tell clear, impactful stories. By bringing dynamic rhythm to visual identity and strategic alignment to creative teams, I help ideas move forward with focus and intent.
-                </p>
-              </div>
+            {/* Elegant Typographic Slides - static content displaying based on active theme */}
+            <div className="max-w-5xl w-full mx-auto text-left mb-12 md:mb-16">
+              <div className="max-w-2xl w-full grid grid-cols-1 grid-rows-1 relative min-h-[160px] md:min-h-[140px]">
+                {/* Slide A: Motion Practice */}
+                <div 
+                  className={`col-start-1 row-start-1 space-y-4 transition-all duration-500 ease-in-out ${
+                    theme === 'motion'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 translate-y-4 pointer-events-none'
+                  }`}
+                >
+                  <AnimatedLetterHeading 
+                    text="Let's choreograph" 
+                    italicText="fluid motion." 
+                    themeKey={`text-${theme}`} 
+                  />
+                  <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
+                    I design purposeful motion to help values-driven organizations tell clear, impactful stories. By bringing dynamic rhythm to visual identity and strategic alignment to creative teams, I help ideas move forward with focus and intent.
+                  </p>
+                </div>
 
-              {/* Slide B: Facilitation Practice */}
-              <div 
-                className={`col-start-1 row-start-1 space-y-4 transition-opacity duration-300 ease-in-out ${
-                  theme === 'facilitation'
-                    ? 'opacity-100 pointer-events-auto'
-                    : 'opacity-0 pointer-events-none'
-                }`}
-              >
-                <AnimatedLetterHeading 
-                  text="Let's shape" 
-                  italicText="regenerative cultures." 
-                  themeKey={theme} 
-                />
-
-                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                  Guiding conscious team evolution and systemic alignment. I design space for relational trust, shared leadership, and sustainable collaboration—allowing collective growth and creative clarity to unfold organically.
-                </p>
+                {/* Slide B: Facilitation Practice */}
+                <div 
+                  className={`col-start-1 row-start-1 space-y-4 transition-all duration-500 ease-in-out ${
+                    theme === 'facilitation'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 translate-y-4 pointer-events-none'
+                  }`}
+                >
+                  <AnimatedLetterHeading 
+                    text="Let's shape" 
+                    italicText="regenerative cultures." 
+                    themeKey={`text-${theme}`} 
+                  />
+                  <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
+                    Guiding conscious team evolution and systemic alignment. I design space for relational trust, shared leadership, and sustainable collaboration—allowing collective growth and creative clarity to unfold organically.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -493,6 +538,61 @@ export default function App() {
           </button>
         </div>
       </footer>
+
+      {/* Cinematic Fullscreen Theater Lightbox Overlay */}
+      <AnimatePresence>
+        {isTheaterOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-xl flex flex-col justify-center p-4 md:p-12 items-center"
+          >
+            {/* Keyboard dismiss listener hook effect */}
+            <KeyboardListener onClose={() => setIsTheaterOpen(false)} />
+
+            {/* Top Close Button (floating elegant control) */}
+            <div className="absolute top-6 right-6 z-[100000]">
+              <button
+                onClick={() => setIsTheaterOpen(false)}
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-white/45 bg-black/40 text-white/70 hover:text-white flex items-center justify-center text-lg transition-all duration-300 cursor-pointer outline-none hover:scale-105"
+                title="Close"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Video Canvas Stage Holder */}
+            <motion.div 
+              initial={{ scale: 0.98, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.98, y: 10 }}
+              transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+              className="w-full max-w-5xl aspect-video bg-neutral-950 rounded-lg overflow-hidden border border-white/5 shadow-2xl relative"
+            >
+              <iframe
+                src="https://player.vimeo.com/video/826868216?autoplay=1&quality=1080p"
+                className="w-full h-full absolute inset-0 border-0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                title="Ayo Cinematic Reel"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
+}
+
+// Small helper component to bind keyboard escape events cleanly within React's lifecycle
+function KeyboardListener({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+  return null;
 }

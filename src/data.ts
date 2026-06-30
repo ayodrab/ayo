@@ -306,5 +306,120 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
         text: 'The completed animation was a massive success for Datscha’s launch, establishing strong brand awareness in the UK commercial real estate industry. Combining beautiful 2D vector layouts with direct, approachable storytelling proved that tech services don’t need to look clinical to be taken seriously.'
       }
     ]
+  },
+  {
+    id: 'leadership-circle',
+    title: 'Designing for Emergence',
+    subtitle: 'Shaping cooperative governance & decentralized leadership circles.',
+    description: 'A systemic culture redesign and series of facilitation circles aligning a multi-disciplinary network of 80+ designers and researchers.',
+    category: 'facilitation',
+    tags: ['Cooperative Governance', 'Culture', 'Leadership'],
+    year: '2025',
+    client: 'Co-Design Lab Berlin',
+    role: 'Lead Process Facilitator',
+    color: 'from-amber-500/20 via-orange-600/10 to-transparent',
+    longDescription: 'We designed and held a series of co-creative leadership circles to align internal decision pathways, clear collaboration bottlenecks, and build relational trust across decentralized teams.',
+    outcome: 'Redesigned the governance framework with shared-authority circles, drastically reducing cross-functional team friction and establishing self-repairing conflict protocols.',
+    deliverables: ['Governance Design', 'Relational Trust Circles', 'Shared Leadership Framework'],
+    image: 'assets/facilitation_project_assets/leadership_circle_facilitation.jpg',
+    galleryImages: [
+      'assets/facilitation_project_assets/leadership_circle_facilitation.jpg'
+    ],
+    blocks: [
+      {
+        type: 'text',
+        title: 'The Challenge',
+        text: 'Co-Design Lab faced organizational growing pains as their decentralized network of designers expanded to over 80 contributors. The traditional hierarchy felt overly restrictive, yet the completely open peer-to-peer structure led to decision fatigue, lack of accountability, and communication bottlenecks.'
+      },
+      {
+        type: 'quote',
+        text: 'The art of group-holding is not about introducing more control; it is about cultivating trust so decision-making can happen organically.'
+      },
+      {
+        type: 'text',
+        title: 'The Architecture of circles',
+        text: 'We introduced a peer-governed Circle structure with clear domains, designated focus fields, and rotating coordinator roles. Through active listening sessions and clean, low-ego governance models, teams regained their focus and co-creative velocity.'
+      },
+      {
+        type: 'image',
+        image: 'assets/facilitation_project_assets/leadership_circle_facilitation.jpg',
+        title: 'Collaborative Circle Setting',
+        text: 'Facilitating collective direction with local and remote team members.'
+      }
+    ]
+  },
+  {
+    id: 'resilience-blueprint',
+    title: 'The Transition Space',
+    subtitle: 'An organizational renewal sprint for adaptive systemic shift.',
+    description: 'A deep-dive transition blueprint and workshop architecture designed to align multi-stateholder strategies for a leading circular economy initiative.',
+    category: 'facilitation',
+    tags: ['Sprints', 'Systems Mapping', 'Workshops'],
+    year: '2024',
+    client: 'Bureau of Circular Design',
+    role: 'Co-creative Strategist & Facilitator',
+    color: 'from-emerald-500/20 via-sky-600/10 to-transparent',
+    longDescription: 'Held dynamic workshops bringing creative thinkers, industrial producers, and environmental architects under one roof to resolve complex material pipeline dependencies.',
+    outcome: 'Forged a united vision-map, delivering a comprehensive co-creative handbook and blueprint of circular transition parameters used across three European regions.',
+    deliverables: ['Adaptive Sprint Facilitation', 'Interactive Systems Map', 'Transition Playbook'],
+    image: 'assets/facilitation_project_assets/design_sprint_facilitation.jpg',
+    galleryImages: [
+      'assets/facilitation_project_assets/design_sprint_facilitation.jpg'
+    ],
+    blocks: [
+      {
+        type: 'text',
+        title: 'The Mandate',
+        text: 'Bureau of Circular Design required a strategic alignment sprint to connect key industrial manufacturers with sustainable designers. The goal was to co-create a tangible material transition map and lifecycle blueprint for recycling loops.'
+      },
+      {
+        type: 'image',
+        image: 'assets/facilitation_project_assets/design_sprint_facilitation.jpg',
+        title: 'Co-Design Alignment Sprints',
+        text: 'Visualizing transition pathways and shared values.'
+      },
+      {
+        type: 'text',
+        title: 'The Synthesis & Output',
+        text: 'We mapped complex production parameters onto physical interactive boards. By prioritizing relational safety first, our diverse stakeholder group reached agreement on circular targets that historically had been logistically blocked.'
+      }
+    ]
+  },
+  {
+    id: 'nature-retreat',
+    title: 'Regenerative Eco-Retreat',
+    subtitle: 'Deep relational trust and renewal circles in wild spaces.',
+    description: 'An immersive outdoor sensory facilitation experience and circle program supporting executive mindfulness and relational synergy.',
+    category: 'facilitation',
+    tags: ['Sensory Practice', 'Active Listening', 'Renewal'],
+    year: '2024',
+    client: 'The Hive Network',
+    role: 'Retreat Director & Host',
+    color: 'from-teal-500/20 via-emerald-600/10 to-transparent',
+    longDescription: 'A custom sensory-led retreat designed to pull creative executives out of cognitive burnout and into slow-tempo active listening, spatial awareness, and community resilience in a serene natural setting.',
+    outcome: 'Restored vital creative synergy, resulting in a cohesive internal communication guide and lifelong peer-mentorship feedback loop among participants.',
+    deliverables: ['Outdoor Sensory Facilitation', 'Circle Hosting', 'Active Listening Manual'],
+    image: 'assets/facilitation_project_assets/nature_retreat_facilitation.jpg',
+    galleryImages: [
+      'assets/facilitation_project_assets/nature_retreat_facilitation.jpg'
+    ],
+    blocks: [
+      {
+        type: 'text',
+        title: 'Creating Sanctuary',
+        text: 'In our hyper-accelerated digital workplace, creative executives are highly prone to intellectual fatigue and systemic misalignment. The Hive Network needed a deliberate, slow-paced container to ground their directors and restore long-term focus.'
+      },
+      {
+        type: 'image',
+        image: 'assets/facilitation_project_assets/nature_retreat_facilitation.jpg',
+        title: 'The Sanctuary Circle',
+        text: 'Grounding dialogues in active, slow-tempo natural environments.'
+      },
+      {
+        type: 'text',
+        title: 'Active Listening & Restoration',
+        text: 'Using silent walks, council circles, and cooperative kitchen assemblies, we allowed participants to shed operational armor and reconnect on a primary human level.'
+      }
+    ]
   }
 ];

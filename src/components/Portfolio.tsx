@@ -77,7 +77,7 @@ function ProjectCard({ project, theme, onClick, getDottedTitle }: ProjectCardPro
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group cursor-pointer select-none space-y-4"
+      className="group cursor-pointer select-none space-y-4 relative"
     >
       {/* Image Container: Square by default, morphs to fully-rounded coordinates with zoom on hover. No border outlines. */}
       <div className="relative w-full aspect-[4/3] overflow-hidden bg-neutral-100/30 dark:bg-neutral-900/40 rounded-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rounded-[3.5rem]">
@@ -137,8 +137,8 @@ function ProjectCard({ project, theme, onClick, getDottedTitle }: ProjectCardPro
 export default function Portfolio({ theme }: PortfolioProps) {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   
-  // Display all of Ayo's real signature projects (Mastercard, Optiver, Adidas, Datscha)
-  const filteredProjects = PORTFOLIO_PROJECTS;
+  // Display only the projects associated with the active theme/practice
+  const filteredProjects = PORTFOLIO_PROJECTS.filter(project => project.category === theme);
 
   // Helper to map project id to editorial dotted titles
   const getDottedTitle = (id: string, originalTitle: string) => {
@@ -151,6 +151,12 @@ export default function Portfolio({ theme }: PortfolioProps) {
         return 'Adidas. All Blacks.';
       case 'datscha':
         return "Datscha. What's behind the wall?";
+      case 'leadership-circle':
+        return "Co-Design. Let's grow together.";
+      case 'resilience-blueprint':
+        return 'Circular Design. The Blueprint.';
+      case 'nature-retreat':
+        return 'The Hive. Finding stillness.';
       default:
         return originalTitle;
     }
@@ -180,7 +186,7 @@ export default function Portfolio({ theme }: PortfolioProps) {
       });
     }
 
-    // The Delivery / Synthesis
+    // The Synthesis / Delivery
     fallbackBlocks.push({
       type: 'text' as const,
       title: project.id === 'mastercard' ? 'The Synthesis' : 'The Delivery',
@@ -209,7 +215,6 @@ export default function Portfolio({ theme }: PortfolioProps) {
 
   return (
     <section id="portfolio-section" className="relative z-10 mt-12 md:mt-16 pt-8">
-      
       {/* Symmetrical Responsive Grid Aligning project cards side-by-side with matched heights */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 w-full">
         {filteredProjects.map((project) => (
@@ -242,7 +247,9 @@ export default function Portfolio({ theme }: PortfolioProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.98 }}
               transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
-              className="w-full max-w-4xl h-auto p-6 md:p-10 relative z-10 rounded-[1.5rem] flex flex-col bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)]"
+              className={`w-full max-w-4xl h-auto p-6 md:p-10 relative z-10 rounded-[1.5rem] flex flex-col ${
+                theme === 'motion' ? 'liquid-glass-motion' : 'liquid-glass-facilitation'
+              }`}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Sticky Navigation Close Bar (Simplified editorial bar) */}
