@@ -314,91 +314,48 @@ export default function App() {
             {/* Core Display Typography */}
             <h1 className="text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight">
               Bridging design in motion with <br />
-              <span className="italic text-[var(--accent-color)] font-normal">conscious, human-to-human momentum.</span>
+              <span className="italic text-[var(--accent-color)] font-normal">conscious momentum.</span>
             </h1>
             
-            {/* Split Editorial columns layout with layered color blocks */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-              
-              {/* Left Side: Solid Editorial Card Block (Contrasting background section) */}
-              <div className="md:col-span-7 bg-[var(--bg-secondary)] rounded-[var(--border-radius)] p-6 md:p-8 space-y-6 shadow-[var(--offset-shadow)] border border-[var(--border-color)]">
-                <p className="text-[var(--text-main)] font-semibold text-base md:text-lg leading-relaxed">
+              {/* Left Column: Distilled Narrative */}
+              <div className="md:col-span-8 space-y-6">
+                <p className="text-[var(--text-main)] font-semibold text-lg md:text-xl leading-relaxed">
                   Based in Germany, I run a hybrid practice centered on how we move pixels and how we move people. I believe both require a precise sense of rhythm, active listening, and continuous, gentle adjustment.
                 </p>
                 
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                  As a creative problem solver, I step in when communication breaks down between complex design systems and engineering architecture. I act as an interpreter between creative visions and technical teams, translating interactive motion guidelines and organizational protocols into elegant code to resolve the bottlenecks that disconnect ideas from momentum.
+                <p className="text-base text-[var(--text-muted)] leading-relaxed font-light">
+                  When communication breaks down between complex design systems and engineering teams, I step in as an interpreter. I translate interactive motion guidelines and technical protocols into clean, production-ready systems, resolving the bottlenecks that disconnect vision from momentum.
                 </p>
 
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                  As a group facilitator, I design quiet structures and leadership circles that help creative studios and forward-thinking networks transition out of friction into alignment, relational trust, and collective resilience. By holding these complementary spaces, I help teams sync their internal energy with their external creative expression.
+                <p className="text-base text-[var(--text-muted)] leading-relaxed font-light">
+                  Similarly, within organizations and networks, I design quiet structures and leadership circles that help teams transition out of friction into relational trust and shared alignment. By holding these complementary spaces, I help teams synchronize their internal focus with their external creative expression.
                 </p>
-                
-                {/* Social & Conversation Connection Row */}
-                <div className="pt-6 mt-4 border-t border-[var(--border-color)]/60">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[var(--text-main)] font-bold mb-3">
-                    LET'S CONNECT OR SHARE MOMENTS
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                    <a 
-                      href="mailto:hello@ayo.design" 
-                      className="group/mail relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)]"
-                    >
-                      hello@ayo.design
-                      <span className="inline-block transition-transform duration-300 group-hover/mail:translate-x-1.5">→</span>
-                    </a>
-                    
-                    <span className="text-[var(--text-muted)] opacity-30 hidden sm:block">|</span>
-                    
-                    <a 
-                      href="https://www.linkedin.com/in/ayo-sebastian-dr%C3%A1b-6a007314/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/link relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)]"
-                    >
-                      LINKEDIN PROFILE
-                      <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
-                    </a>
-                  </div>
-                </div>
               </div>
 
-              {/* Right Side: Extralinear Interests Card Block (Contrasting ambient background section) */}
-              <div className="md:col-span-5 bg-[var(--bg-secondary)]/50 rounded-[var(--border-radius)] p-6 md:p-8 space-y-6 border border-[var(--border-color)]">
-                <div className="space-y-1">
-                  <p className="text-xs font-sans text-[var(--accent-color)] uppercase tracking-[0.16em] font-bold">
-                    Extralinear Practices
-                  </p>
-                  <p className="text-[10px] text-[var(--text-muted)] font-sans uppercase tracking-wider opacity-75">Pursuits outside the client work</p>
-                </div>
-
-                <div className="space-y-4 text-xs">
-                  <div className="group/item hover:bg-[var(--bg-primary)] p-3 rounded-xl border border-transparent hover:border-[var(--border-color)] transition-all duration-300">
-                    <span className="font-bold text-[var(--text-main)] block uppercase tracking-widest text-[10px] mb-1">
-                      Vinyl Selection & DJing
-                    </span>
-                    <span className="text-[var(--text-muted)] leading-relaxed block text-xs">
-                      Deep curation of atmospheric frequencies, continuous slow-tempo ambient grooves, and acoustic room resonance configurations.
-                    </span>
-                  </div>
-
-                  <div className="group/item hover:bg-[var(--bg-primary)] p-3 rounded-xl border border-transparent hover:border-[var(--border-color)] transition-all duration-300 w-full">
-                    <span className="font-bold text-[var(--text-main)] block uppercase tracking-widest text-[10px] mb-1">
-                      Culinary Assembly
-                    </span>
-                    <span className="text-[var(--text-muted)] leading-relaxed block text-xs">
-                      Experiments in dynamic heat calibration, wild fermentation, seasonal ingredient balance, and the physics of tactile community kitchens.
-                    </span>
-                  </div>
-
-                  <div className="group/item hover:bg-[var(--bg-primary)] p-3 rounded-xl border border-transparent hover:border-[var(--border-color)] transition-all duration-300 w-full">
-                    <span className="font-bold text-[var(--text-main)] block uppercase tracking-widest text-[10px] mb-1">
-                      Performance & Presence
-                    </span>
-                    <span className="text-[var(--text-muted)] leading-relaxed block text-xs">
-                      Studies of physical motion paths, body language weight distribution, dynamic room choreography, and spatial interventions.
-                    </span>
-                  </div>
+              {/* Right Column: Coordinates */}
+              <div className="md:col-span-4 bg-[var(--bg-secondary)] rounded-[var(--border-radius)] p-6 md:p-8 space-y-4 border border-[var(--border-color)] h-fit shadow-[var(--offset-shadow)]">
+                <h3 className="font-sans text-[10px] uppercase tracking-[0.2em] text-[var(--text-main)] font-bold mb-1">
+                  Coordinates
+                </h3>
+                <div className="space-y-3">
+                  <a 
+                    href="mailto:hello@ayodrab.com" 
+                    className="group/mail relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)] w-full"
+                  >
+                    hello@ayodrab.com
+                    <span className="inline-block transition-transform duration-300 group-hover/mail:translate-x-1">→</span>
+                  </a>
+                  
+                  <a 
+                    href="https://www.linkedin.com/in/ayo-sebastian-dr%C3%A1b-6a007314/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)] w-full"
+                  >
+                    LinkedIn
+                    <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -425,7 +382,7 @@ export default function App() {
                   </p>
                   <p>
                     <strong>Kontakt:</strong><br />
-                    E-Mail: hello@ayo.design<br />
+                    E-Mail: hello@ayodrab.com<br />
                     Telefon: [Telefonnummer / Phone Number]
                   </p>
                   <p>
@@ -468,7 +425,7 @@ export default function App() {
                     Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br />
                     Ayo Sebastian Dráb<br />
                     [Straße, Hausnummer, PLZ, Ort]<br />
-                    E-Mail: hello@ayo.design
+                    E-Mail: hello@ayodrab.com
                   </p>
                   <p>
                     <strong>Ihre Rechte (Betroffenenrechte)</strong><br />
@@ -522,10 +479,10 @@ export default function App() {
         {/* Footer Contact Detail */}
         <div className="flex items-center">
           <a 
-            href="mailto:hello@ayo.design" 
+            href="mailto:hello@ayodrab.com" 
             className="text-[var(--accent-color)] hover:text-[var(--text-main)] font-bold transition-colors underline decoration-dotted underline-offset-2"
           >
-            hello@ayo.design
+            hello@ayodrab.com
           </a>
         </div>
 
