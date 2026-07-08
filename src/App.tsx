@@ -136,16 +136,14 @@ export default function App() {
           onClick={() => setView('work')}
           className="flex flex-col cursor-pointer group select-none"
         >
-          <span className="font-logo text-5xl font-bold tracking-wide text-[var(--accent-color)] leading-none transition-transform duration-300 group-hover:scale-105 origin-left">
+          <span className="font-logo text-6xl md:text-7xl font-bold tracking-wide text-[var(--accent-color)] leading-none transition-transform duration-300 group-hover:scale-105 origin-left">
             ayo
           </span>
           <div className="mt-2.5">
-            <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-[var(--accent-color)] font-bold block">
-              EXPERIENCES THAT MOVE PEOPLE
+            <span className="font-sans text-[11px] tracking-[0.12em] text-[var(--accent-color)] font-bold block leading-normal">
+              Moving pixels. <br />
+              Holding space.
             </span>
-            <p className="text-[10.5px] text-[var(--text-muted)] mt-1.5 max-w-[260px] leading-relaxed hidden md:block">
-              Moving pixels with gentle intention, guiding teams with absolute care.
-            </p>
           </div>
         </div>
 
@@ -276,12 +274,12 @@ export default function App() {
                   }`}
                 >
                   <AnimatedLetterHeading 
-                    text="Let's choreograph" 
-                    italicText="fluid motion." 
+                    text="Motion design for" 
+                    italicText="clear communication." 
                     themeKey={`text-${theme}`} 
                   />
                   <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                    I design purposeful motion to help values-driven organizations tell clear, impactful stories. By bringing dynamic rhythm to visual identity and strategic alignment to creative teams, I help ideas move forward with focus and intent.
+                    I work with brands and organizations to create motion that supports meaning, not noise. From visual identity to storytelling, I focus on timing, rhythm, and what the work actually needs.
                   </p>
                 </div>
 
@@ -294,12 +292,12 @@ export default function App() {
                   }`}
                 >
                   <AnimatedLetterHeading 
-                    text="Let's shape" 
-                    italicText="regenerative cultures." 
+                    text="Let's build ways" 
+                    italicText="of working that last." 
                     themeKey={`text-${theme}`} 
                   />
                   <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                    Guiding conscious team evolution and systemic alignment. I design space for relational trust, shared leadership, and sustainable collaboration—allowing collective growth and creative clarity to unfold organically.
+                    I help teams build trust, align around shared goals, and collaborate in ways that are clear, steady, and sustainable over time. Through facilitation, I create space for honest conversation, shared responsibility, and better working rhythms—so the work can move forward without burning people out.
                   </p>
                 </div>
               </div>
@@ -310,54 +308,45 @@ export default function App() {
         )}
 
         {view === 'about' && (
-          <div className="max-w-4xl space-y-12 animate-fade-in pt-4">
+          <div className="max-w-3xl space-y-10 animate-fade-in pt-4">
             {/* Core Display Typography */}
-            <h1 className="text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight">
-              Bridging design in motion with <br />
-              <span className="italic text-[var(--accent-color)] font-normal">conscious momentum.</span>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-[var(--text-main)]">
+              Creative practice and <br />
+              <span className="italic text-[var(--accent-color)]">group process.</span>
             </h1>
             
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-              {/* Left Column: Distilled Narrative */}
-              <div className="md:col-span-8 space-y-6">
-                <p className="text-[var(--text-main)] font-semibold text-lg md:text-xl leading-relaxed">
-                  Based in Germany, I run a hybrid practice centered on how we move pixels and how we move people. I believe both require a precise sense of rhythm, active listening, and continuous, gentle adjustment.
-                </p>
-                
-                <p className="text-base text-[var(--text-muted)] leading-relaxed font-light">
-                  When communication breaks down between complex design systems and engineering teams, I step in as an interpreter. I translate interactive motion guidelines and technical protocols into clean, production-ready systems, resolving the bottlenecks that disconnect vision from momentum.
-                </p>
+            <div className="space-y-6 text-base md:text-lg leading-relaxed text-[var(--text-muted)]">
+              <p>
+                Based in Berlin, Germany, I started in motion design and later moved into creative direction and studio ownership. My work has included motion systems, 3D assets, and visual projects for clients such as Mastercard, Adidas, and Optiver.
+              </p>
+              
+              <p>
+                In recent years, I’ve expanded into facilitation and change work. I’m interested in what helps teams collaborate well over time: clear goals, shared understanding, thoughtful communication, and ways of working that are sustainable rather than exhausting.
+              </p>
 
-                <p className="text-base text-[var(--text-muted)] leading-relaxed font-light">
-                  Similarly, within organizations and networks, I design quiet structures and leadership circles that help teams transition out of friction into relational trust and shared alignment. By holding these complementary spaces, I help teams synchronize their internal focus with their external creative expression.
-                </p>
-              </div>
+              <p>
+                I still care deeply about craft. I’m equally interested now in the structures and conversations that help people do good work without burning out.
+              </p>
+            </div>
 
-              {/* Right Column: Coordinates */}
-              <div className="md:col-span-4 bg-[var(--bg-secondary)] rounded-[var(--border-radius)] p-6 md:p-8 space-y-4 border border-[var(--border-color)] h-fit shadow-[var(--offset-shadow)]">
-                <h3 className="font-sans text-[10px] uppercase tracking-[0.2em] text-[var(--text-main)] font-bold mb-1">
-                  Coordinates
-                </h3>
-                <div className="space-y-3">
-                  <a 
-                    href="mailto:hello@ayodrab.com" 
-                    className="group/mail relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)] w-full"
-                  >
-                    hello@ayodrab.com
-                    <span className="inline-block transition-transform duration-300 group-hover/mail:translate-x-1">→</span>
-                  </a>
-                  
-                  <a 
-                    href="https://www.linkedin.com/in/ayo-sebastian-dr%C3%A1b-6a007314/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/link relative inline-flex items-center gap-2 font-sans font-bold text-xs uppercase tracking-[0.14em] text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)] w-full"
-                  >
-                    LinkedIn
-                    <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
-                  </a>
-                </div>
-              </div>
+            <div className="pt-8 border-t border-[var(--border-color)]/30 flex flex-wrap gap-8 items-center">
+              <a 
+                href="mailto:hello@ayodrab.com" 
+                className="group/mail relative inline-flex items-center gap-2 font-medium text-sm text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)]"
+              >
+                hello@ayodrab.com
+                <span className="inline-block transition-transform duration-300 group-hover/mail:translate-x-1">→</span>
+              </a>
+              
+              <a 
+                href="https://www.linkedin.com/in/ayo-sebastian-dr%C3%A1b-6a007314/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link relative inline-flex items-center gap-2 font-medium text-sm text-[var(--accent-color)] transition-colors hover:text-[var(--accent-hover)]"
+              >
+                LinkedIn
+                <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
+              </a>
             </div>
           </div>
         )}
