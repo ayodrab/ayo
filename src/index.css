@@ -349,3 +349,8 @@ body {
   display: block;
 }
 
+/* Custom logo hover transitions */
+.group:hover .logo-shimmer {
+  /* Cleaned up */
+}
+

@@ -216,7 +216,9 @@ export default function Portfolio({ theme }: PortfolioProps) {
   return (
     <section id="portfolio-section" className="relative z-10 mt-12 md:mt-16 pt-8">
       {/* Symmetrical Responsive Grid Aligning project cards side-by-side with matched heights */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 w-full">
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 w-full transition-all duration-700 ${
+        theme === 'facilitation' ? 'blur-md opacity-35 select-none pointer-events-none' : ''
+      }`}>
         {filteredProjects.map((project) => (
           <ProjectCard 
             key={project.id}
@@ -227,6 +229,32 @@ export default function Portfolio({ theme }: PortfolioProps) {
           />
         ))}
       </div>
+
+      {/* Elegant Coming Soon Overlay Card for the Facilitation practice */}
+      {theme === 'facilitation' && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-full max-w-md z-20 p-4">
+          <div className="w-full p-8 md:p-10 rounded-[2rem] bg-[var(--bg-secondary)]/95 border border-[var(--border-color)]/70 text-center shadow-xl space-y-5 animate-fade-in pointer-events-auto backdrop-blur-sm">
+            <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[var(--accent-color)] font-bold block">
+              PRACTICE UNDER WAY
+            </span>
+            <h3 className="text-2xl md:text-3xl font-display font-medium text-[var(--text-main)] leading-tight">
+              This part of my practice is still taking shape.
+            </h3>
+            <p className="text-xs md:text-sm text-[var(--text-muted)] font-sans leading-relaxed">
+              I’m beginning to gather and document recent facilitation work. If you’re curious about this side of what I do, feel free to get in touch.
+            </p>
+            <div className="pt-3">
+              <a 
+                href="mailto:hello@ayodrab.com" 
+                className="inline-flex items-center gap-2 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-[var(--accent-color)] hover:text-[var(--accent-hover)] transition-colors group/cs"
+              >
+                Get in touch 
+                <span className="inline-block transition-transform duration-300 group-hover/cs:translate-x-1">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Floating Detailed Case Study Panel Full Viewport Page */}
       <AnimatePresence>

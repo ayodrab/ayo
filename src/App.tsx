@@ -79,6 +79,28 @@ function AnimatedLetterHeading({ text, italicText, themeKey }: AnimatedLetterHea
 
 
 
+const logoLetterVariants = {
+  rest: { 
+    y: 0, 
+    rotate: 0,
+    color: "var(--accent-color)"
+  },
+  hover: (i: number) => ({
+    y: -8,
+    rotate: i === 0 ? -12 : i === 1 ? 4 : 12,
+    color: "var(--accent-hover)",
+    transition: {
+      type: "spring",
+      stiffness: 350,
+      damping: 10,
+      mass: 0.8,
+      delay: i * 0.04
+    }
+  })
+};
+
+
+
 export default function App() {
   const [theme, setTheme] = useState<Theme>('motion');
   const [view, setView] = useState<View>('work');
@@ -132,20 +154,32 @@ export default function App() {
       {/* Header element featuring only 'ayo', centered toggle, and About & Contact link */}
       <header className="relative z-10 grid grid-cols-1 md:grid-cols-3 items-center gap-4 pb-8">
         {/* Left: Brand logo & Explanatory Tagline */}
-        <div 
+        <motion.div 
           onClick={() => setView('work')}
-          className="flex flex-col cursor-pointer group select-none"
+          className="flex flex-col cursor-pointer group select-none w-fit"
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
         >
-          <span className="font-logo text-6xl md:text-7xl font-bold tracking-wide text-[var(--accent-color)] leading-none transition-transform duration-300 group-hover:scale-105 origin-left">
-            ayo
-          </span>
+          <div className="font-logo text-6xl md:text-7xl font-bold tracking-tighter leading-none select-none origin-left flex items-baseline gap-0 pb-4 -mb-4">
+            {['a', 'y', 'o'].map((letter, idx) => (
+              <motion.span
+                key={idx}
+                custom={idx}
+                variants={logoLetterVariants}
+                className="inline-block origin-bottom-left"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </div>
           <div className="mt-2.5">
             <span className="font-sans text-[11px] tracking-[0.12em] text-[var(--accent-color)] font-bold block leading-normal">
               Moving pixels. <br />
               Holding space.
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Center: High-visibility transparent sliding toggle track */}
         <div className="justify-self-start md:justify-self-center">
@@ -279,7 +313,7 @@ export default function App() {
                     themeKey={`text-${theme}`} 
                   />
                   <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                    I work with brands and organizations to create motion that supports meaning, not noise. From visual identity to storytelling, I focus on timing, rhythm, and what the work actually needs.
+                    I work with brands and organizations to create motion that helps ideas land clearly. From visual identity to storytelling, I focus on timing, rhythm, and what the work actually needs.
                   </p>
                 </div>
 
@@ -292,12 +326,12 @@ export default function App() {
                   }`}
                 >
                   <AnimatedLetterHeading 
-                    text="Let's build ways" 
+                    text="Let’s build ways" 
                     italicText="of working that last." 
                     themeKey={`text-${theme}`} 
                   />
                   <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-xl">
-                    I help teams build trust, align around shared goals, and collaborate in ways that are clear, steady, and sustainable over time. Through facilitation, I create space for honest conversation, shared responsibility, and better working rhythms—so the work can move forward without burning people out.
+                    I help teams build trust, get clear on shared goals, and work together in ways that feel steady and sustainable over time. Through facilitation, I create space for honest conversation, shared responsibility, and healthier working rhythms, so the work can move forward without burning people out.
                   </p>
                 </div>
               </div>
@@ -317,15 +351,15 @@ export default function App() {
             
             <div className="space-y-6 text-base md:text-lg leading-relaxed text-[var(--text-muted)]">
               <p>
-                Based in Berlin, Germany, I started in motion design and later moved into creative direction and studio ownership. My work has included motion systems, 3D assets, and visual projects for clients such as Mastercard, Adidas, and Optiver.
+                Based in Berlin, Germany, I started out in motion design and later moved into creative direction and running a studio. My work has included motion systems, 3D assets, and visual projects for clients such as Mastercard, Adidas, and Optiver.
               </p>
               
               <p>
-                In recent years, I’ve expanded into facilitation and change work. I’m interested in what helps teams collaborate well over time: clear goals, shared understanding, thoughtful communication, and ways of working that are sustainable rather than exhausting.
+                In recent years, I’ve expanded into facilitation and team development. I’m interested in what helps people collaborate well over time: clear goals, shared understanding, thoughtful communication, and ways of working that feel sustainable rather than exhausting.
               </p>
 
               <p>
-                I still care deeply about craft. I’m equally interested now in the structures and conversations that help people do good work without burning out.
+                I still care deeply about craft. I’m just as interested now in the structures and conversations that help people do good work without burning out.
               </p>
             </div>
 
@@ -458,7 +492,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.16em] text-[var(--text-muted)]">
+      <footer className="relative z-0 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.16em] text-[var(--text-muted)]">
         <div className="flex gap-2">
           <span>© {new Date().getFullYear()} Ayo</span>
           <span>•</span>
