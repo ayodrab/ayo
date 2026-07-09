@@ -1,26 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="pixel-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--secondary, #8b5cf6)" />
+      <stop offset="100%" stop-color="var(--accent, #ff2a85)" />
+    </linearGradient>
+  </defs>
   <style>
-    .space-ring {
-      stroke: var(--accent, #b89c72);
-      stroke-width: 2.5;
-      transition: all 0.3s ease;
-    }
-    .pixel-core {
-      fill: var(--accent, #b89c72);
-      transition: all 0.3s ease;
-    }
     :root {
-      --accent: #b89c72;
+      /* Default dark mode / cosmic slate fallback */
+      --accent: #ff2a85;
+      --secondary: #ff60a3;
+      --circle-stroke: rgba(245, 242, 255, 0.35);
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --accent: #826a45;
+        /* Light mode / warm terracotta fallback */
+        --accent: #d97706;
+        --secondary: #ea580c;
+        --circle-stroke: rgba(37, 32, 26, 0.3);
       }
     }
+    .holding-space {
+      stroke: var(--circle-stroke);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      transition: all 0.3s ease;
+    }
+    .moving-pixel {
+      fill: url(#pixel-grad);
+      transition: all 0.3s ease;
+    }
   </style>
-  <!-- Beautiful abstract symbol for: "Moving pixels. Holding space." -->
-  <!-- Holding Space: outer delicate ring -->
-  <circle cx="16" cy="16" r="10" class="space-ring" fill="none" />
-  <!-- Moving Pixels: precise inner solid core, offset representing motion -->
-  <circle cx="13" cy="16" r="4" class="pixel-core" />
+
+  <!-- "Holding Space": elegant delicate outer ring representing boundaries and container -->
+  <circle cx="16" cy="16" r="11" class="holding-space" />
+
+  <!-- "Moving Pixels": crisp diagonal ascending track of pixels representing motion and transformation -->
+  <!-- Bottom-left pixel (entering the space) -->
+  <rect x="7.5" x-offset="0" y="19.5" width="5" height="5" rx="1.2" class="moving-pixel" style="opacity: 0.75;" />
+  
+  <!-- Center pixel (at the heart of the space) -->
+  <rect x="13.5" y="13.5" width="5" height="5" rx="1.2" class="moving-pixel" />
+  
+  <!-- Top-right pixel (advancing beyond the space) -->
+  <rect x="19.5" y="7.5" width="5" height="5" rx="1.2" class="moving-pixel" style="opacity: 0.9;" />
 </svg>
