@@ -54,9 +54,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     image: 'assets/motion_project_assets/mastercard_01.webp',
     hoverVideo: 'assets/motion_project_assets/mastercard_loop.mp4',
     videoUrl: 'https://player.vimeo.com/video/385480402',
-    friction: 'Traditional financial statistics are dry, unengaging, and lack human resonance for social audiences.',
-    intervention: 'Co-created a character-driven motion system based on the iconic "Priceless" campaign, designing humorous, flat-vector scenario loops with precise timing and expressive physics.',
-    outcome: 'Generated 2.2 million organic views, 20,000 reactions, and over 2,100 shares on Facebook alone, becoming Mastercard\'s most popular campaign.'
+    friction: 'Mastercard required a global social campaign that translated complex data into universally relatable human stories without relying on sterile corporate infographics.',
+    intervention: 'Designed and animated a series of humorous, flat-vector scenario loops, focusing on precise timing and expressive physics to elevate the brand narrative.',
+    outcome: 'Generated 2.2 million organic views, 20,000 reactions, and over 2,100 shares, becoming Mastercard\'s most popular campaign.'
   },
   {
     id: 'leadership-circle',
@@ -105,12 +105,12 @@ const PROJECTS_DATA: UnifiedProject[] = [
   {
     id: 'nature-retreat',
     title: 'Regenerative Eco-Retreat',
-    tags: ['Sensory Practice', 'Active Listening', 'Renewal'],
+    tags: ['Executive Alignment', 'Off-site Facilitation'],
     type: 'typographic',
     statement: 'Decompressing a burnt-out executive team in a wild sanctuary circle.',
-    friction: 'High-tempo operational stress and burnout caused senior directors to isolate, leading to severe strategic fragmentation.',
-    intervention: 'Conducted sensory-led active listening circles and slow-tempo council dialogues in wild forest sanctuaries.',
-    outcome: 'Restored relational safety, yielding a cohesive internal feedback culture and lifelong peer-mentorship feedback loop among participants.'
+    friction: 'High-tempo operational stress caused senior directors to isolate, leading to severe strategic fragmentation and leadership burnout.',
+    intervention: 'Facilitated a structured off-site diagnostic, moving leadership out of daily operational environments to conduct intensive alignment sessions and establish new communication protocols.',
+    outcome: 'Restored relational trust, yielding a cohesive internal feedback culture and a sustainable peer-mentorship loop among the executive team.'
   },
   {
     id: 'datscha',
@@ -253,14 +253,12 @@ export default function App() {
             setView('work');
             setIsAboutOpen(false);
           }}
-          className="logo-container flex flex-col cursor-pointer select-none"
+          className="logo-container logo cursor-pointer select-none"
         >
           <div className="text-4xl md:text-5xl tracking-tighter leading-none flex gap-0">
-            {['a', 'y', 'o'].map((letter, idx) => (
-              <span key={idx} className="logo-letter">
-                {letter}
-              </span>
-            ))}
+            <span>a</span>
+            <span>y</span>
+            <span>o</span>
           </div>
         </div>
 
@@ -293,11 +291,10 @@ export default function App() {
                   CREATIVE PRACTICE & GROUP HOLDING
                 </span>
                 <h1 className="tracking-tight leading-[1.08] text-balance">
-                  Making complex ideas clear. <br />
-                  Making collaboration steady.
+                  Making complex ideas clear. Making collaboration steady.
                 </h1>
                 <p className="max-w-xl text-[var(--text-secondary)] font-normal text-balance">
-                  Digital and physical problem-solving through motion design and group facilitation. Bringing order to pixels and safety to human spaces.
+                  Digital problem-solving through motion design and group facilitation.
                 </p>
               </div>
             </section>
@@ -321,50 +318,18 @@ export default function App() {
                   // Selected Clients & Collaborators
                 </span>
                 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 md:gap-y-16 items-center justify-items-stretch opacity-75">
-                  {/* Mastercard */}
-                  <div className="text-left md:text-center font-sans font-bold tracking-tight text-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    mastercard
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center">
+                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
+                    Mastercard
                   </div>
-                  
-                  {/* Adidas */}
-                  <div className="text-left md:text-center font-sans font-extrabold tracking-tighter text-xl lowercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    adidas
-                  </div>
-                  
-                  {/* Optiver */}
-                  <div className="text-left md:text-center font-mono font-semibold tracking-[0.15em] text-sm uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
                     Optiver
                   </div>
-                  
-                  {/* Google */}
-                  <div className="text-left md:text-center font-serif font-medium tracking-wide text-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
+                    Adidas
+                  </div>
+                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
                     Google
-                  </div>
-                  
-                  {/* Samsung */}
-                  <div className="text-left md:text-center font-sans tracking-[0.3em] text-[11px] uppercase font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    SAMSUNG
-                  </div>
-                  
-                  {/* Porsche */}
-                  <div className="text-left md:text-center font-display tracking-[0.25em] text-[10px] uppercase font-bold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    PORSCHE
-                  </div>
-                  
-                  {/* BMW */}
-                  <div className="text-left md:text-center font-sans font-black tracking-widest text-lg uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    BMW
-                  </div>
-                  
-                  {/* Vimeo */}
-                  <div className="text-left md:text-center font-serif tracking-tighter text-xl font-black italic lowercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    vimeo
-                  </div>
-                  
-                  {/* Datscha */}
-                  <div className="text-left md:text-center font-sans tracking-widest text-base uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
-                    Datscha
                   </div>
                 </div>
               </div>
@@ -419,35 +384,31 @@ export default function App() {
                       )}
 
                       {/* Universal Metadata Block */}
-                      <div className="space-y-4 px-1">
-                        <div className="flex items-center justify-between border-b border-[var(--border-color)]/40 pb-2 gap-4">
-                          <h3 className="text-base md:text-lg font-display font-medium tracking-tight">
-                            {project.title}
-                          </h3>
-                          {/* Tags block */}
-                          <ul className="flex flex-wrap gap-1.5 shrink-0 list-none m-0 p-0">
-                            {project.tags.map((tag) => (
-                              <li 
-                                key={tag} 
-                                className="text-[9px] font-sans font-bold tracking-wider uppercase border border-[var(--border-color)]/80 text-[var(--text-primary)] px-2.5 py-1 rounded-full bg-[var(--bg-secondary)]/50 whitespace-nowrap"
-                              >
-                                {tag}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      <div className="case-study-meta">
+                        {/* Metadata Tags Styling */}
+                        <ul className="project-tags">
+                          {project.tags.map((tag) => (
+                            <li key={tag}>
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+
+                        <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
+                          {project.title}
+                        </h3>
 
                         {/* Strict human layout detailing Friction, Intervention, and Outcome */}
-                        <div className="space-y-2.5 pt-1 text-[13px] md:text-sm leading-relaxed">
-                          <p className="m-0 text-[var(--text-secondary)]">
+                        <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left">
+                          <p className="m-0 text-[var(--text-secondary)] text-left">
                             <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Friction:</strong> 
                             {project.friction}
                           </p>
-                          <p className="m-0 text-[var(--text-secondary)]">
+                          <p className="m-0 text-[var(--text-secondary)] text-left">
                             <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Intervention:</strong> 
                             {project.intervention}
                           </p>
-                          <p className="m-0 text-[var(--text-secondary)]">
+                          <p className="m-0 text-[var(--text-secondary)] text-left">
                             <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Outcome:</strong> 
                             {project.outcome}
                           </p>
@@ -465,40 +426,31 @@ export default function App() {
             {/* Section: Methodology */}
             <section id="methodology" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
               <div className="space-y-16">
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-[var(--border-color)]/40 pb-6 gap-4">
+                <div className="space-y-6 max-w-3xl">
                   <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
-                    How I work.
+                    Capabilities & Approach
                   </h2>
-                  <p className="max-w-md text-xs leading-relaxed text-[var(--text-secondary)] font-sans">
+                  <p className="lead text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
                     I operate as a solo practitioner, directing each project personally. When scale or specialized needs require, I partner with trusted creative and technical collaborators.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-                  {/* Step 1 */}
-                  <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+                  {/* Capability 1 */}
+                  <div className="capability-block space-y-4">
                     <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
-                      1. Diagnose the Friction.
+                      Motion & Visual Systems
                     </h3>
                     <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
-                      Before rendering a single pixel, I map the process. I identify where communication breaks down, where handoffs fail, and what the team actually needs to succeed.
+                      Translating complex mechanics into clear, accessible visual frameworks. Executing 2D/3D motion libraries, onboarding sequences, and scalable asset systems with strict precision.
                     </p>
                   </div>
-                  {/* Step 2 */}
-                  <div className="space-y-4">
+                  {/* Capability 2 */}
+                  <div className="capability-block space-y-4">
                     <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
-                      2. Align the Room.
+                      Team Process & Facilitation
                     </h3>
                     <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
-                      Through structured sprints and facilitated workshops, I eliminate circular decisions. I get stakeholders to agree on the constraints, objectives, and timeline.
-                    </p>
-                  </div>
-                  {/* Step 3 */}
-                  <div className="space-y-4">
-                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
-                      3. Build the System.
-                    </h3>
-                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
-                      I execute the visual deliverables—motion systems, asset libraries, or spatial frameworks—with strict precision, ensuring the output matches the aligned strategy.
+                      Untangling the human bottlenecks that prevent good work from shipping. Diagnosing workflow friction, aligning stakeholders through structured sprints, and designing sustainable governance rhythms.
                     </p>
                   </div>
                 </div>

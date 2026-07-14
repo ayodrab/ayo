@@ -17,7 +17,8 @@
   --text-secondary: #595959;
   --transition-hover: 0.3s ease;
   --border-color: #E2DFD5;
-  --bg-secondary: #E8E7E2; /* Typographic Card (Component B) slightly darker background */
+  --bg-secondary: #EBEAE5; /* A slightly darker warm neutral to create contrast for the text cards */
+  --border-subtle: rgba(26, 26, 26, 0.1);
   
   --font-display: "Fraunces", serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
@@ -53,6 +54,7 @@ p {
   font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.05rem);
   line-height: 1.6;
   color: var(--text-secondary);
+  max-width: 65ch;
 }
 
 body {
@@ -81,29 +83,41 @@ header {
 
 /* Logo Staggered Spring Bounce Animation */
 @keyframes spring-bounce {
-  0% { transform: translateY(0) scaleY(1); }
-  25% { transform: translateY(-12px) scaleY(1.05); }
-  50% { transform: translateY(3px) scaleY(0.95); }
-  75% { transform: translateY(-2px) scaleY(1.01); }
-  100% { transform: translateY(0) scaleY(1); }
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+  25% {
+    transform: translateY(-10px) scaleY(1.08);
+  }
+  50% {
+    transform: translateY(2px) scaleY(0.95);
+  }
+  75% {
+    transform: translateY(-1px) scaleY(1.01);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
 }
 
-.logo-letter {
+.logo span {
   display: inline-block;
   font-family: "Caveat", cursive;
   font-weight: 700;
   color: var(--text-primary);
+  transition: transform 0.15s ease;
 }
 
-/* Staggered triggers */
-.logo-container:hover .logo-letter:nth-child(1) {
-  animation: spring-bounce 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+.logo:hover span {
+  animation: spring-bounce 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
-.logo-container:hover .logo-letter:nth-child(2) {
-  animation: spring-bounce 0.85s cubic-bezier(0.25, 1, 0.5, 1) 0.06s forwards;
+
+.logo:hover span:nth-child(2) {
+  animation-delay: 0.05s;
 }
-.logo-container:hover .logo-letter:nth-child(3) {
-  animation: spring-bounce 0.85s cubic-bezier(0.25, 1, 0.5, 1) 0.12s forwards;
+
+.logo:hover span:nth-child(3) {
+  animation-delay: 0.1s;
 }
 
 /* Project Grid Items - Intersection Observer Fade Up */
@@ -142,17 +156,38 @@ header {
   right: -10%;
 }
 
+/* Metadata Tags Styling */
+.project-tags {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Case Study Meta left alignment and margin spacing */
+.case-study-meta {
+  margin-top: 2rem;
+  text-align: left;
+}
+
 /* Typographic Card (Component B) Styling */
 .typo-card {
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  aspect-ratio: 16/9;
-  min-height: 400px;
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 16 / 9;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 3rem;
+  align-items: center;
   text-align: center;
+  padding: 3rem;
   position: relative;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -165,12 +200,13 @@ header {
 
 .typo-card p {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.2rem, 2.2vw, 2.2rem);
   font-weight: 500;
   line-height: 1.25;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+  max-width: 100%;
 }
 
 /* About Overlay Styling */
