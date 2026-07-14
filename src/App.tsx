@@ -225,7 +225,8 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
 }
 
 export default function App() {
-  const [view, setView] = useState<'work' | 'about' | 'legal'>('work');
+  const [view, setView] = useState<'work' | 'legal'>('work');
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [theaterVideo, setTheaterVideo] = useState<string | null>(null);
 
   // Scroll back to main page if view changes
@@ -248,30 +249,31 @@ export default function App() {
       {/* Header (Fixed Navigation) */}
       <header className="fixed top-0 left-0 w-full z-100 bg-[var(--bg-primary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/40 py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-colors duration-300">
         <div 
-          onClick={() => setView('work')}
+          onClick={() => {
+            setView('work');
+            setIsAboutOpen(false);
+          }}
           className="logo-container flex flex-col cursor-pointer select-none"
         >
-          <div className="text-4xl md:text-5xl tracking-tighter leading-none flex gap-0 pb-1">
+          <div className="text-4xl md:text-5xl tracking-tighter leading-none flex gap-0">
             {['a', 'y', 'o'].map((letter, idx) => (
               <span key={idx} className="logo-letter">
                 {letter}
               </span>
             ))}
           </div>
-          <span className="text-[9.5px] uppercase tracking-[0.22em] font-bold text-[var(--text-secondary)]">
-            Dráb
-          </span>
         </div>
 
         {/* Right Nav buttons */}
         <div className="flex gap-6 items-center">
           <button 
-            onClick={() => setView(view === 'about' ? 'work' : 'about')}
+            id="about-toggle"
+            onClick={() => setIsAboutOpen(!isAboutOpen)}
             className="group relative flex items-center gap-1.5 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] py-1 bg-transparent border-0 cursor-pointer outline-none select-none transition-colors"
           >
-            <span>{view === 'about' ? 'CLOSE' : 'ABOUT'}</span>
+            <span>{isAboutOpen ? 'CLOSE' : 'ABOUT'}</span>
             <span className={`w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] transition-transform duration-300 ${
-              view === 'about' ? 'scale-150 bg-red-500' : 'group-hover:scale-125'
+              isAboutOpen ? 'scale-150 bg-red-500' : 'group-hover:scale-125'
             }`} />
           </button>
         </div>
@@ -282,7 +284,7 @@ export default function App() {
         
         {/* VIEW: WORK (Continuous Scroll Portfolio Grid) */}
         {view === 'work' && (
-          <div className="space-y-16">
+          <div className="space-y-0">
             
             {/* Section: Hero */}
             <section id="hero" className="min-h-[80vh] md:min-h-[85vh] flex flex-col justify-center text-left py-12">
@@ -300,9 +302,77 @@ export default function App() {
               </div>
             </section>
 
+            {/* Section: Philosophy */}
+            <section id="philosophy" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
+              <div className="max-w-[900px] mx-auto space-y-6">
+                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
+                  // Philosophy
+                </span>
+                <p className="font-display font-medium text-[var(--text-primary)] tracking-tight leading-[1.2] text-balance text-left" style={{ fontSize: "clamp(2rem, 4vw, 4rem)" }}>
+                  Good work cannot survive in a broken system. I believe the most expensive bottlenecks in any complex project are rarely technical—they are human. Designing a beautiful motion system is useless if the team is too burned out to deploy it.
+                </p>
+              </div>
+            </section>
+
+            {/* Section: Selected Clients */}
+            <section id="clients" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
+              <div className="space-y-12">
+                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
+                  // Selected Clients & Collaborators
+                </span>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 md:gap-y-16 items-center justify-items-stretch opacity-75">
+                  {/* Mastercard */}
+                  <div className="text-left md:text-center font-sans font-bold tracking-tight text-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    mastercard
+                  </div>
+                  
+                  {/* Adidas */}
+                  <div className="text-left md:text-center font-sans font-extrabold tracking-tighter text-xl lowercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    adidas
+                  </div>
+                  
+                  {/* Optiver */}
+                  <div className="text-left md:text-center font-mono font-semibold tracking-[0.15em] text-sm uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    Optiver
+                  </div>
+                  
+                  {/* Google */}
+                  <div className="text-left md:text-center font-serif font-medium tracking-wide text-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    Google
+                  </div>
+                  
+                  {/* Samsung */}
+                  <div className="text-left md:text-center font-sans tracking-[0.3em] text-[11px] uppercase font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    SAMSUNG
+                  </div>
+                  
+                  {/* Porsche */}
+                  <div className="text-left md:text-center font-display tracking-[0.25em] text-[10px] uppercase font-bold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    PORSCHE
+                  </div>
+                  
+                  {/* BMW */}
+                  <div className="text-left md:text-center font-sans font-black tracking-widest text-lg uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    BMW
+                  </div>
+                  
+                  {/* Vimeo */}
+                  <div className="text-left md:text-center font-serif tracking-tighter text-xl font-black italic lowercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    vimeo
+                  </div>
+                  
+                  {/* Datscha */}
+                  <div className="text-left md:text-center font-sans tracking-widest text-base uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-default select-none">
+                    Datscha
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Section: The Unified Work Gallery */}
-            <section id="work" className="space-y-24">
-              <div className="border-t border-[var(--border-color)] pt-12 flex justify-between items-baseline mb-12">
+            <section id="work" className="py-24 md:py-32 border-t border-[var(--border-color)]/30">
+              <div className="flex justify-between items-baseline mb-20">
                 <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
                   Interleaved Case Studies
                 </h2>
@@ -311,8 +381,8 @@ export default function App() {
                 </span>
               </div>
 
-              {/* Grid Layout: 1-column mobile, asymmetrical 2-column on desktop */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 w-full">
+              {/* Grid Layout: 1-column mobile, asymmetrical 2-column on desktop with high negative space */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
                 {PROJECTS_DATA.map((project, idx) => {
                   // Asymmetric desktop layout offsets using margins or positioning
                   const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
@@ -342,7 +412,7 @@ export default function App() {
                           <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-[var(--text-secondary)]/60">
                             Facilitate
                           </div>
-                          <p className="font-display font-medium text-lg md:text-xl leading-relaxed text-[var(--text-primary)] max-w-sm">
+                          <p className="max-w-xl">
                             “{project.statement}”
                           </p>
                         </div>
@@ -391,51 +461,50 @@ export default function App() {
               {/* Extra spacing at the bottom of asymmetric grid */}
               <div className="h-24 hidden md:block" />
             </section>
-          </div>
-        )}
 
-        {/* VIEW: ABOUT (Elegant Panel View Overlay style) */}
-        {view === 'about' && (
-          <div className="space-y-12 max-w-3xl animate-fade-in pt-12 md:pt-16">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
-              Berlin / Germany
-            </span>
-            <h1 className="text-4xl md:text-5xl tracking-tight leading-[1.12]">
-              Creative practice and <br />
-              <span className="italic text-[var(--text-secondary)]">group process.</span>
-            </h1>
-            
-            <div className="space-y-6 text-base md:text-[17px] leading-relaxed text-[var(--text-secondary)] font-normal text-balance">
-              <p>
-                Based in Berlin, Germany, I started out in motion design and later moved into creative direction and running a studio. My work has included motion systems, 3D assets, and visual projects for clients such as Mastercard, Adidas, and Optiver.
-              </p>
-              <p>
-                In recent years, I’ve expanded into facilitation and team development. I’m interested in what helps people collaborate well over time: clear goals, shared understanding, thoughtful communication, and ways of working that feel sustainable rather than exhausting.
-              </p>
-              <p>
-                I still care deeply about craft. I’m just as interested now in the structures and conversations that help people do good work without burning out.
-              </p>
-            </div>
+            {/* Section: Methodology */}
+            <section id="methodology" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
+              <div className="space-y-16">
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-[var(--border-color)]/40 pb-6 gap-4">
+                  <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
+                    How I work.
+                  </h2>
+                  <p className="max-w-md text-xs leading-relaxed text-[var(--text-secondary)] font-sans">
+                    I operate as a solo practitioner, directing each project personally. When scale or specialized needs require, I partner with trusted creative and technical collaborators.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+                  {/* Step 1 */}
+                  <div className="space-y-4">
+                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
+                      1. Diagnose the Friction.
+                    </h3>
+                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
+                      Before rendering a single pixel, I map the process. I identify where communication breaks down, where handoffs fail, and what the team actually needs to succeed.
+                    </p>
+                  </div>
+                  {/* Step 2 */}
+                  <div className="space-y-4">
+                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
+                      2. Align the Room.
+                    </h3>
+                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
+                      Through structured sprints and facilitated workshops, I eliminate circular decisions. I get stakeholders to agree on the constraints, objectives, and timeline.
+                    </p>
+                  </div>
+                  {/* Step 3 */}
+                  <div className="space-y-4">
+                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
+                      3. Build the System.
+                    </h3>
+                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
+                      I execute the visual deliverables—motion systems, asset libraries, or spatial frameworks—with strict precision, ensuring the output matches the aligned strategy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-            <div className="pt-8 border-t border-[var(--border-color)]/50 flex flex-wrap gap-8 items-center">
-              <a 
-                href="mailto:hello@ayodrab.com" 
-                className="group/mail relative inline-flex items-center gap-2 font-bold font-sans text-[11px] uppercase tracking-widest text-[var(--text-primary)] transition-colors"
-              >
-                hello@ayodrab.com
-                <span className="inline-block transition-transform duration-300 group-hover/mail:translate-x-1">→</span>
-              </a>
-              
-              <a 
-                href="https://www.linkedin.com/in/ayo-sebastian-dr%C3%A1b-6a007314/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link relative inline-flex items-center gap-2 font-bold font-sans text-[11px] uppercase tracking-widest text-[var(--text-primary)] transition-colors"
-              >
-                LinkedIn
-                <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
-              </a>
-            </div>
           </div>
         )}
 
@@ -546,29 +615,77 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/40 mt-24 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
-        <div className="flex gap-2">
-          <span>© {new Date().getFullYear()} Ayo Sebastian Dráb</span>
-          <span>•</span>
-          <span className="uppercase text-[var(--text-primary)] font-bold">Motion & Facilitation</span>
-        </div>
+      {/* Footer (The Final CTA) */}
+      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/40 pt-[10rem] pb-[5rem] text-center space-y-16">
         
-        <div className="flex gap-6">
-          <a 
-            href="mailto:hello@ayodrab.com" 
-            className="text-[var(--text-primary)] font-bold transition-colors hover:text-[var(--text-secondary)] underline decoration-dotted underline-offset-2"
-          >
-            hello@ayodrab.com
-          </a>
-          <button 
-            onClick={() => setView('legal')} 
-            className={`hover:text-[var(--text-primary)] uppercase transition-colors cursor-pointer border-0 bg-transparent font-bold tracking-widest ${view === 'legal' ? 'text-red-500' : ''}`}
-          >
-            Impressum & Privacy
-          </button>
+        {/* The Final CTA Content */}
+        <div className="max-w-2xl mx-auto space-y-6">
+          <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight text-[var(--text-primary)] leading-tight">
+            Let’s figure out where the bottleneck is.
+          </h2>
+          <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed text-balance">
+            Open for selected motion systems design and team process facilitation. Based in Berlin, working globally.
+          </p>
+          <div className="pt-4">
+            <a 
+              href="mailto:hello@ayodrab.com" 
+              className="group inline-flex items-center gap-2 font-sans font-bold text-xs md:text-sm uppercase tracking-[0.2em] text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1.5 transition-all hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
+            >
+              Start a conversation <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Minimal Legal & Copy */}
+        <div className="pt-16 border-t border-[var(--border-color)]/20 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
+          <div className="flex gap-2">
+            <span>© {new Date().getFullYear()} Ayo Sebastian Dráb</span>
+            <span>•</span>
+            <span className="uppercase text-[var(--text-primary)] font-bold">Motion & Facilitation</span>
+          </div>
+          
+          <div className="flex gap-6">
+            <a 
+              href="mailto:hello@ayodrab.com" 
+              className="text-[var(--text-primary)] font-bold transition-colors hover:text-[var(--text-secondary)] underline decoration-dotted underline-offset-2"
+            >
+              hello@ayodrab.com
+            </a>
+            <button 
+              onClick={() => setView('legal')} 
+              className={`hover:text-[var(--text-primary)] uppercase transition-colors cursor-pointer border-0 bg-transparent font-bold tracking-widest ${view === 'legal' ? 'text-red-500' : ''}`}
+            >
+              Impressum & Privacy
+            </button>
+          </div>
         </div>
       </footer>
+
+      {/* About Overlay */}
+      <div 
+        id="about-overlay" 
+        className={isAboutOpen ? 'is-open' : ''}
+        onClick={() => setIsAboutOpen(false)}
+      >
+        {isAboutOpen && <KeyboardListener onClose={() => setIsAboutOpen(false)} />}
+        <div 
+          className="overlay-content"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight leading-[1.12] text-[var(--text-primary)]">
+            Creative craft and group process.
+          </h2>
+          <p className="font-body text-base md:text-[17px] leading-relaxed text-[var(--text-secondary)] mt-6">
+            I started out solving digital problems through technical visualization. Over years of working with complex projects, I realized the most expensive bottlenecks are rarely technical—they are human. Today, I split my time between visual problem-solving and group facilitation. Whether structuring a 3D animation timeline or holding space for a team sprint, the goal is the same: making things clear so people can move forward.
+          </p>
+          <button
+            onClick={() => setIsAboutOpen(false)}
+            className="mt-8 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1 hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)] transition-colors"
+          >
+            CLOSE
+          </button>
+        </div>
+      </div>
 
       {/* Cinematic Fullscreen Theater Lightbox Overlay */}
       <AnimatePresence>

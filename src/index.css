@@ -147,10 +147,11 @@ header {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   aspect-ratio: 16/9;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem;
+  padding: 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -160,6 +161,59 @@ header {
 
 .typo-card:hover {
   border-color: var(--text-primary);
+}
+
+.typo-card p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+}
+
+/* About Overlay Styling */
+#about-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(244, 243, 239, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+#about-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#about-overlay .overlay-content {
+  max-width: 42rem;
+  width: 100%;
+  text-align: left;
+}
+
+#about-overlay h2 {
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 2rem;
+}
+
+#about-overlay p {
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 /* Luxurious Film Grain Overlay */
