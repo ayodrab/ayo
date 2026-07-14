@@ -104,10 +104,10 @@ const PROJECTS_DATA: UnifiedProject[] = [
   },
   {
     id: 'nature-retreat',
-    title: 'Regenerative Eco-Retreat',
+    title: 'Executive Realignment Off-site',
     tags: ['Executive Alignment', 'Off-site Facilitation'],
     type: 'typographic',
-    statement: 'Decompressing a burnt-out executive team in a wild sanctuary circle.',
+    statement: 'Untangling leadership friction through structured diagnostic sprints.',
     friction: 'High-tempo operational stress caused senior directors to isolate, leading to severe strategic fragmentation and leadership burnout.',
     intervention: 'Facilitated a structured off-site diagnostic, moving leadership out of daily operational environments to conduct intensive alignment sessions and establish new communication protocols.',
     outcome: 'Restored relational trust, yielding a cohesive internal feedback culture and a sustainable peer-mentorship loop among the executive team.'
@@ -228,6 +228,27 @@ export default function App() {
   const [view, setView] = useState<'work' | 'legal'>('work');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [theaterVideo, setTheaterVideo] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'motion' | 'facilitate'>('motion');
+
+  // Handle URL hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#facilitate') {
+        setActiveTab('facilitate');
+      } else {
+        setActiveTab('motion');
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Filter projects for separate tracks
+  const motionProjects = PROJECTS_DATA.filter((p) => p.type === 'visual');
+  const facilitateProjects = PROJECTS_DATA.filter((p) => p.type === 'typographic');
 
   // Scroll back to main page if view changes
   useEffect(() => {
@@ -235,7 +256,7 @@ export default function App() {
   }, [view]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-20 pt-28 px-6 md:px-12 lg:px-20">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-20 pt-28 px-0">
       
       {/* Luxurious film grain overlay */}
       <div className="grain-overlay" />
@@ -278,154 +299,182 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <main className="relative z-10 w-full max-w-6xl mx-auto">
+      <main className="relative z-10 w-full">
         
         {/* VIEW: WORK (Continuous Scroll Portfolio Grid) */}
         {view === 'work' && (
           <div className="space-y-0">
             
             {/* Section: Hero */}
-            <section id="hero" className="min-h-[80vh] md:min-h-[85vh] flex flex-col justify-center text-left py-12">
-              <div className="max-w-4xl space-y-6">
-                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
-                  CREATIVE PRACTICE & GROUP HOLDING
+            <section id="hero" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container space-y-6">
+                <span className="section-label">
+                  {activeTab === 'motion' 
+                    ? 'CREATIVE PRACTICE / MOTION' 
+                    : 'GROUP HOLDING / FACILITATION'}
                 </span>
                 <h1 className="tracking-tight leading-[1.08] text-balance">
-                  Making complex ideas clear. Making collaboration steady.
+                  {activeTab === 'motion'
+                    ? 'Making complex ideas clear.'
+                    : 'Making collaboration steady.'}
                 </h1>
                 <p className="max-w-xl text-[var(--text-secondary)] font-normal text-balance">
-                  Digital problem-solving through motion design and group facilitation.
+                  {activeTab === 'motion'
+                    ? 'Digital problem-solving through motion design. Bringing order to pixels and translating mechanics into clear visual stories.'
+                    : 'Problem-solving through group facilitation. Untangling collective friction and bringing safety to human spaces.'}
                 </p>
               </div>
             </section>
 
             {/* Section: Philosophy */}
-            <section id="philosophy" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
-              <div className="max-w-[900px] mx-auto space-y-6">
-                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
+            <section id="philosophy" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container space-y-6">
+                <span className="section-label">
                   // Philosophy
                 </span>
-                <p className="font-display font-medium text-[var(--text-primary)] tracking-tight leading-[1.2] text-balance text-left" style={{ fontSize: "clamp(2rem, 4vw, 4rem)" }}>
+                <p className="philosophy-text">
                   Good work cannot survive in a broken system. I believe the most expensive bottlenecks in any complex project are rarely technical—they are human. Designing a beautiful motion system is useless if the team is too burned out to deploy it.
                 </p>
               </div>
             </section>
 
             {/* Section: Selected Clients */}
-            <section id="clients" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
-              <div className="space-y-12">
-                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
+            <section id="clients" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container space-y-12">
+                <span className="section-label">
                   // Selected Clients & Collaborators
                 </span>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center">
-                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
-                    Mastercard
-                  </div>
-                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
-                    Optiver
-                  </div>
-                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
-                    Adidas
-                  </div>
-                  <div className="font-sans font-medium transition-colors hover:text-[var(--text-primary)] cursor-default select-none" style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.875rem' }}>
-                    Google
-                  </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center font-sans font-medium uppercase tracking-[0.05em] text-sm" style={{ color: 'var(--text-primary)' }}>
+                  <div>Mastercard</div>
+                  <div>Optiver</div>
+                  <div>Adidas</div>
+                  <div>Google</div>
                 </div>
               </div>
             </section>
 
             {/* Section: The Unified Work Gallery */}
-            <section id="work" className="py-24 md:py-32 border-t border-[var(--border-color)]/30">
-              <div className="flex justify-between items-baseline mb-20">
-                <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
-                  Interleaved Case Studies
-                </h2>
-                <span className="text-xs font-mono text-[var(--text-secondary)]">
-                  Motion & Facilitation
-                </span>
+            <section id="work" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container">
+                <div className="flex justify-between items-baseline mb-20">
+                  <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
+                    Selected Work
+                  </h2>
+                  <span className="text-xs font-mono text-[var(--text-secondary)]">
+                    Motion & Facilitation
+                  </span>
+                </div>
+
+                {/* The Sticky Toggle */}
+                <nav className="state-toggle">
+                  <a 
+                    href="#motion" 
+                    className={`toggle-btn ${activeTab === 'motion' ? 'active' : ''}`} 
+                    data-target="motion"
+                  >
+                    Motion & Systems
+                  </a>
+                  <a 
+                    href="#facilitate" 
+                    className={`toggle-btn ${activeTab === 'facilitate' ? 'active' : ''}`} 
+                    data-target="facilitate"
+                  >
+                    Change Facilitation
+                  </a>
+                </nav>
+
+                <div id="portfolio-container">
+                  {/* Motion Track */}
+                  <div id="motion-track" className={`track ${activeTab === 'motion' ? 'active' : ''}`}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
+                      {motionProjects.map((project, idx) => {
+                        const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
+                        return (
+                          <GridItem 
+                            key={project.id} 
+                            className={`flex flex-col gap-6 ${alignClass}`}
+                          >
+                            <VisualCard 
+                              project={project} 
+                              onClick={() => {
+                                if (project.videoUrl) {
+                                  setTheaterVideo(project.videoUrl);
+                                } else {
+                                  setTheaterVideo("https://player.vimeo.com/video/826868216");
+                                }
+                              }}
+                            />
+                            <div className="case-study-meta">
+                              <ul className="project-tags tags">
+                                {project.tags.map((tag) => (
+                                  <li key={tag}>{tag}</li>
+                                ))}
+                              </ul>
+                              <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
+                                {project.title}
+                              </h3>
+                              <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
+                                <p><strong>The Friction:</strong> {project.friction}</p>
+                                <p><strong>The Intervention:</strong> {project.intervention}</p>
+                                <p><strong>The Outcome:</strong> {project.outcome}</p>
+                              </div>
+                            </div>
+                          </GridItem>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Facilitation Track */}
+                  <div id="facilitate-track" className={`track ${activeTab === 'facilitate' ? 'active' : ''}`}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
+                      {facilitateProjects.map((project, idx) => {
+                        const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
+                        return (
+                          <GridItem 
+                            key={project.id} 
+                            className={`flex flex-col gap-6 ${alignClass}`}
+                          >
+                            <div className="typo-card rounded-3xl">
+                              <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-[var(--text-primary)]/10" />
+                              <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-[var(--text-secondary)]/60">
+                                Facilitate
+                              </div>
+                              <p className="max-w-xl font-display text-lg leading-relaxed text-center">
+                                “{project.statement}”
+                              </p>
+                            </div>
+                            <div className="case-study-meta">
+                              <ul className="project-tags tags">
+                                {project.tags.map((tag) => (
+                                  <li key={tag}>{tag}</li>
+                                ))}
+                              </ul>
+                              <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
+                                {project.title}
+                              </h3>
+                              <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
+                                <p><strong>The Friction:</strong> {project.friction}</p>
+                                <p><strong>The Intervention:</strong> {project.intervention}</p>
+                                <p><strong>The Outcome:</strong> {project.outcome}</p>
+                              </div>
+                            </div>
+                          </GridItem>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Extra spacing at the bottom of asymmetric grid */}
+                <div className="h-24 hidden md:block" />
               </div>
-
-              {/* Grid Layout: 1-column mobile, asymmetrical 2-column on desktop with high negative space */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
-                {PROJECTS_DATA.map((project, idx) => {
-                  // Asymmetric desktop layout offsets using margins or positioning
-                  const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
-                  
-                  return (
-                    <GridItem 
-                      key={project.id} 
-                      className={`flex flex-col gap-6 ${alignClass}`}
-                    >
-                      {/* Component A: Visual Card */}
-                      {project.type === 'visual' ? (
-                        <VisualCard 
-                          project={project} 
-                          onClick={() => {
-                            if (project.videoUrl) {
-                              setTheaterVideo(project.videoUrl);
-                            } else {
-                              setTheaterVideo("https://player.vimeo.com/video/826868216");
-                            }
-                          }}
-                        />
-                      ) : (
-                        /* Component B: Typographic Card (Facilitation) */
-                        <div className="typo-card rounded-3xl">
-                          {/* Tactile detail lines */}
-                          <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-[var(--text-primary)]/10" />
-                          <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-[var(--text-secondary)]/60">
-                            Facilitate
-                          </div>
-                          <p className="max-w-xl">
-                            “{project.statement}”
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Universal Metadata Block */}
-                      <div className="case-study-meta">
-                        {/* Metadata Tags Styling */}
-                        <ul className="project-tags">
-                          {project.tags.map((tag) => (
-                            <li key={tag}>
-                              {tag}
-                            </li>
-                          ))}
-                        </ul>
-
-                        <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
-                          {project.title}
-                        </h3>
-
-                        {/* Strict human layout detailing Friction, Intervention, and Outcome */}
-                        <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left">
-                          <p className="m-0 text-[var(--text-secondary)] text-left">
-                            <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Friction:</strong> 
-                            {project.friction}
-                          </p>
-                          <p className="m-0 text-[var(--text-secondary)] text-left">
-                            <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Intervention:</strong> 
-                            {project.intervention}
-                          </p>
-                          <p className="m-0 text-[var(--text-secondary)] text-left">
-                            <strong className="text-[var(--text-primary)] font-semibold font-sans uppercase text-[10px] tracking-wider mr-2">The Outcome:</strong> 
-                            {project.outcome}
-                          </p>
-                        </div>
-                      </div>
-                    </GridItem>
-                  );
-                })}
-              </div>
-
-              {/* Extra spacing at the bottom of asymmetric grid */}
-              <div className="h-24 hidden md:block" />
             </section>
 
             {/* Section: Methodology */}
-            <section id="methodology" className="py-40 md:py-48 border-t border-[var(--border-color)]/30">
-              <div className="space-y-16">
+            <section id="methodology" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container space-y-16">
                 <div className="space-y-6 max-w-3xl">
                   <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
                     Capabilities & Approach
@@ -462,7 +511,7 @@ export default function App() {
 
         {/* VIEW: LEGAL (German Impressum & Privacy Policy compliance) */}
         {view === 'legal' && (
-          <div className="space-y-12 max-w-5xl animate-fade-in pt-12">
+          <div className="space-y-12 max-w-5xl animate-fade-in pt-12 mx-auto px-6 md:px-12 lg:px-20">
             <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
               Legal Documentation
             </span>
@@ -568,7 +617,7 @@ export default function App() {
       </main>
 
       {/* Footer (The Final CTA) */}
-      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/40 pt-[10rem] pb-[5rem] text-center space-y-16">
+      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/40 pt-[10rem] pb-[5rem] text-center space-y-16 px-6 md:px-12 lg:px-20">
         
         {/* The Final CTA Content */}
         <div className="max-w-2xl mx-auto space-y-6">

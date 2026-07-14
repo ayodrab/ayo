@@ -157,18 +157,24 @@ header {
 }
 
 /* Metadata Tags Styling */
-.project-tags {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
+.project-tags, ul.tags {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-bottom: 1rem;
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+}
+
+ul.tags li, .project-tags li, span.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--text-secondary);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 /* Case Study Meta left alignment and margin spacing */
@@ -179,15 +185,14 @@ header {
 
 /* Typographic Card (Component B) Styling */
 .typo-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  aspect-ratio: 16 / 9;
+  background-color: #EBEAE5;
+  border-radius: 8px;
+  padding: 4rem 2rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 3rem;
+  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -281,3 +286,133 @@ header {
 ::-webkit-scrollbar-thumb:hover {
   background: #C6C2B5;
 }
+
+/* ==========================================================================
+   REFINE PACING & TYPOGRAPHY OVERRIDES
+   ========================================================================== */
+
+/* 1. Fix the Oversized Philosophy Text (Typographic Tension) */
+#philosophy .philosophy-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  max-width: 35ch !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* 2. Standardize Vertical Pacing (The Rhythm) */
+section {
+  padding: 8rem 5% !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* 3. Polish the Micro-Typography (Contrast & Scale) */
+.section-label {
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: 2rem !important;
+  display: block !important;
+  text-align: center !important;
+  font-weight: 700;
+}
+
+.case-study-meta p, #methodology p, .capability-block p {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  max-width: 60ch !important;
+  color: var(--text-secondary) !important;
+}
+
+/* 4. Refine the Hero Section Pacing */
+#hero {
+  min-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-top: 10vh !important;
+  text-align: left !important;
+}
+
+#hero h1 {
+  max-width: 20ch !important;
+}
+
+/* The Sticky Toggle */
+.state-toggle {
+  position: sticky;
+  top: 6rem; /* Account for the fixed header height */
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.toggle-btn {
+  padding: 0.6rem 1.8rem;
+  border: 1px solid rgba(var(--text-primary-rgb, 0, 0, 0), 0.15);
+  background-color: rgba(235, 234, 229, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 100px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.toggle-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(var(--text-primary-rgb, 0, 0, 0), 0.4);
+  transform: translateY(-1px);
+}
+
+.toggle-btn.active {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* The Track Container */
+#portfolio-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "overlap";
+  width: 100%;
+}
+
+/* Stacking the Tracks with Hardware Acceleration */
+.track {
+  grid-area: overlap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.track.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
