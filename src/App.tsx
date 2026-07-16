@@ -39,10 +39,10 @@ interface UnifiedProject {
   // Component B (Typographic) fields
   statement?: string; // Bold, brutalist statement
   
-  // Universal Metadata Block fields
-  friction: string;
-  intervention: string;
-  outcome: string;
+  // Universal Metadata Block fields (3-sentence narrative format)
+  context: string;
+  craft: string;
+  impact: string;
 }
 
 const PROJECTS_DATA: UnifiedProject[] = [
@@ -54,9 +54,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     image: 'assets/motion_project_assets/mastercard_01.webp',
     hoverVideo: 'assets/motion_project_assets/mastercard_loop.mp4',
     videoUrl: 'https://player.vimeo.com/video/385480402',
-    friction: 'Mastercard required a global social campaign that translated complex data into universally relatable human stories without relying on sterile corporate infographics.',
-    intervention: 'Designed and animated a series of humorous, flat-vector scenario loops, focusing on precise timing and expressive physics to elevate the brand narrative.',
-    outcome: 'Generated 2.2 million organic views, 20,000 reactions, and over 2,100 shares, becoming Mastercard\'s most popular campaign.'
+    context: 'Mastercard required a global social campaign that translated complex financial transaction data into universally relatable human stories.',
+    craft: 'Designed and animated a series of humorous flat-vector loops, focusing on precise timing and expressive physics to elevate the brand\'s social presence.',
+    impact: 'Generated 2.2 million organic views and became one of Mastercard\'s most highly shared organic campaign segments.'
   },
   {
     id: 'leadership-circle',
@@ -64,9 +64,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     tags: ['Cooperative Governance', 'Culture Design'],
     type: 'typographic',
     statement: 'Untangling a 6-month product bottleneck in 3 days.',
-    friction: 'A decentralized network of 80+ designers and researchers suffered from severe decision fatigue, alignment bottlenecks, and structural authority friction.',
-    intervention: 'Facilitated intensive active listening circles and designed a self-governing circle model with rotating coordinator roles and self-repairing conflict pathways.',
-    outcome: 'Streamlined all decision-making pathways, eliminated administrative deadlocks, and restored long-term collaboration health.'
+    context: 'A decentralized network of over 80 designers and researchers suffered from severe decision fatigue and strategic alignment bottlenecks.',
+    craft: 'Facilitated intensive active listening circles and co-designed a self-governing circle model with rotating coordinator roles.',
+    impact: 'Streamlined all decision-making pathways, eliminated persistent administrative deadlocks, and restored long-term collaboration health.'
   },
   {
     id: 'optiver',
@@ -76,9 +76,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     image: 'assets/motion_project_assets/optiver_office_image.webp',
     hoverVideo: 'assets/motion_project_assets/optiver_loop.mp4',
     videoUrl: 'assets/motion_project_assets/optiver_loop.mp4',
-    friction: 'Quantitative proprietary trading systems are highly algorithmic, complex, and notoriously opaque, making onboarding feel cold and intimidating for global graduates.',
-    intervention: 'Designed an energetic, custom 2D cartoon narrative overlaying actual quantitative code screens with warm local Amsterdam canalscapes.',
-    outcome: 'Deployed across global offices (Amsterdam, Chicago, Sydney), humanizing computational work and drastically increasing graduate alignment.'
+    context: 'Optiver needed to humanize their highly complex, algorithmic quantitative trading systems to make onboarding less intimidating for incoming global graduates.',
+    craft: 'By layering custom 2D animation directly over actual proprietary code screens, the cold data was anchored within warm, recognizable Amsterdam canalscapes.',
+    impact: 'Deployed across Amsterdam, Chicago, and Sydney, this visual translation demystified the computational work and drove a measurable increase in graduate engagement.'
   },
   {
     id: 'resilience-blueprint',
@@ -86,9 +86,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     tags: ['Sprints', 'Systems Mapping', 'Workshops'],
     type: 'typographic',
     statement: 'Moving 15 hostile industrial competitors into a single circular pipeline.',
-    friction: 'Severe, historically rooted distrust among industrial manufacturers, circular design architects, and public policy stakeholders blocked material recycling loops.',
-    intervention: 'Facilitated intensive co-design sprints utilizing collaborative systems mapping boards to align mutual resource flow-rates and relational safety.',
-    outcome: 'Delivered a comprehensive co-creative handbook and unified material blueprint adopted by three European regions.'
+    context: 'Historically rooted distrust among industrial manufacturers, circular architects, and public policymakers blocked regional material recycling loops.',
+    craft: 'Facilitated intensive co-design sprints using physical systems-mapping boards to align mutual resource flow-rates and governance rhythms.',
+    impact: 'Delivered a comprehensive co-creative handbook and unified material blueprint officially adopted by three European regions.'
   },
   {
     id: 'adidas-all-blacks',
@@ -98,9 +98,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     image: 'assets/motion_project_assets/adidas_01.webp',
     hoverVideo: 'assets/motion_project_assets/adidas_website_thumbnail.mp4',
     videoUrl: 'assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
-    friction: 'Sportswear reveals are frequently product-centric and sterile, lacking the physical weight and cultural respect of the New Zealand rugby heritage.',
-    intervention: 'Designed a hand-drawn 2D animation framing ink-brushed Māori motifs, syncing fan expressions with on-pitch athletic force during the Haka.',
-    outcome: 'Rolled out globally across retail environments and digital, capturing New Zealand\'s national pride in an artistically deep campaign.'
+    context: 'Sportswear reveals are frequently sterile, lacking the physical weight and deep cultural heritage of the New Zealand rugby team.',
+    craft: 'Designed a hand-drawn 2D animation framing ink-brushed Māori motifs, syncing fan expressions with on-pitch athletic force during the Haka.',
+    impact: 'Rolled out globally across retail and digital platforms, capturing national rugby pride in an artistically deep campaign.'
   },
   {
     id: 'nature-retreat',
@@ -108,9 +108,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     tags: ['Executive Alignment', 'Off-site Facilitation'],
     type: 'typographic',
     statement: 'Untangling leadership friction through structured diagnostic sprints.',
-    friction: 'High-tempo operational stress caused senior directors to isolate, leading to severe strategic fragmentation and leadership burnout.',
-    intervention: 'Facilitated a structured off-site diagnostic, moving leadership out of daily operational environments to conduct intensive alignment sessions and establish new communication protocols.',
-    outcome: 'Restored relational trust, yielding a cohesive internal feedback culture and a sustainable peer-mentorship loop among the executive team.'
+    context: 'High-tempo operational stress caused senior corporate directors to isolate, leading to severe strategic fragmentation and burnout.',
+    craft: 'Facilitated a structured off-site diagnostic retreat, conducting intensive alignment sessions to establish new communication protocols.',
+    impact: 'Restored organizational trust, yielding a cohesive feedback culture and a sustainable peer-mentorship loop.'
   },
   {
     id: 'datscha',
@@ -120,9 +120,9 @@ const PROJECTS_DATA: UnifiedProject[] = [
     image: 'assets/motion_project_assets/datscha_01.webp',
     hoverVideo: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
     videoUrl: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
-    friction: 'The UK commercial real estate registry has historically been guarded behind opaque, expensive, and dry public record walls.',
-    intervention: 'Crafted a mid-century illustrative adventure following an analyst peeking over brick walls to visualize zoning and historical valuations.',
-    outcome: 'Captured immediate brand warmth in a conservative sector, setting a new proptech benchmark.'
+    context: 'The UK commercial real estate registry has historically been guarded behind opaque, expensive, and dry public record walls.',
+    craft: 'Crafted a mid-century illustrative adventure following an analyst peeking over brick walls to visualize zoning and historical valuations.',
+    impact: 'Captured immediate brand warmth in a conservative sector, setting a new proptech benchmark.'
   }
 ];
 
@@ -309,31 +309,13 @@ export default function App() {
             <section id="hero" className="border-b border-[var(--border-color)]/30">
               <div className="section-container space-y-6">
                 <span className="section-label">
-                  {activeTab === 'motion' 
-                    ? 'CREATIVE PRACTICE / MOTION' 
-                    : 'GROUP HOLDING / FACILITATION'}
+                  Creative Practice & Group Holding
                 </span>
                 <h1 className="tracking-tight leading-[1.08] text-balance">
-                  {activeTab === 'motion'
-                    ? 'Making complex ideas clear.'
-                    : 'Making collaboration steady.'}
+                  Visual clarity. Structural alignment.
                 </h1>
-                <p className="max-w-xl text-[var(--text-secondary)] font-normal text-balance">
-                  {activeTab === 'motion'
-                    ? 'Digital problem-solving through motion design. Bringing order to pixels and translating mechanics into clear visual stories.'
-                    : 'Problem-solving through group facilitation. Untangling collective friction and bringing safety to human spaces.'}
-                </p>
-              </div>
-            </section>
-
-            {/* Section: Philosophy */}
-            <section id="philosophy" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-6">
-                <span className="section-label">
-                  // Philosophy
-                </span>
-                <p className="philosophy-text">
-                  Good work cannot survive in a broken system. I believe the most expensive bottlenecks in any complex project are rarely technical—they are human. Designing a beautiful motion system is useless if the team is too burned out to deploy it.
+                <p className="max-w-2xl text-[var(--text-secondary)] font-normal text-balance leading-relaxed">
+                  Ambitious work breaks down when there is a disconnect between the creative vision and the people building it. Organizations partner with me when they need a collaborator, not just a transactional execution. I run a dual practice: delivering the advertisement animation, infographics, and social media content necessary to make complex ideas accessible, and facilitating the structural alignment that keeps teams functional. Two distinct disciplines, unified by a single goal: creating work that lands, without burning out the team behind it.
                 </p>
               </div>
             </section>
@@ -373,14 +355,14 @@ export default function App() {
                     className={`toggle-btn ${activeTab === 'motion' ? 'active' : ''}`} 
                     data-target="motion"
                   >
-                    Motion & Systems
+                    View Motion Design
                   </a>
                   <a 
                     href="#facilitate" 
                     className={`toggle-btn ${activeTab === 'facilitate' ? 'active' : ''}`} 
                     data-target="facilitate"
                   >
-                    Change Facilitation
+                    View Change Facilitation
                   </a>
                 </nav>
 
@@ -415,9 +397,9 @@ export default function App() {
                                 {project.title}
                               </h3>
                               <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
-                                <p><strong>The Friction:</strong> {project.friction}</p>
-                                <p><strong>The Intervention:</strong> {project.intervention}</p>
-                                <p><strong>The Outcome:</strong> {project.outcome}</p>
+                                <p><strong>The Context:</strong> {project.context}</p>
+                                <p><strong>The Craft:</strong> {project.craft}</p>
+                                <p><strong>The Impact:</strong> {project.impact}</p>
                               </div>
                             </div>
                           </GridItem>
@@ -455,14 +437,52 @@ export default function App() {
                                 {project.title}
                               </h3>
                               <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
-                                <p><strong>The Friction:</strong> {project.friction}</p>
-                                <p><strong>The Intervention:</strong> {project.intervention}</p>
-                                <p><strong>The Outcome:</strong> {project.outcome}</p>
+                                <p><strong>The Context:</strong> {project.context}</p>
+                                <p><strong>The Craft:</strong> {project.craft}</p>
+                                <p><strong>The Impact:</strong> {project.impact}</p>
                               </div>
                             </div>
                           </GridItem>
                         );
                       })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rules of Engagement Block */}
+                <div className="mt-32 pt-20 border-t border-[var(--border-color)]/20">
+                  <div className="max-w-3xl space-y-12">
+                    <span className="section-label text-left !block !text-left">
+                      // Rules of Engagement
+                    </span>
+                    <h3 className="font-display font-medium text-2xl md:text-3xl text-[var(--text-primary)]">
+                      How the practice operates
+                    </h3>
+                    <div className="space-y-8 pt-4">
+                      <div className="space-y-3">
+                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
+                          Strategy Precedes Execution
+                        </h4>
+                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
+                          Execution requires alignment. If the core narrative or structural goal is unclear, we challenge and restructure the brief before opening any software.
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
+                          Direct Collaboration
+                        </h4>
+                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
+                          No middle management or account layers. You work directly with the practitioner designing the files and facilitating the rooms, ensuring zero information is lost in translation.
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
+                          Systemic Perspective
+                        </h4>
+                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
+                          Good design cannot survive a broken process, and a great process cannot save bad design. Even when hired for a single discipline, I bring an understanding of how the creative output and the team dynamics impact each other.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -622,17 +642,17 @@ export default function App() {
         {/* The Final CTA Content */}
         <div className="max-w-2xl mx-auto space-y-6">
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight text-[var(--text-primary)] leading-tight">
-            Let’s figure out where the bottleneck is.
+            Build better work. Build better teams.
           </h2>
           <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed text-balance">
-            Open for selected motion systems design and team process facilitation. Based in Berlin, working globally.
+            Open for selected motion design commissions and change management sprints. Based in Berlin. Operating globally.
           </p>
           <div className="pt-4">
             <a 
               href="mailto:hello@ayodrab.com" 
               className="group inline-flex items-center gap-2 font-sans font-bold text-xs md:text-sm uppercase tracking-[0.2em] text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1.5 transition-all hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
             >
-              Start a conversation <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+              Start a Conversation <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
             </a>
           </div>
         </div>
