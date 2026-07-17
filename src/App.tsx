@@ -307,27 +307,32 @@ export default function App() {
             
             {/* Section: Hero */}
             <section id="hero" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-6">
-                <span className="section-label">
+              <div className="section-container space-y-8">
+                <span className="section-label text-left !block !text-left">
                   Creative Practice & Group Holding
                 </span>
                 <h1 className="tracking-tight leading-[1.08] text-balance">
                   Visual clarity. Structural alignment.
                 </h1>
-                <p className="max-w-2xl text-[var(--text-secondary)] font-normal text-balance leading-relaxed">
-                  Ambitious work breaks down when there is a disconnect between the creative vision and the people building it. Organizations partner with me when they need a collaborator, not just a transactional execution. I run a dual practice: delivering the advertisement animation, infographics, and social media content necessary to make complex ideas accessible, and facilitating the structural alignment that keeps teams functional. Two distinct disciplines, unified by a single goal: creating work that lands, without burning out the team behind it.
-                </p>
+                <div className="space-y-6 max-w-3xl">
+                  <p className="text-lg md:text-xl font-display text-[var(--text-primary)] font-normal leading-relaxed text-balance">
+                    I help teams communicate complex ideas clearly and support the collaboration behind the work so projects can move forward with less friction.
+                  </p>
+                  <p className="text-sm md:text-base text-[var(--text-secondary)] font-normal leading-relaxed text-balance">
+                    Motion design, infographics, social content, and facilitation for organizations navigating complexity and change.
+                  </p>
+                </div>
               </div>
             </section>
 
             {/* Section: Selected Clients */}
             <section id="clients" className="border-b border-[var(--border-color)]/30">
               <div className="section-container space-y-12">
-                <span className="section-label">
+                <span className="section-label text-left !block !text-left">
                   // Selected Clients & Collaborators
                 </span>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center font-sans font-medium uppercase tracking-[0.05em] text-sm" style={{ color: 'var(--text-primary)' }}>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center font-sans font-medium uppercase tracking-[0.05em] text-sm text-[var(--text-primary)]">
                   <div>Mastercard</div>
                   <div>Optiver</div>
                   <div>Adidas</div>
@@ -336,16 +341,51 @@ export default function App() {
               </div>
             </section>
 
+            {/* Section: Intro / Manifesto */}
+            <section id="intro" className="border-b border-[var(--border-color)]/30">
+              <div className="section-container space-y-12">
+                <span className="section-label text-left !block !text-left">
+                  // Intro
+                </span>
+                <div className="max-w-3xl space-y-6 text-sm md:text-base leading-relaxed text-[var(--text-secondary)]">
+                  <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed">
+                    Good work depends on more than strong ideas. It also depends on the way people align, decide, and work together.
+                  </p>
+                  <p>
+                    My practice brings those two sides together. I create visual communication that helps ideas land, and I facilitate the structures and conversations that help teams move without unnecessary confusion, delay, or burnout.
+                  </p>
+                  <p>
+                    That combination matters because craft and process affect each other. Clear design can still fail inside a strained process, and a healthy process still needs clear communication to carry the work forward.
+                  </p>
+                </div>
+              </div>
+            </section>
+
             {/* Section: The Unified Work Gallery */}
             <section id="work" className="border-b border-[var(--border-color)]/30">
               <div className="section-container">
-                <div className="flex justify-between items-baseline mb-20">
-                  <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
-                    Selected Work
-                  </h2>
-                  <span className="text-xs font-mono text-[var(--text-secondary)]">
-                    Motion & Facilitation
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-16 gap-4">
+                  <div className="space-y-2">
+                    <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
+                      Selected Work
+                    </h2>
+                    <p className="text-xs md:text-sm text-[var(--text-secondary)] max-w-xl">
+                      Two connected practices: one shapes how ideas are understood, the other shapes how teams move.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Section: Why Both Bridge */}
+                <div className="max-w-3xl mb-16 space-y-4">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-[var(--text-secondary)] block">
+                    // Why Both
                   </span>
+                  <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed">
+                    Over time, I found that many creative problems are not only creative problems. Sometimes the work is strong, but the process around it is unclear. Sometimes the team is capable, but the message itself is not landing.
+                  </p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    Working across both motion design and facilitation allows me to support the work from both sides: how it is communicated, and how it gets made.
+                  </p>
                 </div>
 
                 {/* The Sticky Toggle */}
@@ -369,6 +409,21 @@ export default function App() {
                 <div id="portfolio-container">
                   {/* Motion Track */}
                   <div id="motion-track" className={`track ${activeTab === 'motion' ? 'active' : ''}`}>
+                    <div className="max-w-3xl mb-16 space-y-6">
+                      <h3 className="font-display font-medium text-2xl text-[var(--text-primary)]">
+                        Motion design for ideas that need to land clearly
+                      </h3>
+                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                        I create motion design, advertisement animation, infographics, and social content that help people understand complex ideas quickly and clearly.
+                      </p>
+                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                        Whether it’s a campaign, a product story, or a data-heavy message, I turn complexity into visual communication that people can actually follow.
+                      </p>
+                      <p className="text-xs font-mono text-[var(--text-secondary)] italic pt-2">
+                        From campaign assets to explainer systems, I build visual work that is precise, usable, and ready to carry meaning.
+                      </p>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
                       {motionProjects.map((project, idx) => {
                         const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
@@ -410,6 +465,21 @@ export default function App() {
 
                   {/* Facilitation Track */}
                   <div id="facilitate-track" className={`track ${activeTab === 'facilitate' ? 'active' : ''}`}>
+                    <div className="max-w-3xl mb-16 space-y-6">
+                      <h3 className="font-display font-medium text-2xl text-[var(--text-primary)]">
+                        Facilitation for teams that need alignment, momentum, and a more sustainable pace
+                      </h3>
+                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                        I facilitate workshops, team processes, and change work that help people make decisions, work through friction, and keep important projects moving.
+                      </p>
+                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                        This side of the practice is about creating the conditions for better work. That might mean helping a team align around priorities, supporting a leadership group through strain or transition, or designing a process that makes collaboration clearer and more sustainable over time.
+                      </p>
+                      <p className="text-xs font-mono text-[var(--text-secondary)] italic pt-2">
+                        Better work usually needs both clarity in the message and clarity in how people work together.
+                      </p>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
                       {facilitateProjects.map((project, idx) => {
                         const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
@@ -453,7 +523,7 @@ export default function App() {
                 <div className="mt-32 pt-20 border-t border-[var(--border-color)]/20">
                   <div className="max-w-3xl space-y-12">
                     <span className="section-label text-left !block !text-left">
-                      // Rules of Engagement
+                      // How I Work
                     </span>
                     <h3 className="font-display font-medium text-2xl md:text-3xl text-[var(--text-primary)]">
                       How the practice operates
@@ -461,26 +531,26 @@ export default function App() {
                     <div className="space-y-8 pt-4">
                       <div className="space-y-3">
                         <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Strategy Precedes Execution
+                          Clarity before production
                         </h4>
                         <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          Execution requires alignment. If the core narrative or structural goal is unclear, we challenge and restructure the brief before opening any software.
+                          Before making the work, I help define what needs to be said, who it is for, and what constraints matter. That usually leads to stronger decisions and fewer unnecessary revisions.
                         </p>
                       </div>
                       <div className="space-y-3">
                         <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Direct Collaboration
+                          Direct collaboration
                         </h4>
                         <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          No middle management or account layers. You work directly with the practitioner designing the files and facilitating the rooms, ensuring zero information is lost in translation.
+                          You work directly with me throughout the process. That keeps communication clear and reduces the loss that often happens between strategy, execution, and delivery.
                         </p>
                       </div>
                       <div className="space-y-3">
                         <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Systemic Perspective
+                          Useful structure
                         </h4>
                         <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          Good design cannot survive a broken process, and a great process cannot save bad design. Even when hired for a single discipline, I bring an understanding of how the creative output and the team dynamics impact each other.
+                          Whether the work is visual or organizational, I look for structures that people can actually use. The aim is not complexity for its own sake, but a way of working that supports clarity, momentum, and follow-through.
                         </p>
                       </div>
                     </div>
@@ -645,14 +715,17 @@ export default function App() {
             Build better work. Build better teams.
           </h2>
           <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed text-balance">
-            Open for selected motion design commissions and change management sprints. Based in Berlin. Operating globally.
+            If you’re working on something that needs both clarity and follow-through, I’d be glad to hear about it.
+          </p>
+          <p className="text-[10px] uppercase font-mono tracking-widest text-[var(--text-secondary)]">
+            For motion projects, facilitation, and collaborations:
           </p>
           <div className="pt-4">
             <a 
               href="mailto:hello@ayodrab.com" 
               className="group inline-flex items-center gap-2 font-sans font-bold text-xs md:text-sm uppercase tracking-[0.2em] text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1.5 transition-all hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
             >
-              Start a Conversation <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+              Get in Touch <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
             </a>
           </div>
         </div>
@@ -690,15 +763,26 @@ export default function App() {
       >
         {isAboutOpen && <KeyboardListener onClose={() => setIsAboutOpen(false)} />}
         <div 
-          className="overlay-content"
+          className="overlay-content max-w-2xl"
           onClick={(e) => e.stopPropagation()}
         >
+          <span className="section-label text-left !block !text-left mb-6">
+            // About Ayo Sebastian Dráb
+          </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight leading-[1.12] text-[var(--text-primary)]">
-            Creative craft and group process.
+            About Ayo
           </h2>
-          <p className="font-body text-base md:text-[17px] leading-relaxed text-[var(--text-secondary)] mt-6">
-            I started out solving digital problems through technical visualization. Over years of working with complex projects, I realized the most expensive bottlenecks are rarely technical—they are human. Today, I split my time between visual problem-solving and group facilitation. Whether structuring a 3D animation timeline or holding space for a team sprint, the goal is the same: making things clear so people can move forward.
-          </p>
+          <div className="font-body text-base md:text-[17px] leading-relaxed text-[var(--text-secondary)] mt-6 space-y-4">
+            <p>
+              I started in motion design, helping organizations communicate through animation and visual systems. Over time, I kept seeing the same pattern: strong work often depends as much on collaboration, decision-making, and process as it does on craft.
+            </p>
+            <p>
+              That led me deeper into facilitation and change work. Today, I work across both areas: creating visual communication that brings clarity to ideas, and supporting teams in the work of alignment, transition, and sustainable collaboration.
+            </p>
+            <p>
+              I still care deeply about the quality of the work itself. I also care about the conditions that allow good work to happen.
+            </p>
+          </div>
           <button
             onClick={() => setIsAboutOpen(false)}
             className="mt-8 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1 hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)] transition-colors"
