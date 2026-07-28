@@ -41,11 +41,11 @@ interface UnifiedProject {
   
   // Universal Metadata Block fields (3-sentence narrative format)
   context: string;
-  craft: string;
-  impact: string;
+  delivered: string;
+  outcome: string;
 }
 
-const PROJECTS_DATA: UnifiedProject[] = [
+const FEATURED_PROJECTS: UnifiedProject[] = [
   {
     id: 'mastercard',
     title: 'Mastercard. A life in numbers.',
@@ -55,18 +55,18 @@ const PROJECTS_DATA: UnifiedProject[] = [
     hoverVideo: 'assets/motion_project_assets/mastercard_loop.mp4',
     videoUrl: 'https://player.vimeo.com/video/385480402',
     context: 'Mastercard required a global social campaign that translated complex financial transaction data into universally relatable human stories.',
-    craft: 'Designed and animated a series of humorous flat-vector loops, focusing on precise timing and expressive physics to elevate the brand\'s social presence.',
-    impact: 'Generated 2.2 million organic views and became one of Mastercard\'s most highly shared organic campaign segments.'
+    delivered: 'Designed and animated a series of humorous flat-vector loops, focusing on precise timing and expressive physics to elevate the brand\'s social presence.',
+    outcome: 'Generated 2.2 million organic views and became one of Mastercard\'s most highly shared organic campaign segments.'
   },
   {
     id: 'leadership-circle',
-    title: 'Designing for Emergence',
+    title: 'Leadership Team Alignment',
     tags: ['Cooperative Governance', 'Culture Design'],
     type: 'typographic',
     statement: 'Untangling a 6-month product bottleneck in 3 days.',
     context: 'A decentralized network of over 80 designers and researchers suffered from severe decision fatigue and strategic alignment bottlenecks.',
-    craft: 'Facilitated intensive active listening circles and co-designed a self-governing circle model with rotating coordinator roles.',
-    impact: 'Streamlined all decision-making pathways, eliminated persistent administrative deadlocks, and restored long-term collaboration health.'
+    delivered: 'Designed and facilitated intensive active listening circles and co-created a self-governing group coordinator model.',
+    outcome: 'Streamlined decision-making pathways and resolved administrative deadlocks without adding bureaucratic overhead.'
   },
   {
     id: 'optiver',
@@ -77,8 +77,8 @@ const PROJECTS_DATA: UnifiedProject[] = [
     hoverVideo: 'assets/motion_project_assets/optiver_loop.mp4',
     videoUrl: 'assets/motion_project_assets/optiver_loop.mp4',
     context: 'Optiver needed to humanize their highly complex, algorithmic quantitative trading systems to make onboarding less intimidating for incoming global graduates.',
-    craft: 'By layering custom 2D animation directly over actual proprietary code screens, the cold data was anchored within warm, recognizable Amsterdam canalscapes.',
-    impact: 'Deployed across Amsterdam, Chicago, and Sydney, this visual translation demystified the computational work and drove a measurable increase in graduate engagement.'
+    delivered: 'By layering custom 2D animation directly over actual proprietary code screens, the cold data was anchored within warm, recognizable Amsterdam canalscapes.',
+    outcome: 'Deployed across Amsterdam, Chicago, and Sydney, this visual translation demystified the computational work and drove a measurable increase in graduate engagement.'
   },
   {
     id: 'resilience-blueprint',
@@ -87,8 +87,8 @@ const PROJECTS_DATA: UnifiedProject[] = [
     type: 'typographic',
     statement: 'Moving 15 hostile industrial competitors into a single circular pipeline.',
     context: 'Historically rooted distrust among industrial manufacturers, circular architects, and public policymakers blocked regional material recycling loops.',
-    craft: 'Facilitated intensive co-design sprints using physical systems-mapping boards to align mutual resource flow-rates and governance rhythms.',
-    impact: 'Delivered a comprehensive co-creative handbook and unified material blueprint officially adopted by three European regions.'
+    delivered: 'Facilitated intensive co-design sprints using physical systems-mapping boards to align mutual resource flow-rates and governance rhythms.',
+    outcome: 'Delivered a comprehensive co-creative handbook and unified material blueprint officially adopted by three European regions.'
   },
   {
     id: 'adidas-all-blacks',
@@ -99,8 +99,8 @@ const PROJECTS_DATA: UnifiedProject[] = [
     hoverVideo: 'assets/motion_project_assets/adidas_website_thumbnail.mp4',
     videoUrl: 'assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
     context: 'Sportswear reveals are frequently sterile, lacking the physical weight and deep cultural heritage of the New Zealand rugby team.',
-    craft: 'Designed a hand-drawn 2D animation framing ink-brushed Māori motifs, syncing fan expressions with on-pitch athletic force during the Haka.',
-    impact: 'Rolled out globally across retail and digital platforms, capturing national rugby pride in an artistically deep campaign.'
+    delivered: 'Designed a hand-drawn 2D animation framing ink-brushed Māori motifs, syncing fan expressions with on-pitch athletic force during the Haka.',
+    outcome: 'Rolled out globally across retail and digital platforms, capturing national rugby pride in an artistically deep campaign.'
   },
   {
     id: 'nature-retreat',
@@ -109,8 +109,8 @@ const PROJECTS_DATA: UnifiedProject[] = [
     type: 'typographic',
     statement: 'Untangling leadership friction through structured diagnostic sprints.',
     context: 'High-tempo operational stress caused senior corporate directors to isolate, leading to severe strategic fragmentation and burnout.',
-    craft: 'Facilitated a structured off-site diagnostic retreat, conducting intensive alignment sessions to establish new communication protocols.',
-    impact: 'Restored organizational trust, yielding a cohesive feedback culture and a sustainable peer-mentorship loop.'
+    delivered: 'Facilitated a structured off-site diagnostic retreat, conducting intensive alignment sessions to establish new communication protocols.',
+    outcome: 'Restored organizational trust, yielding a cohesive feedback culture and a sustainable peer-mentorship loop.'
   },
   {
     id: 'datscha',
@@ -121,8 +121,8 @@ const PROJECTS_DATA: UnifiedProject[] = [
     hoverVideo: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
     videoUrl: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
     context: 'The UK commercial real estate registry has historically been guarded behind opaque, expensive, and dry public record walls.',
-    craft: 'Crafted a mid-century illustrative adventure following an analyst peeking over brick walls to visualize zoning and historical valuations.',
-    impact: 'Captured immediate brand warmth in a conservative sector, setting a new proptech benchmark.'
+    delivered: 'Crafted a mid-century illustrative adventure following an analyst peeking over brick walls to visualize zoning and historical valuations.',
+    outcome: 'Captured immediate brand warmth in a conservative sector, setting a new proptech benchmark.'
   }
 ];
 
@@ -217,7 +217,7 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
       {/* Minimal Play Overlay indicator on hover */}
       <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 pointer-events-none">
         <span className="bg-white/95 text-black text-[10px] font-semibold tracking-widest uppercase px-5 py-2.5 rounded-full shadow-lg transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
-          Open Reel
+          View Project
         </span>
       </div>
     </div>
@@ -227,17 +227,34 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
 export default function App() {
   const [view, setView] = useState<'work' | 'legal'>('work');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [theaterVideo, setTheaterVideo] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'motion' | 'facilitate'>('motion');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'motion' | 'facilitate'>('all');
+  const [selectedProject, setSelectedProject] = useState<UnifiedProject | null>(null);
+
+  // Dynamic color styles matching the active track
+  const getHeadingGradient = () => {
+    if (activeFilter === 'facilitate') {
+      return "bg-gradient-to-r from-rose-700 via-pink-600 to-fuchsia-600 bg-clip-text text-transparent";
+    } else if (activeFilter === 'motion') {
+      return "bg-gradient-to-r from-fuchsia-700 via-purple-600 to-pink-600 bg-clip-text text-transparent";
+    } else {
+      return "bg-gradient-to-r from-rose-800 via-pink-700 to-fuchsia-600 bg-clip-text text-transparent";
+    }
+  };
+
+  const getCTAButtonClass = () => {
+    return "bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm hover:opacity-90 hover:scale-[1.01] transition-all duration-300";
+  };
 
   // Handle URL hash changes
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#facilitate') {
-        setActiveTab('facilitate');
+      if (hash === '#facilitate' || hash === '#facilitation') {
+        setActiveFilter('facilitate');
+      } else if (hash === '#motion' || hash === '#motion-design') {
+        setActiveFilter('motion');
       } else {
-        setActiveTab('motion');
+        setActiveFilter('all');
       }
     };
 
@@ -247,28 +264,78 @@ export default function App() {
   }, []);
 
   // Filter projects for separate tracks
-  const motionProjects = PROJECTS_DATA.filter((p) => p.type === 'visual');
-  const facilitateProjects = PROJECTS_DATA.filter((p) => p.type === 'typographic');
+  const filteredProjects = FEATURED_PROJECTS.filter((project) => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'motion') return project.type === 'visual';
+    if (activeFilter === 'facilitate') return project.type === 'typographic';
+    return true;
+  });
 
   // Scroll back to main page if view changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [view]);
 
+  // Synchronize activeFilter with body classes for the animated background
+  useEffect(() => {
+    document.body.classList.remove('bg-animated-all', 'bg-animated-facilitate', 'bg-animated-motion');
+    if (activeFilter === 'facilitate') {
+      document.body.classList.add('bg-animated-facilitate');
+    } else if (activeFilter === 'motion') {
+      document.body.classList.add('bg-animated-motion');
+    } else {
+      document.body.classList.add('bg-animated-all');
+    }
+  }, [activeFilter]);
+
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-20 pt-28 px-0">
+    <div 
+      className={`min-h-screen text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-0 pt-28 px-0 transition-all duration-1000 ${
+        activeFilter === 'facilitate'
+          ? 'bg-animated-facilitate'
+          : activeFilter === 'motion'
+            ? 'bg-animated-motion'
+            : 'bg-animated-all'
+      }`}
+    >
       
       {/* Luxurious film grain overlay */}
       <div className="grain-overlay" />
 
-      {/* Elegant Atmospheric Glow Backdrop */}
+      {/* Elegant Atmospheric Glow Backdrop with Dynamic Color Transition */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="ambient-glow glow-warm" />
-        <div className="ambient-glow glow-cool" />
+        <div 
+          className="ambient-glow transition-all duration-1000" 
+          style={{
+            background: activeFilter === 'facilitate'
+              ? 'radial-gradient(circle, rgba(251, 113, 133, 0.35) 0%, rgba(244, 114, 182, 0.15) 100%)'
+              : activeFilter === 'motion'
+                ? 'radial-gradient(circle, rgba(244, 114, 182, 0.3) 0%, rgba(251, 113, 133, 0.15) 100%)'
+                : 'radial-gradient(circle, rgba(251, 113, 133, 0.25) 0%, rgba(253, 164, 175, 0.15) 100%)',
+            top: '-10%',
+            left: '-10%',
+            transform: activeFilter === 'facilitate' ? 'scale(1.2)' : 'scale(1)',
+            opacity: activeFilter === 'facilitate' ? 0.45 : activeFilter === 'motion' ? 0.3 : 0.2,
+          }}
+        />
+        <div 
+          className="ambient-glow transition-all duration-1000" 
+          style={{
+            background: activeFilter === 'facilitate'
+              ? 'radial-gradient(circle, rgba(244, 114, 182, 0.3) 0%, rgba(253, 164, 175, 0.15) 100%)'
+              : activeFilter === 'motion'
+                ? 'radial-gradient(circle, rgba(251, 113, 133, 0.25) 0%, rgba(244, 114, 182, 0.1) 100%)'
+                : 'radial-gradient(circle, rgba(244, 114, 182, 0.25) 0%, rgba(251, 113, 133, 0.1) 100%)',
+            bottom: '-10%',
+            right: '-10%',
+            transform: activeFilter === 'facilitate' ? 'scale(1.15)' : 'scale(1)',
+            opacity: activeFilter === 'facilitate' ? 0.4 : activeFilter === 'motion' ? 0.35 : 0.2,
+          }}
+        />
       </div>
 
       {/* Header (Fixed Navigation) */}
-      <header className="fixed top-0 left-0 w-full z-100 bg-[var(--bg-primary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/40 py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-colors duration-300">
+      <header className="fixed top-0 left-0 w-full z-100 py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-all duration-1000 liquid-glass-header">
         <div 
           onClick={() => {
             setView('work');
@@ -305,293 +372,319 @@ export default function App() {
         {view === 'work' && (
           <div className="space-y-0">
             
-            {/* Section: Hero */}
-            <section id="hero" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-8">
-                <span className="section-label text-left !block !text-left">
-                  Creative Practice & Group Holding
-                </span>
-                <h1 className="tracking-tight leading-[1.08] text-balance">
+            {/* Section 1: Hero */}
+            <section id="hero" className="border-b border-[var(--border-color)]/30 min-h-[60vh] flex flex-col justify-center py-12 md:py-20">
+              <div className="section-container space-y-6">
+                <h1 className={`tracking-tight leading-[1.08] text-balance font-display font-medium text-4xl md:text-6xl ${getHeadingGradient()}`}>
                   Visual clarity. Structural alignment.
                 </h1>
                 <div className="space-y-6 max-w-3xl">
                   <p className="text-lg md:text-xl font-display text-[var(--text-primary)] font-normal leading-relaxed text-balance">
-                    I help teams communicate complex ideas clearly and support the collaboration behind the work so projects can move forward with less friction.
+                    I help teams communicate complex ideas through motion, and I support the workshops, decisions, and collaboration structures that help good work move forward.
                   </p>
                   <p className="text-sm md:text-base text-[var(--text-secondary)] font-normal leading-relaxed text-balance">
-                    Motion design, infographics, social content, and facilitation for organizations navigating complexity and change.
+                    Motion design, infographics, social content, workshops, facilitation, and alignment support for complex teams and ideas.
                   </p>
+                  <div className="pt-4 flex flex-wrap items-center gap-6">
+                    <a 
+                      href="#contact-cta"
+                      className={`inline-block px-8 py-3.5 rounded-full font-sans font-bold text-xs uppercase tracking-widest text-center transition-all duration-300 ${getCTAButtonClass()}`}
+                    >
+                      Let’s talk
+                    </a>
+                    <a 
+                      href="#selected-work"
+                      className="group inline-flex items-center gap-1.5 font-sans font-bold text-xs uppercase tracking-[0.18em] text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1 transition-colors hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
+                    >
+                      View selected work <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* Section: Selected Clients */}
-            <section id="clients" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-12">
-                <span className="section-label text-left !block !text-left">
-                  // Selected Clients & Collaborators
+            {/* Section 2: Proof Bar */}
+            <section id="proof-bar" className="border-b border-[var(--border-color)]/30 py-8">
+              <div className="section-container flex flex-col items-center gap-8">
+                <span className="text-sm font-mono text-[var(--text-secondary)] tracking-wider uppercase text-center w-full">
+                  Trusted by teams including
                 </span>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center font-sans font-medium uppercase tracking-[0.05em] text-sm text-[var(--text-primary)]">
-                  <div>Mastercard</div>
-                  <div>Optiver</div>
-                  <div>Adidas</div>
-                  <div>Google</div>
+                <div className="w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-8 text-lg md:text-xl font-bold">
+                  {/* Mastercard */}
+                  <div className="opacity-60 hover:opacity-100 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 1000 618" className="h-10 w-auto fill-current">
+                      <path d="m308,0a309,309 0 1,0 2,0z"/>
+                      <path d="m690,0a309,309 0 1,0 2,0z" opacity="0.6"/>
+                    </svg>
+                    <div className="font-sans font-bold tracking-tight text-xs text-center mt-1 lowercase">mastercard</div>
+                  </div>
+                  
+                  {/* Adidas */}
+                  <div className="opacity-60 hover:opacity-100 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="725" height="500" viewBox="0 0 725 500" className="h-10 w-auto fill-current">
+                      <g transform="translate(-60,-430)">
+                        <path d="M 533.9435,756.70465 386.43318,500.34377 492.40483,439.4751 l 183.4283,317.22955 -141.88963,0" />
+                        <path d="m 141.03958,720.78673 105.97165,-61.27985 56.07037,97.19777 -141.47831,0 -20.56371,-35.91792" />
+                        <path d="m 349.00724,920.25463 30.16006,0 0,-122.01125 -30.16006,0 0,122.01125 z" />
+                        <path d="m 726.96825,923.13364 c -33.72452,0 -54.01413,-17.4106 -55.11081,-41.95001 l 31.80529,0 c 0,7.67715 4.79819,18.91861 25.36192,19.32994 13.70913,0 20.15239,-8.08849 20.15239,-14.12047 -0.82261,-9.59639 -12.88668,-10.419 -25.7732,-12.47534 -12.88652,-2.0564 -23.85386,-4.38692 -31.80518,-8.49966 -10.14488,-5.20948 -16.99942,-16.45093 -16.99942,-29.33745 0,-21.79767 18.91861,-39.07105 50.44967,-39.07105 30.57139,0 49.90133,16.03964 51.95773,39.8935 l -30.70861,0 c -0.27412,-6.44326 -1.5079,-16.58798 -19.60405,-16.58798 -12.20113,0 -20.28946,2.46752 -20.97501,10.96733 0,12.47519 25.36202,11.65274 45.10314,16.86211 18.9186,4.7983 30.98267,16.58814 30.98267,33.03907 0,30.29727 -24.53941,41.95001 -54.83653,41.95001" />
+                        <path d="m 265.24438,611.93622 105.97165,-61.14278 118.85823,205.91121 -110.90696,0 0,30.16006 -30.16006,0 0,-30.29712 -83.76286,-144.63137" />
+                        <path d="m 267.98623,923.13364 c -35.09542,0 -63.61043,-28.65221 -63.61043,-63.33619 0,-35.09547 28.51501,-62.78785 63.61043,-62.78785 13.29786,0 25.36187,3.56425 35.91793,10.83012 l 0,-51.13507 30.16011,0 0,163.54998 -30.16011,0 0,-8.08833 c -10.55606,6.85459 -22.62007,10.96734 -35.91793,10.96734 z m -34.68414,-63.33619 c 0,18.9185 16.17678,34.68398 35.50665,34.68398 18.91861,0 35.09542,-15.76548 35.09542,-34.68398 0,-18.91866 -16.17681,-35.09547 -35.09542,-35.09547 -19.32987,0 -35.50665,16.17681 -35.50665,35.09547" />
+                        <path d="m 490.89682,756.70465 29.74883,0 0,163.54998 -29.74883,0 0,-8.08833 c -10.14478,6.85459 -22.62007,10.96734 -36.32921,10.96734 -34.68414,0 -63.19913,-28.65221 -63.19913,-63.33619 0,-35.09547 28.51499,-62.78785 63.19913,-62.78785 13.70914,0 25.77315,3.56425 36.32921,10.83012 l 0,-51.13507 z m -70.19079,103.0928 c 0,18.9185 16.17676,34.68398 34.68414,34.68398 19.32989,0 35.50665,-15.76548 35.50665,-34.68398 0,-18.91866 -16.17676,-35.09547 -35.50665,-35.09547 -18.50738,0 -34.68414,16.17681 -34.68414,35.09547" />
+                        <path d="m 593.98956,923.13364 c -34.54703,0 -63.19913,-28.65221 -63.19913,-63.33619 0,-35.09547 28.6521,-62.78785 63.19913,-62.78785 13.29791,0 25.7731,3.56425 35.91798,10.83012 l 0,-9.7334 30.16006,0 0,122.14831 -30.16006,0 0,-8.08833 c -10.14488,6.85459 -22.20879,10.96734 -35.91798,10.96734 z m -33.86158,-63.33619 c 0,18.9185 16.17676,34.68398 35.09537,34.68398 18.91866,0 34.68419,-15.76548 34.68419,-34.68398 0,-18.91866 -15.76553,-35.09547 -34.68419,-35.09547 -18.91861,0 -35.09537,16.17681 -35.09537,35.09547" />
+                        <path d="m 93.468866,859.79745 c 0,18.9185 16.176784,34.68398 35.095404,34.68398 19.32987,0 35.50666,-15.76548 35.50666,-34.68398 0,-18.91866 -16.17679,-35.09547 -35.50666,-35.09547 -18.91862,0 -35.095404,16.17681 -35.095404,35.09547 z m 34.272844,63.33619 c -34.684124,0 -63.336218,-28.65221 -63.336218,-63.33619 0,-35.09547 28.652094,-62.78785 63.336218,-62.78785 13.29787,0 25.77319,3.56425 36.32922,10.83012 l 0,-9.7334 29.74883,0 0,122.14831 -29.74883,0 0,-8.08833 c -10.14475,6.85459 -22.62008,10.96734 -36.32922,10.96734" />
+                      </g>
+                    </svg>
+                  </div>
+                  
+                  {/* Optiver */}
+                  <div className="opacity-60 hover:opacity-100 transition-opacity flex items-center gap-1.5">
+                    <span className="font-sans font-light tracking-wide text-2xl md:text-3xl leading-none">optiver</span>
+                    <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-10 md:h-10 text-gray-400 fill-current -ml-1">
+                      <path d="M50 15 L90 85 L10 85 Z" fill="none" stroke="currentColor" strokeWidth="12" strokeLinejoin="miter" strokeMiterlimit="10"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Deloitte */}
+                  <div className="opacity-60 hover:opacity-100 transition-opacity flex items-center font-sans font-bold tracking-tighter text-2xl md:text-3xl">
+                    Deloitte<span className="w-2 h-2 rounded-full bg-gray-400 ml-0.5 mb-1.5"></span>
+                  </div>
+
+                  {/* BCG Digital Ventures */}
+                  <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity gap-2.5">
+                    <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12 fill-current">
+                      <path d="M50 8 L87 30 L87 70 L50 92 L13 70 L13 30 Z" fill="none" stroke="currentColor" strokeWidth="10" strokeLinejoin="miter"/>
+                    </svg>
+                    <div className="flex flex-col font-sans font-medium text-[10px] md:text-xs leading-[1.1] tracking-tight">
+                      <span>BCG</span>
+                      <span>Digital</span>
+                      <span>Ventures</span>
+                    </div>
+                  </div>
+
+                  {/* Edelman */}
+                  <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity gap-2">
+                    <svg viewBox="0 0 100 100" className="w-6 h-6 md:w-8 md:h-8">
+                      <polygon points="50,10 50,50 90,50" fill="currentColor" opacity="0.6"/>
+                      <polygon points="10,50 50,50 50,90" fill="currentColor" />
+                    </svg>
+                    <span className="font-sans font-black tracking-tighter text-xl md:text-2xl leading-none">Edelman</span>
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* Section: Intro / Manifesto */}
-            <section id="intro" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-12">
-                <span className="section-label text-left !block !text-left">
-                  // Intro
-                </span>
-                <div className="max-w-3xl space-y-6 text-sm md:text-base leading-relaxed text-[var(--text-secondary)]">
-                  <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed">
-                    Good work depends on more than strong ideas. It also depends on the way people align, decide, and work together.
-                  </p>
-                  <p>
-                    My practice brings those two sides together. I create visual communication that helps ideas land, and I facilitate the structures and conversations that help teams move without unnecessary confusion, delay, or burnout.
-                  </p>
-                  <p>
-                    That combination matters because craft and process affect each other. Clear design can still fail inside a strained process, and a healthy process still needs clear communication to carry the work forward.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Section: The Unified Work Gallery */}
-            <section id="work" className="border-b border-[var(--border-color)]/30">
+            {/* Section 3: What I Do */}
+            <section id="what-i-do" className="border-b border-[var(--border-color)]/30 pt-12 md:pt-16 pb-8 md:pb-12">
               <div className="section-container">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-16 gap-4">
-                  <div className="space-y-2">
-                    <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
-                      Selected Work
-                    </h2>
-                    <p className="text-xs md:text-sm text-[var(--text-secondary)] max-w-xl">
-                      Two connected practices: one shapes how ideas are understood, the other shapes how teams move.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Section: Why Both Bridge */}
-                <div className="max-w-3xl mb-16 space-y-4">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-[var(--text-secondary)] block">
-                    // Why Both
-                  </span>
-                  <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed">
-                    Over time, I found that many creative problems are not only creative problems. Sometimes the work is strong, but the process around it is unclear. Sometimes the team is capable, but the message itself is not landing.
-                  </p>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    Working across both motion design and facilitation allows me to support the work from both sides: how it is communicated, and how it gets made.
-                  </p>
-                </div>
-
-                {/* The Sticky Toggle */}
-                <nav className="state-toggle">
-                  <a 
-                    href="#motion" 
-                    className={`toggle-btn ${activeTab === 'motion' ? 'active' : ''}`} 
-                    data-target="motion"
-                  >
-                    View Motion Design
-                  </a>
-                  <a 
-                    href="#facilitate" 
-                    className={`toggle-btn ${activeTab === 'facilitate' ? 'active' : ''}`} 
-                    data-target="facilitate"
-                  >
-                    View Change Facilitation
-                  </a>
-                </nav>
-
-                <div id="portfolio-container">
-                  {/* Motion Track */}
-                  <div id="motion-track" className={`track ${activeTab === 'motion' ? 'active' : ''}`}>
-                    <div className="max-w-3xl mb-16 space-y-6">
-                      <h3 className="font-display font-medium text-2xl text-[var(--text-primary)]">
-                        Motion design for ideas that need to land clearly
-                      </h3>
-                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                        I create motion design, advertisement animation, infographics, and social content that help people understand complex ideas quickly and clearly.
-                      </p>
-                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                        Whether it’s a campaign, a product story, or a data-heavy message, I turn complexity into visual communication that people can actually follow.
-                      </p>
-                      <p className="text-xs font-mono text-[var(--text-secondary)] italic pt-2">
-                        From campaign assets to explainer systems, I build visual work that is precise, usable, and ready to carry meaning.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
-                      {motionProjects.map((project, idx) => {
-                        const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
-                        return (
-                          <GridItem 
-                            key={project.id} 
-                            className={`flex flex-col gap-6 ${alignClass}`}
-                          >
-                            <VisualCard 
-                              project={project} 
-                              onClick={() => {
-                                if (project.videoUrl) {
-                                  setTheaterVideo(project.videoUrl);
-                                } else {
-                                  setTheaterVideo("https://player.vimeo.com/video/826868216");
-                                }
-                              }}
-                            />
-                            <div className="case-study-meta">
-                              <ul className="project-tags tags">
-                                {project.tags.map((tag) => (
-                                  <li key={tag}>{tag}</li>
-                                ))}
-                              </ul>
-                              <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
-                                {project.title}
-                              </h3>
-                              <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
-                                <p><strong>The Context:</strong> {project.context}</p>
-                                <p><strong>The Craft:</strong> {project.craft}</p>
-                                <p><strong>The Impact:</strong> {project.impact}</p>
-                              </div>
-                            </div>
-                          </GridItem>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Facilitation Track */}
-                  <div id="facilitate-track" className={`track ${activeTab === 'facilitate' ? 'active' : ''}`}>
-                    <div className="max-w-3xl mb-16 space-y-6">
-                      <h3 className="font-display font-medium text-2xl text-[var(--text-primary)]">
-                        Facilitation for teams that need alignment, momentum, and a more sustainable pace
-                      </h3>
-                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                        I facilitate workshops, team processes, and change work that help people make decisions, work through friction, and keep important projects moving.
-                      </p>
-                      <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                        This side of the practice is about creating the conditions for better work. That might mean helping a team align around priorities, supporting a leadership group through strain or transition, or designing a process that makes collaboration clearer and more sustainable over time.
-                      </p>
-                      <p className="text-xs font-mono text-[var(--text-secondary)] italic pt-2">
-                        Better work usually needs both clarity in the message and clarity in how people work together.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-x-[4rem] md:gap-y-[8rem] w-full">
-                      {facilitateProjects.map((project, idx) => {
-                        const alignClass = idx % 2 === 1 ? "md:translate-y-16" : "";
-                        return (
-                          <GridItem 
-                            key={project.id} 
-                            className={`flex flex-col gap-6 ${alignClass}`}
-                          >
-                            <div className="typo-card rounded-3xl">
-                              <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-[var(--text-primary)]/10" />
-                              <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-[var(--text-secondary)]/60">
-                                Facilitate
-                              </div>
-                              <p className="max-w-xl font-display text-lg leading-relaxed text-center">
-                                “{project.statement}”
-                              </p>
-                            </div>
-                            <div className="case-study-meta">
-                              <ul className="project-tags tags">
-                                {project.tags.map((tag) => (
-                                  <li key={tag}>{tag}</li>
-                                ))}
-                              </ul>
-                              <h3 className="text-base md:text-lg font-display font-medium tracking-tight text-left mb-4">
-                                {project.title}
-                              </h3>
-                              <div className="space-y-3 pt-1 text-[13px] md:text-sm leading-relaxed text-left text-[var(--text-secondary)]">
-                                <p><strong>The Context:</strong> {project.context}</p>
-                                <p><strong>The Craft:</strong> {project.craft}</p>
-                                <p><strong>The Impact:</strong> {project.impact}</p>
-                              </div>
-                            </div>
-                          </GridItem>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Rules of Engagement Block */}
-                <div className="mt-32 pt-20 border-t border-[var(--border-color)]/20">
-                  <div className="max-w-3xl space-y-12">
-                    <span className="section-label text-left !block !text-left">
-                      // How I Work
-                    </span>
-                    <h3 className="font-display font-medium text-2xl md:text-3xl text-[var(--text-primary)]">
-                      How the practice operates
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                  {/* Card 1 */}
+                  <div className="bg-gradient-to-tr from-rose-500/5 via-pink-500/5 to-[#EBEAE5]/20 border border-rose-500/10 p-6 md:p-8 rounded-3xl space-y-4 hover:border-rose-500/30 transition-all duration-300 shadow-sm">
+                    <h3 className="font-display font-medium text-2xl md:text-3xl bg-gradient-to-r from-rose-600 via-pink-600 to-fuchsia-600 bg-clip-text text-transparent">
+                      Motion Design
                     </h3>
-                    <div className="space-y-8 pt-4">
-                      <div className="space-y-3">
-                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Clarity before production
-                        </h4>
-                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          Before making the work, I help define what needs to be said, who it is for, and what constraints matter. That usually leads to stronger decisions and fewer unnecessary revisions.
-                        </p>
-                      </div>
-                      <div className="space-y-3">
-                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Direct collaboration
-                        </h4>
-                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          You work directly with me throughout the process. That keeps communication clear and reduces the loss that often happens between strategy, execution, and delivery.
-                        </p>
-                      </div>
-                      <div className="space-y-3">
-                        <h4 className="font-display font-medium text-lg text-[var(--text-primary)]">
-                          Useful structure
-                        </h4>
-                        <p className="text-[var(--text-secondary)] leading-relaxed text-sm max-w-2xl">
-                          Whether the work is visual or organizational, I look for structures that people can actually use. The aim is not complexity for its own sake, but a way of working that supports clarity, momentum, and follow-through.
-                        </p>
-                      </div>
+                    <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                      Animation and visual communication that make complex ideas clearer, sharper, and easier to understand.
+                    </p>
+                    <div className="pt-4 border-t border-[var(--border-color)]/50">
+                      <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          Explainer animation
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          UI/UX animations
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          Infographics
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          Social content
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          Editorial motion
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
+                          Presentation visuals
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Card 2 */}
+                  <div className="bg-gradient-to-tr from-fuchsia-500/5 via-purple-500/5 to-[#EBEAE5]/20 border border-fuchsia-500/10 p-6 md:p-8 rounded-3xl space-y-4 hover:border-fuchsia-500/30 transition-all duration-300 shadow-sm">
+                    <h3 className="font-display font-medium text-2xl md:text-3xl bg-gradient-to-r from-fuchsia-600 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+                      Facilitation and Alignment
+                    </h3>
+                    <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                      Workshops and collaboration structures that help teams align, decide, and move complex work forward more effectively.
+                    </p>
+                    <div className="pt-4 border-t border-[var(--border-color)]/50">
+                      <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
+                          Workshop design
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
+                          Facilitation
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
+                          Decision support
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
+                          Governance rhythms
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
+                          Team alignment
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-
-                {/* Extra spacing at the bottom of asymmetric grid */}
-                <div className="h-24 hidden md:block" />
               </div>
             </section>
 
-            {/* Section: Methodology */}
-            <section id="methodology" className="border-b border-[var(--border-color)]/30">
-              <div className="section-container space-y-16">
-                <div className="space-y-6 max-w-3xl">
-                  <h2 className="text-xl md:text-2xl font-display font-medium tracking-tight">
-                    Capabilities & Approach
+            {/* Section 4: Selected Work */}
+            <section id="selected-work" className="border-b border-[var(--border-color)]/30 py-8 md:py-12">
+              <div className="section-container space-y-8">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-6 border-b border-[var(--border-color)]/20 pb-6 mb-4">
+                  <h2 className={`text-xl md:text-2xl font-display font-medium tracking-tight ${getHeadingGradient()}`}>
+                    Selected Work
                   </h2>
-                  <p className="lead text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
-                    I operate as a solo practitioner, directing each project personally. When scale or specialized needs require, I partner with trusted creative and technical collaborators.
-                  </p>
+                  
+                  {/* Filter Controls */}
+                  <div className="flex flex-wrap items-center gap-6 text-xs font-mono">
+                    <button
+                      onClick={() => setActiveFilter('all')}
+                      className={`pb-1 border-b transition-all ${
+                        activeFilter === 'all' 
+                          ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
+                          : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      }`}
+                    >
+                      All
+                    </button>
+                    <button
+                      onClick={() => setActiveFilter('facilitate')}
+                      className={`pb-1 border-b transition-all ${
+                        activeFilter === 'facilitate' 
+                          ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
+                          : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      }`}
+                    >
+                      Facilitation
+                    </button>
+                    <button
+                      onClick={() => setActiveFilter('motion')}
+                      className={`pb-1 border-b transition-all ${
+                        activeFilter === 'motion' 
+                          ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
+                          : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      }`}
+                    >
+                      Motion
+                    </button>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-                  {/* Capability 1 */}
-                  <div className="capability-block space-y-4">
-                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
-                      Motion & Visual Systems
-                    </h3>
-                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
-                      Translating complex mechanics into clear, accessible visual frameworks. Executing 2D/3D motion libraries, onboarding sequences, and scalable asset systems with strict precision.
-                    </p>
-                  </div>
-                  {/* Capability 2 */}
-                  <div className="capability-block space-y-4">
-                    <h3 className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)]">
-                      Team Process & Facilitation
-                    </h3>
-                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
-                      Untangling the human bottlenecks that prevent good work from shipping. Diagnosing workflow friction, aligning stakeholders through structured sprints, and designing sustainable governance rhythms.
-                    </p>
-                  </div>
+
+                <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full relative">
+                  <AnimatePresence mode="popLayout">
+                    {filteredProjects.map((project) => (
+                      <motion.div
+                        layout
+                        key={project.id}
+                        initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.92, y: -12 }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-col gap-6"
+                      >
+                        {project.type === 'visual' ? (
+                          <VisualCard 
+                            project={project as any} 
+                            onClick={() => setSelectedProject(project as UnifiedProject)}
+                          />
+                        ) : (
+                          <div 
+                            onClick={() => setSelectedProject(project as UnifiedProject)}
+                            className="typo-card rounded-3xl aspect-[16/9] min-h-[200px] flex items-center justify-center p-8 bg-gradient-to-tr from-fuchsia-500/15 via-pink-500/10 to-transparent border border-fuchsia-500/20 relative overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:border-fuchsia-500/40 hover:shadow-lg hover:shadow-fuchsia-500/5 cursor-pointer"
+                          >
+                            <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-fuchsia-500/40 animate-pulse" />
+                            <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-fuchsia-700/60 font-semibold">
+                              Facilitation
+                            </div>
+                            <p className="max-w-xl font-display text-base md:text-lg leading-relaxed text-center font-medium italic text-fuchsia-950/90 pointer-events-none">
+                              “{project.statement}”
+                            </p>
+                          </div>
+                        )}
+
+                        <div className="text-left space-y-4">
+                          <h3 className="text-lg md:text-xl font-display font-medium tracking-tight text-[var(--text-primary)]">
+                            {project.title}
+                          </h3>
+                          
+                          <div className="space-y-3.5 text-xs md:text-sm leading-relaxed text-[var(--text-secondary)]">
+                            <p className="text-balance">
+                              <strong className="text-[var(--text-primary)] font-medium">Short context:</strong> {project.context}
+                            </p>
+                            <p className="text-balance">
+                              <strong className="text-[var(--text-primary)] font-medium">Delivered:</strong> {project.delivered}
+                            </p>
+                            <p className="text-balance">
+                              <strong className="text-[var(--text-primary)] font-medium">Outcome:</strong> {project.outcome}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              </div>
+            </section>
+
+            {/* Section 5: Why Both */}
+            <section id="why-both" className="border-b border-[var(--border-color)]/30 py-8 md:py-12">
+              <div className="section-container max-w-3xl space-y-6">
+                <h2 className={`text-xl md:text-2xl font-display font-medium tracking-tight ${getHeadingGradient()}`}>
+                  Why both
+                </h2>
+                <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed text-balance">
+                  Clear communication and effective collaboration reinforce each other. Motion helps ideas land. Facilitation helps teams align around them. Bringing both together supports work that is not only well expressed, but also better shaped, shared, and carried forward.
+                </p>
+              </div>
+            </section>
+
+            {/* Section 6: Contact CTA */}
+            <section id="contact-cta" className="pt-20 pb-10 md:pt-32 md:pb-16">
+              <div className="section-container max-w-2xl text-left space-y-8">
+                <h2 className={`font-display font-medium text-3xl md:text-5xl tracking-tight leading-tight ${getHeadingGradient()}`}>
+                  Working on something complex?
+                </h2>
+                <p className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                  If you need clearer communication, steadier collaboration, or both, let’s talk.
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
+                  <a 
+                    href="mailto:hello@ayodrab.com"
+                    className={`inline-block px-8 py-4 rounded-full font-sans font-bold text-xs uppercase tracking-widest text-center transition-all duration-300 ${getCTAButtonClass()}`}
+                  >
+                    Get in touch
+                  </a>
+                  <a 
+                    href="mailto:hello@ayodrab.com"
+                    className="font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors underline decoration-dotted underline-offset-4"
+                  >
+                    Or email hello@ayodrab.com
+                  </a>
                 </div>
               </div>
             </section>
@@ -707,51 +800,26 @@ export default function App() {
       </main>
 
       {/* Footer (The Final CTA) */}
-      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/40 pt-[10rem] pb-[5rem] text-center space-y-16 px-6 md:px-12 lg:px-20">
-        
-        {/* The Final CTA Content */}
-        <div className="max-w-2xl mx-auto space-y-6">
-          <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight text-[var(--text-primary)] leading-tight">
-            Build better work. Build better teams.
-          </h2>
-          <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed text-balance">
-            If you’re working on something that needs both clarity and follow-through, I’d be glad to hear about it.
-          </p>
-          <p className="text-[10px] uppercase font-mono tracking-widest text-[var(--text-secondary)]">
-            For motion projects, facilitation, and collaborations:
-          </p>
-          <div className="pt-4">
-            <a 
-              href="mailto:hello@ayodrab.com" 
-              className="group inline-flex items-center gap-2 font-sans font-bold text-xs md:text-sm uppercase tracking-[0.2em] text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1.5 transition-all hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
-            >
-              Get in Touch <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-            </a>
-          </div>
+      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/20 py-8 px-6 md:px-12 lg:px-20 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
+        <div className="flex gap-2">
+          <span>© {new Date().getFullYear()} Ayo Sebastian Dráb</span>
+          <span>•</span>
+          <span className="uppercase text-[var(--text-primary)] font-bold">Motion & Facilitation</span>
         </div>
-
-        {/* Minimal Legal & Copy */}
-        <div className="pt-16 border-t border-[var(--border-color)]/20 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
-          <div className="flex gap-2">
-            <span>© {new Date().getFullYear()} Ayo Sebastian Dráb</span>
-            <span>•</span>
-            <span className="uppercase text-[var(--text-primary)] font-bold">Motion & Facilitation</span>
-          </div>
-          
-          <div className="flex gap-6">
-            <a 
-              href="mailto:hello@ayodrab.com" 
-              className="text-[var(--text-primary)] font-bold transition-colors hover:text-[var(--text-secondary)] underline decoration-dotted underline-offset-2"
-            >
-              hello@ayodrab.com
-            </a>
-            <button 
-              onClick={() => setView('legal')} 
-              className={`hover:text-[var(--text-primary)] uppercase transition-colors cursor-pointer border-0 bg-transparent font-bold tracking-widest ${view === 'legal' ? 'text-red-500' : ''}`}
-            >
-              Impressum & Privacy
-            </button>
-          </div>
+        
+        <div className="flex gap-6">
+          <a 
+            href="mailto:hello@ayodrab.com" 
+            className="text-[var(--text-primary)] font-bold transition-colors hover:text-[var(--text-secondary)] underline decoration-dotted underline-offset-2"
+          >
+            hello@ayodrab.com
+          </a>
+          <button 
+            onClick={() => setView('legal')} 
+            className={`hover:text-[var(--text-primary)] uppercase transition-colors cursor-pointer border-0 bg-transparent font-bold tracking-widest ${view === 'legal' ? 'text-red-500' : ''}`}
+          >
+            Impressum & Privacy
+          </button>
         </div>
       </footer>
 
@@ -766,9 +834,6 @@ export default function App() {
           className="overlay-content max-w-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <span className="section-label text-left !block !text-left mb-6">
-            // About Ayo Sebastian Dráb
-          </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight leading-[1.12] text-[var(--text-primary)]">
             About Ayo
           </h2>
@@ -794,54 +859,11 @@ export default function App() {
 
       {/* Cinematic Fullscreen Theater Lightbox Overlay */}
       <AnimatePresence>
-        {theaterVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-xl flex flex-col justify-center p-4 md:p-12 items-center"
-          >
-            {/* Keyboard dismiss listener hook effect */}
-            <KeyboardListener onClose={() => setTheaterVideo(null)} />
-
-            {/* Top Close Button (floating elegant control) */}
-            <div className="absolute top-6 right-6 z-[100000]">
-              <button
-                onClick={() => setTheaterVideo(null)}
-                className="w-12 h-12 rounded-full border border-white/10 hover:border-white/45 bg-black/40 text-white/70 hover:text-white flex items-center justify-center text-lg transition-all duration-300 cursor-pointer outline-none hover:scale-105"
-                title="Close"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Video Canvas Stage Holder */}
-            <motion.div 
-              initial={{ scale: 0.98, y: 10 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.98, y: 10 }}
-              transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
-              className="w-full max-w-5xl aspect-video bg-neutral-950 rounded-lg overflow-hidden border border-white/5 shadow-2xl relative"
-            >
-              {theaterVideo.includes('vimeo.com') ? (
-                <iframe
-                  src={`${theaterVideo}?autoplay=1&quality=1080p`}
-                  className="w-full h-full absolute inset-0 border-0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  title="Ayo Video Showcase"
-                />
-              ) : (
-                <video
-                  src={resolveAsset(theaterVideo)}
-                  autoplay
-                  controls
-                  playsInline
-                  className="w-full h-full object-contain"
-                />
-              )}
-            </motion.div>
-          </motion.div>
+        {selectedProject && (
+          <ProjectOverlay 
+            project={selectedProject} 
+            onClose={() => setSelectedProject(null)} 
+          />
         )}
       </AnimatePresence>
     </div>
@@ -858,4 +880,137 @@ function KeyboardListener({ onClose }: { onClose: () => void }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
   return null;
+}
+
+
+
+function ProjectOverlay({ project, onClose }: { project: UnifiedProject, onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[99999] bg-black/10 backdrop-blur-md overflow-y-auto flex items-start justify-center p-4 md:p-8 pt-12 md:pt-16"
+      onClick={onClose}
+    >
+      <KeyboardListener onClose={onClose} />
+      
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-5xl bg-[var(--bg-primary)] rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col my-auto border border-[var(--border-color)]/50"
+      >
+        <div className="text-[var(--text-primary)] relative font-sans">
+          {/* Header */}
+          <header className="px-6 md:px-10 py-6 flex items-center justify-between sticky top-0 bg-[var(--bg-primary)]/90 backdrop-blur-md z-50 border-b border-[var(--border-color)]/30">
+            <div className="text-sm font-bold font-display uppercase tracking-widest text-[var(--text-primary)] truncate pr-4">
+              {project.title}
+            </div>
+            <button 
+              onClick={onClose} 
+              className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-[var(--border-color)]/40 hover:bg-[var(--border-color)] transition-colors text-[var(--text-primary)]"
+              aria-label="Close"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </header>
+
+          <main className="px-6 md:px-12 py-10 md:py-16 pb-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="space-y-12 md:space-y-16"
+            >
+              {/* Hero Section */}
+              <div className="space-y-6 text-center max-w-3xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {project.tags.map((tag, idx) => (
+                    <span key={idx} className="px-3 py-1 rounded-full border border-[var(--border-color)] text-[10px] md:text-xs font-medium text-[var(--text-secondary)] tracking-wide uppercase">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight text-balance">
+                  {project.title}
+                </h1>
+                {project.statement && (
+                  <p className="text-lg md:text-2xl font-display italic text-[var(--text-secondary)]">
+                    “{project.statement}”
+                  </p>
+                )}
+              </div>
+
+              {/* Media / Visual */}
+              {project.type === 'visual' && (
+                <div className="w-full aspect-video bg-[#E2DFD5]/40 rounded-2xl md:rounded-3xl overflow-hidden relative shadow-md border border-[var(--border-color)]/20">
+                  {project.videoUrl ? (
+                    project.videoUrl.includes('vimeo') ? (
+                      <iframe
+                        src={`${project.videoUrl}?autoplay=1&muted=1&loop=1&background=1`}
+                        className="w-full h-full absolute inset-0 border-0 pointer-events-none"
+                        allow="autoplay; fullscreen"
+                        title={project.title}
+                      />
+                    ) : (
+                      <video
+                        src={resolveAsset(project.videoUrl)}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    )
+                  ) : (
+                    <img 
+                      src={resolveAsset(project.image)} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* Details / Narrative Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-8 border-t border-[var(--border-color)]/30">
+                <div className="space-y-3">
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Context</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                    {project.context}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">What We Did</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                    {project.delivered}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Outcome</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                    {project.outcome}
+                  </p>
+                </div>
+              </div>
+              
+            </motion.div>
+          </main>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
 }
