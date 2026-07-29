@@ -6,6 +6,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
+import HeroGooeySmoke from './components/canvas/HeroGooeySmoke';
+import VantaCloudsBackground from './components/canvas/VantaCloudsBackground';
+
 // Resolve asset helper for production / github pages deploy base compatibility
 function resolveAsset(url?: string): string {
   if (!url) return '';
@@ -290,7 +293,7 @@ export default function App() {
 
   return (
     <div 
-      className={`min-h-screen text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-0 pt-28 px-0 transition-all duration-1000 ${
+      className={`min-h-screen text-[var(--text-primary)] font-body selection:bg-[var(--text-primary)] selection:text-[var(--bg-primary)] relative pb-0 pt-0 px-0 transition-all duration-1000 ${
         activeFilter === 'facilitate'
           ? 'bg-animated-facilitate'
           : activeFilter === 'motion'
@@ -335,7 +338,7 @@ export default function App() {
       </div>
 
       {/* Header (Fixed Navigation) */}
-      <header className="fixed top-0 left-0 w-full z-100 py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-all duration-1000 liquid-glass-header">
+      <header className="fixed top-0 left-0 w-full z-[100] py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-all duration-1000 glass-header">
         <div 
           onClick={() => {
             setView('work');
@@ -373,8 +376,10 @@ export default function App() {
           <div className="space-y-0">
             
             {/* Section 1: Hero */}
-            <section id="hero" className="border-b border-[var(--border-color)]/30 min-h-[60vh] flex flex-col justify-center py-12 md:py-20">
-              <div className="section-container space-y-6">
+            <section id="hero" className="relative overflow-hidden border-b border-[var(--border-color)]/30 min-h-[75vh]">
+              <VantaCloudsBackground selector="#hero" />
+              
+              <div className="section-container relative z-10 space-y-6 pt-24 pb-12 md:pt-28 md:pb-16">
                 <h1 className={`tracking-tight leading-[1.08] text-balance font-display font-medium text-4xl md:text-6xl ${getHeadingGradient()}`}>
                   Visual clarity. Structural alignment.
                 </h1>
@@ -437,10 +442,10 @@ export default function App() {
                   </div>
                   
                   {/* Optiver */}
-                  <div className="opacity-60 hover:opacity-100 transition-opacity flex items-center gap-1.5">
-                    <span className="font-sans font-light tracking-wide text-2xl md:text-3xl leading-none">optiver</span>
-                    <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-10 md:h-10 text-gray-400 fill-current -ml-1">
-                      <path d="M50 15 L90 85 L10 85 Z" fill="none" stroke="currentColor" strokeWidth="12" strokeLinejoin="miter" strokeMiterlimit="10"/>
+                  <div className="opacity-70 hover:opacity-100 transition-opacity flex items-center gap-2">
+                    <span className="font-sans font-light tracking-[-0.02em] text-2xl md:text-3xl leading-none text-[var(--text-primary)]">optiver</span>
+                    <svg viewBox="0 0 40 40" className="w-5 h-5 md:w-6 md:h-6 text-neutral-400 fill-none stroke-current" style={{ color: '#888888' }}>
+                      <polygon points="20,5 37,35 3,35" strokeWidth="4.5" strokeLinejoin="miter" strokeMiterlimit="10"/>
                     </svg>
                   </div>
                   
@@ -462,12 +467,12 @@ export default function App() {
                   </div>
 
                   {/* Edelman */}
-                  <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity gap-2">
-                    <svg viewBox="0 0 100 100" className="w-6 h-6 md:w-8 md:h-8">
-                      <polygon points="50,10 50,50 90,50" fill="currentColor" opacity="0.6"/>
-                      <polygon points="10,50 50,50 50,90" fill="currentColor" />
+                  <div className="flex items-center opacity-70 hover:opacity-100 transition-opacity gap-2.5">
+                    <svg viewBox="0 0 100 100" className="w-7 h-7 md:w-9 md:h-9">
+                      <polygon points="50,10 95,50 50,90 50,50" fill="#6B7280" />
+                      <polygon points="5,50 50,50 50,90" fill="currentColor" />
                     </svg>
-                    <span className="font-sans font-black tracking-tighter text-xl md:text-2xl leading-none">Edelman</span>
+                    <span className="font-sans font-extrabold tracking-[0.01em] text-xl md:text-2xl leading-none text-[var(--text-primary)]">Edelman</span>
                   </div>
                 </div>
               </div>
@@ -694,7 +699,7 @@ export default function App() {
 
         {/* VIEW: LEGAL (German Impressum & Privacy Policy compliance) */}
         {view === 'legal' && (
-          <div className="space-y-12 max-w-5xl animate-fade-in pt-12 mx-auto px-6 md:px-12 lg:px-20">
+          <div className="space-y-12 max-w-5xl animate-fade-in pt-32 pb-16 mx-auto px-6 md:px-12 lg:px-20">
             <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
               Legal Documentation
             </span>
