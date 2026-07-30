@@ -947,17 +947,17 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-3xl bg-[var(--bg-primary)] rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col my-auto border border-[var(--border-color)]/50"
+        className="w-full max-w-2xl bg-[var(--bg-primary)] rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col my-auto border border-[var(--border-color)]/50"
       >
         <div className="text-[var(--text-primary)] relative font-sans">
           {/* Header */}
-          <header className="px-6 md:px-10 py-6 flex items-center justify-between sticky top-0 bg-[var(--bg-primary)]/90 backdrop-blur-md z-50 border-b border-[var(--border-color)]/30">
-            <div className="text-xs md:text-sm font-bold font-display uppercase tracking-widest text-[var(--text-primary)] truncate pr-4">
-              About Ayo Sebastian Dráb
-            </div>
+          <header className="px-6 md:px-10 py-5 flex items-center justify-between sticky top-0 bg-[var(--bg-primary)]/90 backdrop-blur-md z-50 border-b border-[var(--border-color)]/30">
+            <span className="text-xs font-bold font-display uppercase tracking-widest text-[var(--text-secondary)]">
+              About
+            </span>
             <button 
               onClick={onClose} 
-              className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-[var(--border-color)]/40 hover:bg-[var(--border-color)] transition-colors text-[var(--text-primary)] cursor-pointer"
+              className="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full bg-[var(--border-color)]/40 hover:bg-[var(--border-color)] transition-colors text-[var(--text-primary)] cursor-pointer"
               aria-label="Close"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -966,70 +966,60 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
             </button>
           </header>
 
-          <main className="px-6 md:px-12 py-8 md:py-12 pb-14">
+          <main className="px-6 md:px-10 py-8 md:py-10 pb-12">
             <motion.div 
               initial={{ opacity: 0, y: 15 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
               className="space-y-8"
             >
-              {/* Meta Tags */}
-              <div className="flex flex-wrap gap-2">
-                {['Motion Systems', 'Facilitation & Sprints', 'Visual Alignment', 'Amsterdam & Global'].map((tag, idx) => (
-                  <span key={idx} className="px-3 py-1 rounded-full border border-[var(--border-color)] text-[10px] md:text-xs font-medium text-[var(--text-secondary)] tracking-wide uppercase">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Title / Headline */}
-              <h2 className="text-2xl md:text-4xl font-display font-medium tracking-tight text-balance leading-tight text-[var(--text-primary)]">
-                Bringing visual clarity to complex ideas and alignment to the teams moving them forward.
+              {/* Main Heading */}
+              <h2 className="text-2xl md:text-3xl font-display font-medium tracking-tight text-[var(--text-primary)]">
+                About Ayo Sebastian Dráb
               </h2>
 
-              {/* Bio Content */}
-              <div className="space-y-4 font-body text-sm md:text-base leading-relaxed text-[var(--text-secondary)] border-t border-[var(--border-color)]/30 pt-6">
+              {/* Body Copy */}
+              <div className="space-y-5 text-base md:text-lg leading-relaxed text-[var(--text-secondary)] font-body">
                 <p>
-                  I started in motion design, helping organizations communicate through animation and visual systems. Over time, I kept seeing the same pattern: strong work often depends as much on collaboration, decision-making, and process as it does on craft.
+                  My background is in motion design, where I developed visual systems, animation, and explanatory work for teams that needed to communicate complex ideas clearly. Over time, that work led me further upstream: into workshops, decision-making processes, and the conversations that shape what gets made in the first place.
                 </p>
                 <p>
-                  That led me deeper into facilitation and change work. Today, I work across both areas: creating visual communication that brings clarity to ideas, and supporting teams in the work of alignment, transition, and sustainable collaboration.
+                  Today my practice sits across both areas. I create motion and information design when teams need ideas to land clearly, and I support facilitation when they need structure, momentum, and better ways of moving work forward.
                 </p>
                 <p>
-                  I still care deeply about the quality of the work itself. I also care about the conditions that allow good work to happen.
+                  What ties both sides together is an interest in clarity: not as a style, but as something practical. Clear communication, clear decisions, and shared understanding tend to make good work possible.
                 </p>
               </div>
 
-              {/* Detail Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[var(--border-color)]/30 text-xs md:text-sm">
-                <div className="space-y-2">
-                  <h3 className="font-bold uppercase tracking-widest text-[var(--text-primary)] text-[11px]">Core Capabilities</h3>
-                  <p className="text-[var(--text-secondary)] leading-relaxed">
-                    2D Animation, Motion Design Systems, Infographics, Workshop Design, Group Facilitation, & Decision Support Sprints.
+              {/* Core capabilities & Clients section */}
+              <div className="space-y-6 pt-6 border-t border-[var(--border-color)]/30">
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-bold text-[var(--text-primary)]">
+                    Core capabilities
+                  </h3>
+                  <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                    2D animation, motion systems, infographics, workshop design, facilitation, decision support
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-bold uppercase tracking-widest text-[var(--text-primary)] text-[11px]">Selected Clients & Partners</h3>
-                  <p className="text-[var(--text-secondary)] leading-relaxed">
-                    Mastercard, Adidas, Optiver, Deloitte, BCG Digital Ventures, Edelman.
+
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-bold text-[var(--text-primary)]">
+                    Selected clients and partners
+                  </h3>
+                  <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                    Mastercard, Adidas, Optiver, Deloitte, BCG Digital Ventures, Edelman
                   </p>
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="pt-6 border-t border-[var(--border-color)]/30 flex flex-wrap items-center justify-between gap-4">
+              {/* Single CTA at the end */}
+              <div className="pt-6 border-t border-[var(--border-color)]/30">
                 <a 
                   href="mailto:hello@ayodrab.com"
-                  className="px-6 py-3 rounded-full font-sans font-bold text-xs uppercase tracking-widest bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-sm"
+                  className="inline-block px-6 py-3 rounded-full font-sans font-bold text-xs uppercase tracking-widest bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-sm"
                 >
                   Get in touch
                 </a>
-                <button
-                  onClick={onClose}
-                  className="font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] border-b border-transparent hover:border-[var(--text-primary)] pb-0.5 transition-colors cursor-pointer"
-                >
-                  CLOSE
-                </button>
               </div>
 
             </motion.div>
