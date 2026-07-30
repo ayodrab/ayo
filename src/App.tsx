@@ -31,6 +31,7 @@ interface ContentBlock {
 interface UnifiedProject {
   id: string;
   title: string;
+  subtitle?: string;
   tags: string[];
   type: 'visual' | 'typographic';
   
@@ -42,6 +43,12 @@ interface UnifiedProject {
   // Component B (Typographic) fields
   statement?: string; // Bold, brutalist statement
   
+  // Optional single description override for home card
+  description?: string;
+
+  // Optional multi-paragraph story for modal view
+  longStory?: string[];
+
   // Universal Metadata Block fields (3-sentence narrative format)
   context: string;
   delivered: string;
@@ -51,15 +58,21 @@ interface UnifiedProject {
 const FEATURED_PROJECTS: UnifiedProject[] = [
   {
     id: 'mastercard',
-    title: 'Mastercard. A life in numbers.',
-    tags: ['Motion System', 'Social Campaign'],
+    title: 'Mastercard',
+    tags: ['Social Film', '2D Animation'],
     type: 'visual',
     image: 'assets/motion_project_assets/mastercard_01.webp',
     hoverVideo: 'assets/motion_project_assets/mastercard_loop.mp4',
     videoUrl: 'https://player.vimeo.com/video/385480402',
-    context: 'Mastercard required a global social campaign that translated complex financial transaction data into universally relatable human stories.',
-    delivered: 'Designed and animated a series of humorous flat-vector loops, focusing on precise timing and expressive physics to elevate the brand\'s social presence.',
-    outcome: 'Generated 2.2 million organic views and became one of Mastercard\'s most highly shared organic campaign segments.'
+    description: 'A playful social film for Mastercard built around the “Priceless” line, later becoming the brand’s most-viewed video of 2017.',
+    longStory: [
+      'Digitas approached us to make a social video for Mastercard that would be light, entertaining, and easy to share. The starting point was Mastercard’s long-running “Priceless” line, and the challenge was to use it in a way that felt playful rather than overly familiar.',
+      'The concept paired everyday statistics with short, humorous scenarios, giving the piece a simple structure that worked well for social. Rather than overcomplicating the idea, the film kept the format clear and quick, letting the contrast between the numbers and the situations carry the tone.',
+      'The result was Mastercard’s most-viewed video of 2017, with 2.2 million views, 20,000 reactions, and 2,181 shares on Facebook alone.'
+    ],
+    context: 'Digitas approached us to make a social video for Mastercard that would be light, entertaining, and easy to share.',
+    delivered: 'Paired everyday statistics with short, humorous scenarios in a clear, quick format.',
+    outcome: 'Became Mastercard’s most-viewed video of 2017, generating 2.2M views, 20,000 reactions, and 2,181 shares on Facebook.'
   },
   {
     id: 'leadership-circle',
@@ -67,21 +80,28 @@ const FEATURED_PROJECTS: UnifiedProject[] = [
     tags: ['Cooperative Governance', 'Culture Design'],
     type: 'typographic',
     statement: 'Untangling a 6-month product bottleneck in 3 days.',
-    context: 'A decentralized network of over 80 designers and researchers suffered from severe decision fatigue and strategic alignment bottlenecks.',
-    delivered: 'Designed and facilitated intensive active listening circles and co-created a self-governing group coordinator model.',
-    outcome: 'Streamlined decision-making pathways and resolved administrative deadlocks without adding bureaucratic overhead.'
+    description: 'Facilitation and active listening sprints for an 80+ person design and research network to resolve decision-making bottlenecks.',
+    context: 'Strategic alignment bottlenecks in a decentralized design and research network.',
+    delivered: 'Facilitated active listening circles and co-created a self-governing coordinator model.',
+    outcome: 'Streamlined decision-making pathways without adding administrative overhead.'
   },
   {
     id: 'optiver',
-    title: 'Optiver. Making Waves.',
+    title: 'Optiver',
     tags: ['Onboarding Campaign', '2D Animation'],
     type: 'visual',
     image: 'assets/motion_project_assets/optiver_office_image.webp',
     hoverVideo: 'assets/motion_project_assets/optiver_loop.mp4',
     videoUrl: 'assets/motion_project_assets/optiver_loop.mp4',
-    context: 'Optiver needed to humanize their highly complex, algorithmic quantitative trading systems to make onboarding less intimidating for incoming global graduates.',
-    delivered: 'By layering custom 2D animation directly over actual proprietary code screens, the cold data was anchored within warm, recognizable Amsterdam canalscapes.',
-    outcome: 'Deployed across Amsterdam, Chicago, and Sydney, this visual translation demystified the computational work and drove a measurable increase in graduate engagement.'
+    description: 'A film for Optiver that turned internal interviews into a clearer, more grounded way of expressing the company’s culture to new recruits.',
+    longStory: [
+      'Optiver wanted to show new recruits what made its culture distinct from other trading companies. Rather than relying on generic employer-brand language, the project started by looking more closely at how people inside the company actually described the place.',
+      'Working closely with Optiver, we conducted interviews across different levels of the organization to understand what felt specific to the culture from the inside. Those conversations helped identify five values that genuinely resonated, which then became the basis for five scenarios showing those values in practice.',
+      'The result was a film designed not just to describe the culture, but to make it easier for new employees to recognise and navigate it. It is now used as part of Optiver’s onboarding process.'
+    ],
+    context: 'Optiver wanted to show new recruits what made its culture distinct from other trading companies.',
+    delivered: 'Conducted internal interviews to identify core values and created a film featuring five real-world scenarios showing those values in practice.',
+    outcome: 'The film is now used as part of Optiver’s onboarding process to help new employees recognise and navigate the culture.'
   },
   {
     id: 'resilience-blueprint',
@@ -89,21 +109,29 @@ const FEATURED_PROJECTS: UnifiedProject[] = [
     tags: ['Sprints', 'Systems Mapping', 'Workshops'],
     type: 'typographic',
     statement: 'Moving 15 hostile industrial competitors into a single circular pipeline.',
-    context: 'Historically rooted distrust among industrial manufacturers, circular architects, and public policymakers blocked regional material recycling loops.',
-    delivered: 'Facilitated intensive co-design sprints using physical systems-mapping boards to align mutual resource flow-rates and governance rhythms.',
-    outcome: 'Delivered a comprehensive co-creative handbook and unified material blueprint officially adopted by three European regions.'
+    description: 'Co-design workshops and systems mapping bringing cross-industry partners together to align around a circular recycling model.',
+    context: 'Historical distrust among industrial partners blocking regional material recycling loops.',
+    delivered: 'Facilitated intensive co-design sprints using physical systems-mapping tools.',
+    outcome: 'Delivered a circular material blueprint adopted across three European regions.'
   },
   {
     id: 'adidas-all-blacks',
-    title: 'Adidas. All Blacks.',
-    tags: ['Character Design', '2D Animation'],
+    title: 'Adidas All Blacks',
+    tags: ['3D Motion', 'Product Promo'],
     type: 'visual',
     image: 'assets/motion_project_assets/adidas_01.webp',
     hoverVideo: 'assets/motion_project_assets/adidas_website_thumbnail.mp4',
     videoUrl: 'assets/motion_project_assets/adidas-all-blacks-1.1-adidas_allblack_video.mp4',
-    context: 'Sportswear reveals are frequently sterile, lacking the physical weight and deep cultural heritage of the New Zealand rugby team.',
-    delivered: 'Designed a hand-drawn 2D animation framing ink-brushed Māori motifs, syncing fan expressions with on-pitch athletic force during the Haka.',
-    outcome: 'Rolled out globally across retail and digital platforms, capturing national rugby pride in an artistically deep campaign.'
+    description: 'A 3D promo for the Adidas All Blacks jersey, focused on capturing the texture, construction, and technical detail of the garment.',
+    longStory: [
+      'This project was made to support the launch of a new Adidas All Blacks jersey, first introduced in 1893. The turnaround was tight, so we joined the planned photoshoot to gather the material we needed for the 3D work from the start.',
+      'A large part of the job was getting the fabric and construction to feel convincing on screen. During the shoot, we captured texture references of the jersey so the 3D team could recreate the material accurately rather than having to approximate it later under time pressure.',
+      'The design itself gave us plenty to work with: anti-grip detailing, second-skin integration, zonal stability, and carbon weave structure. The film focused on bringing those technical features forward through texture, light, and movement, while keeping the overall feel sharp, physical, and in step with the energy of the All Blacks.',
+      'What I like about this project is how practical the process was. Getting the right references early made the rest of the production possible, and helped turn a tight timeline into something precise enough to hold up.'
+    ],
+    context: 'This project was made to support the launch of a new Adidas All Blacks jersey, first introduced in 1893.',
+    delivered: 'Captured texture references during the photoshoot to build a 3D promo focused on texture, light, and technical details.',
+    outcome: 'Turned a tight timeline into a precise product film that holds up under scrutiny.'
   },
   {
     id: 'nature-retreat',
@@ -111,21 +139,30 @@ const FEATURED_PROJECTS: UnifiedProject[] = [
     tags: ['Executive Alignment', 'Off-site Facilitation'],
     type: 'typographic',
     statement: 'Untangling leadership friction through structured diagnostic sprints.',
-    context: 'High-tempo operational stress caused senior corporate directors to isolate, leading to severe strategic fragmentation and burnout.',
-    delivered: 'Facilitated a structured off-site diagnostic retreat, conducting intensive alignment sessions to establish new communication protocols.',
-    outcome: 'Restored organizational trust, yielding a cohesive feedback culture and a sustainable peer-mentorship loop.'
+    description: 'A structured diagnostic retreat bringing senior leadership together to reset protocols and restore trust.',
+    context: 'High operational stress leading to strategic fragmentation among executive directors.',
+    delivered: 'Facilitated an off-site retreat focused on honest diagnostic alignment.',
+    outcome: 'Restored trust and established clear, sustainable communication rhythms.'
   },
   {
     id: 'datscha',
-    title: 'Datscha. What’s behind the wall?',
+    title: 'Datscha',
+    subtitle: 'The End of Spreadsheets',
     tags: ['Campaign Storytelling', '2D Animation'],
     type: 'visual',
     image: 'assets/motion_project_assets/datscha_01.webp',
     hoverVideo: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
     videoUrl: 'assets/motion_project_assets/datscha-website-thumbnail-1250x698-compressed.mp4',
-    context: 'The UK commercial real estate registry has historically been guarded behind opaque, expensive, and dry public record walls.',
-    delivered: 'Crafted a mid-century illustrative adventure following an analyst peeking over brick walls to visualize zoning and historical valuations.',
-    outcome: 'Captured immediate brand warmth in a conservative sector, setting a new proptech benchmark.'
+    description: 'Datscha wanted to launch its platform in a way that clearly separated it from older, spreadsheet-led workflows. The project turned that contrast into a playful animated world shaped by action cartoons and superhero logic.',
+    longStory: [
+      'Datscha was launching a new commercial property platform and wanted to mark a clear break from older, spreadsheet-heavy ways of working. In a category where many tools still rely on endless rows and columns, the task was to show a simpler, more usable alternative.',
+      'An early idea — the “spreadsheet warrior” — gave the project its shape. Rather than using it as a one-off gag, the concept became a way to build a whole animated world around the frustration of outdated workflows and the appeal of something more intuitive.',
+      'The visual direction drew from action cartoons and superhero stories. That gave the piece enough energy and character to feel memorable, while still keeping the message straightforward: Datscha offers a different experience from the systems many people in the industry are used to working with.',
+      'What worked well here was the balance between play and clarity. The campaign gave Datscha a more distinct voice and helped frame the platform as a modern alternative in a space that often feels stuck in older habits.'
+    ],
+    context: 'Datscha wanted to launch its platform in a way that clearly separated it from older, spreadsheet-led workflows.',
+    delivered: 'The project turned that contrast into a playful animated world shaped by action cartoons and superhero logic.',
+    outcome: 'Helped frame the platform as a modern alternative in a space that often feels stuck in older habits.'
   }
 ];
 
@@ -174,7 +211,6 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
   useEffect(() => {
     if (project.hoverVideo && videoRef.current) {
       if (isHovered) {
-        videoRef.current.currentTime = 0;
         const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch((err) => {
@@ -203,19 +239,21 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-750 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          onLoadedMetadata={() => {
+            if (videoRef.current && !isHovered) {
+              videoRef.current.currentTime = 0;
+            }
+          }}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 group-hover:scale-105"
         />
-      ) : null}
-      
-      {/* Fallback image when video is not hovering or missing */}
-      <img 
-        src={resolveAsset(project.image)} 
-        alt={project.title}
-        referrerPolicy="no-referrer"
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isHovered && project.hoverVideo ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
-        }`}
-      />
+      ) : (
+        <img 
+          src={resolveAsset(project.image)} 
+          alt={project.title}
+          referrerPolicy="no-referrer"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 group-hover:scale-105"
+        />
+      )}
       
       {/* Minimal Play Overlay indicator on hover */}
       <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 pointer-events-none">
@@ -468,32 +506,32 @@ export default function App() {
                 <div className="w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-8 text-lg md:text-xl font-bold">
                   {/* Mastercard */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/mastercard.svg" alt="Mastercard" className="h-7 md:h-9 w-auto object-contain" />
+                    <img src={resolveAsset('logos/mastercard.svg')} alt="Mastercard" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                   
                   {/* Adidas */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/adidas.svg" alt="Adidas" className="h-7 md:h-9 w-auto object-contain" />
+                    <img src={resolveAsset('logos/adidas.svg')} alt="Adidas" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                   
                   {/* Optiver */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/optiver.svg" alt="Optiver" className="h-6 md:h-8 w-auto object-contain" />
+                    <img src={resolveAsset('logos/optiver.svg')} alt="Optiver" className="h-6 md:h-8 w-auto object-contain" />
                   </div>
                   
                   {/* Deloitte */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/deloitte.png" alt="Deloitte" className="h-5 md:h-6.5 w-auto object-contain" />
+                    <img src={resolveAsset('logos/deloitte.svg')} alt="Deloitte" className="h-5 md:h-6.5 w-auto object-contain" />
                   </div>
 
                   {/* BCG Digital Ventures */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/bcg.png" alt="BCG Digital Ventures" className="h-9 md:h-12 w-auto object-contain" />
+                    <img src={resolveAsset('logos/bcg.svg')} alt="BCG Digital Ventures" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
 
                   {/* Edelman */}
                   <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
-                    <img src="/logos/edelman.svg" alt="Edelman" className="h-7 md:h-9 w-auto object-contain" />
+                    <img src={resolveAsset('logos/edelman.svg')} alt="Edelman" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                 </div>
               </div>
@@ -509,7 +547,7 @@ export default function App() {
                       Motion Design
                     </h3>
                     <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                      Animation and visual communication that make complex ideas clearer, sharper, and easier to understand.
+                      Animation and visual communication that help complex ideas become easier to see, share, and understand.
                     </p>
                     <div className="pt-4 border-t border-[var(--border-color)]/50">
                       <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
@@ -519,7 +557,7 @@ export default function App() {
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          UI/UX animations
+                          UI motion
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
@@ -547,7 +585,7 @@ export default function App() {
                       Facilitation and Alignment
                     </h3>
                     <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                      Workshops and collaboration structures that help teams align, decide, and move complex work forward more effectively.
+                      Workshops and collaboration support that help teams align, make decisions, and move complex work forward with less friction.
                     </p>
                     <div className="pt-4 border-t border-[var(--border-color)]/50">
                       <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
@@ -565,7 +603,7 @@ export default function App() {
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Governance rhythms
+                          Working rhythms
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
@@ -658,16 +696,24 @@ export default function App() {
                             {project.title}
                           </h3>
                           
-                          <div className="space-y-3.5 text-xs md:text-sm leading-relaxed text-[var(--text-secondary)]">
-                            <p className="text-balance">
-                              <strong className="text-[var(--text-primary)] font-medium">Short context:</strong> {project.context}
-                            </p>
-                            <p className="text-balance">
-                              <strong className="text-[var(--text-primary)] font-medium">Delivered:</strong> {project.delivered}
-                            </p>
-                            <p className="text-balance">
-                              <strong className="text-[var(--text-primary)] font-medium">Outcome:</strong> {project.outcome}
-                            </p>
+                          <div className="text-xs md:text-sm leading-relaxed text-[var(--text-secondary)]">
+                            {project.description ? (
+                              <p className="text-balance text-[var(--text-primary)] leading-relaxed font-body">
+                                {project.description}
+                              </p>
+                            ) : (
+                              <div className="space-y-3.5">
+                                <p className="text-balance">
+                                  <strong className="text-[var(--text-primary)] font-medium">Short context:</strong> {project.context}
+                                </p>
+                                <p className="text-balance">
+                                  <strong className="text-[var(--text-primary)] font-medium">Delivered:</strong> {project.delivered}
+                                </p>
+                                <p className="text-balance">
+                                  <strong className="text-[var(--text-primary)] font-medium">Outcome:</strong> {project.outcome}
+                                </p>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </motion.div>
@@ -677,27 +723,20 @@ export default function App() {
               </div>
             </section>
 
-            {/* Section 5: Why Both */}
-            <section id="why-both" className="border-b border-[var(--border-color)]/30 py-8 md:py-12">
-              <div className="section-container max-w-3xl space-y-6">
-                <h2 className={`text-xl md:text-2xl font-display font-medium tracking-tight ${getHeadingGradient()}`}>
-                  Why both
-                </h2>
-                <p className="font-display font-medium text-lg md:text-xl text-[var(--text-primary)] leading-relaxed text-balance">
-                  Clear communication and effective collaboration reinforce each other. Motion helps ideas land. Facilitation helps teams align around them. Bringing both together supports work that is not only well expressed, but also better shaped, shared, and carried forward.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 6: Contact CTA */}
+            {/* Section 5: Contact CTA */}
             <section id="contact-cta" className="pt-20 pb-10 md:pt-32 md:pb-16">
               <div className="section-container max-w-2xl text-left space-y-8">
                 <h2 className={`font-display font-medium text-3xl md:text-5xl tracking-tight leading-tight ${getHeadingGradient()}`}>
                   Working on something complex?
                 </h2>
-                <p className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
-                  If you need clearer communication, steadier collaboration, or both, let’s talk.
-                </p>
+                <div className="space-y-4 text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                  <p>
+                    Clear communication and effective collaboration reinforce each other. Motion helps ideas land. Facilitation helps teams align around them.
+                  </p>
+                  <p>
+                    If you need clearer communication, steadier collaboration, or both, let’s talk.
+                  </p>
+                </div>
                 <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
                   <a 
                     href="mailto:hello@ayodrab.com"
@@ -1064,6 +1103,11 @@ function ProjectOverlay({ project, onClose }: { project: UnifiedProject, onClose
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight text-balance">
                   {project.title}
                 </h1>
+                {project.subtitle && (
+                  <p className="text-xl md:text-2xl font-display font-normal text-[var(--text-secondary)]">
+                    {project.subtitle}
+                  </p>
+                )}
                 {project.statement && (
                   <p className="text-lg md:text-2xl font-display italic text-[var(--text-secondary)]">
                     “{project.statement}”
@@ -1103,26 +1147,36 @@ function ProjectOverlay({ project, onClose }: { project: UnifiedProject, onClose
               )}
 
               {/* Details / Narrative Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-8 border-t border-[var(--border-color)]/30">
-                <div className="space-y-3">
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Context</h3>
-                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
-                    {project.context}
-                  </p>
+              {project.longStory ? (
+                <div className="max-w-3xl mx-auto space-y-6 pt-8 border-t border-[var(--border-color)]/30">
+                  {project.longStory.map((paragraph, idx) => (
+                    <p key={idx} className="text-base md:text-lg leading-relaxed text-[var(--text-primary)] font-body">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">What We Did</h3>
-                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
-                    {project.delivered}
-                  </p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-8 border-t border-[var(--border-color)]/30">
+                  <div className="space-y-3">
+                    <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Context</h3>
+                    <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                      {project.context}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">What We Did</h3>
+                    <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                      {project.delivered}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Outcome</h3>
+                    <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
+                      {project.outcome}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)]">Outcome</h3>
-                  <p className="text-sm md:text-base leading-relaxed text-[var(--text-primary)]">
-                    {project.outcome}
-                  </p>
-                </div>
-              </div>
+              )}
               
             </motion.div>
           </main>

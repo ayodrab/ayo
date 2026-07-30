@@ -165,21 +165,18 @@ body {
 .bg-animated-all {
   background: linear-gradient(-45deg, #FFF5F7, #FFEBF0, #FFDFE9, #FFF0F5) !important;
   background-size: 400% 400% !important;
-  background-attachment: fixed !important;
   animation: fluid-gradient 18s ease infinite !important;
 }
 
 .bg-animated-facilitate {
   background: linear-gradient(-45deg, #FFF0F2, #FFE4E6, #FFEDF0, #FFF5F7) !important;
   background-size: 400% 400% !important;
-  background-attachment: fixed !important;
   animation: fluid-gradient 18s ease infinite !important;
 }
 
 .bg-animated-motion {
   background: linear-gradient(-45deg, #FFF5F8, #FFEBF4, #FFE0EB, #FFF0F5) !important;
   background-size: 400% 400% !important;
-  background-attachment: fixed !important;
   animation: fluid-gradient 18s ease infinite !important;
 }
 
@@ -445,8 +442,8 @@ section {
 
 /* Glass Header overrides for strict browser support */
 .glass-header {
-  background-color: rgba(244, 243, 239, 0.75);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background-color: rgba(244, 243, 239, 0.8) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
