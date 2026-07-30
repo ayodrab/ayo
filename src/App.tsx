@@ -248,22 +248,73 @@ export default function App() {
     return "bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm hover:opacity-90 hover:scale-[1.01] transition-all duration-300";
   };
 
+  // Helper state & URL modal handlers
+  const openAbout = () => {
+    setIsAboutOpen(true);
+    setSelectedProject(null);
+    if (window.location.hash !== '#about') {
+      window.history.pushState(null, '', '#about');
+    }
+  };
+
+  const closeAbout = () => {
+    setIsAboutOpen(false);
+    if (window.location.hash === '#about') {
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+    }
+  };
+
+  const openProject = (project: UnifiedProject) => {
+    setSelectedProject(project);
+    setIsAboutOpen(false);
+    if (window.location.hash !== `#project-${project.id}`) {
+      window.history.pushState(null, '', `#project-${project.id}`);
+    }
+  };
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    if (window.location.hash.startsWith('#project-')) {
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+    }
+  };
+
   // Handle URL hash changes
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#facilitate' || hash === '#facilitation') {
-        setActiveFilter('facilitate');
-      } else if (hash === '#motion' || hash === '#motion-design') {
-        setActiveFilter('motion');
+      if (hash === '#about') {
+        setIsAboutOpen(true);
+        setSelectedProject(null);
+      } else if (hash.startsWith('#project-')) {
+        const projId = hash.replace('#project-', '');
+        const p = FEATURED_PROJECTS.find((proj) => proj.id === projId);
+        if (p) {
+          setSelectedProject(p);
+          setIsAboutOpen(false);
+        } else {
+          setSelectedProject(null);
+        }
       } else {
-        setActiveFilter('all');
+        setIsAboutOpen(false);
+        setSelectedProject(null);
+        if (hash === '#facilitate' || hash === '#facilitation') {
+          setActiveFilter('facilitate');
+        } else if (hash === '#motion' || hash === '#motion-design') {
+          setActiveFilter('motion');
+        } else {
+          setActiveFilter('all');
+        }
       }
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
+    };
   }, []);
 
   // Filter projects for separate tracks
@@ -357,7 +408,7 @@ export default function App() {
         <div className="flex gap-6 items-center">
           <button 
             id="about-toggle"
-            onClick={() => setIsAboutOpen(!isAboutOpen)}
+            onClick={() => (isAboutOpen ? closeAbout() : openAbout())}
             className="group relative flex items-center gap-1.5 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] py-1 bg-transparent border-0 cursor-pointer outline-none select-none transition-colors"
           >
             <span>{isAboutOpen ? 'CLOSE' : 'ABOUT'}</span>
@@ -416,60 +467,33 @@ export default function App() {
                 </span>
                 <div className="w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-8 text-lg md:text-xl font-bold">
                   {/* Mastercard */}
-                  <div className="opacity-60 hover:opacity-100 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 1000 618" className="h-10 w-auto fill-current">
-                      <path d="m308,0a309,309 0 1,0 2,0z"/>
-                      <path d="m690,0a309,309 0 1,0 2,0z" opacity="0.6"/>
-                    </svg>
-                    <div className="font-sans font-bold tracking-tight text-xs text-center mt-1 lowercase">mastercard</div>
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
+                    <img src="/logos/mastercard.svg" alt="Mastercard" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                   
                   {/* Adidas */}
-                  <div className="opacity-60 hover:opacity-100 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="725" height="500" viewBox="0 0 725 500" className="h-10 w-auto fill-current">
-                      <g transform="translate(-60,-430)">
-                        <path d="M 533.9435,756.70465 386.43318,500.34377 492.40483,439.4751 l 183.4283,317.22955 -141.88963,0" />
-                        <path d="m 141.03958,720.78673 105.97165,-61.27985 56.07037,97.19777 -141.47831,0 -20.56371,-35.91792" />
-                        <path d="m 349.00724,920.25463 30.16006,0 0,-122.01125 -30.16006,0 0,122.01125 z" />
-                        <path d="m 726.96825,923.13364 c -33.72452,0 -54.01413,-17.4106 -55.11081,-41.95001 l 31.80529,0 c 0,7.67715 4.79819,18.91861 25.36192,19.32994 13.70913,0 20.15239,-8.08849 20.15239,-14.12047 -0.82261,-9.59639 -12.88668,-10.419 -25.7732,-12.47534 -12.88652,-2.0564 -23.85386,-4.38692 -31.80518,-8.49966 -10.14488,-5.20948 -16.99942,-16.45093 -16.99942,-29.33745 0,-21.79767 18.91861,-39.07105 50.44967,-39.07105 30.57139,0 49.90133,16.03964 51.95773,39.8935 l -30.70861,0 c -0.27412,-6.44326 -1.5079,-16.58798 -19.60405,-16.58798 -12.20113,0 -20.28946,2.46752 -20.97501,10.96733 0,12.47519 25.36202,11.65274 45.10314,16.86211 18.9186,4.7983 30.98267,16.58814 30.98267,33.03907 0,30.29727 -24.53941,41.95001 -54.83653,41.95001" />
-                        <path d="m 265.24438,611.93622 105.97165,-61.14278 118.85823,205.91121 -110.90696,0 0,30.16006 -30.16006,0 0,-30.29712 -83.76286,-144.63137" />
-                        <path d="m 267.98623,923.13364 c -35.09542,0 -63.61043,-28.65221 -63.61043,-63.33619 0,-35.09547 28.51501,-62.78785 63.61043,-62.78785 13.29786,0 25.36187,3.56425 35.91793,10.83012 l 0,-51.13507 30.16011,0 0,163.54998 -30.16011,0 0,-8.08833 c -10.55606,6.85459 -22.62007,10.96734 -35.91793,10.96734 z m -34.68414,-63.33619 c 0,18.9185 16.17678,34.68398 35.50665,34.68398 18.91861,0 35.09542,-15.76548 35.09542,-34.68398 0,-18.91866 -16.17681,-35.09547 -35.09542,-35.09547 -19.32987,0 -35.50665,16.17681 -35.50665,35.09547" />
-                        <path d="m 490.89682,756.70465 29.74883,0 0,163.54998 -29.74883,0 0,-8.08833 c -10.14478,6.85459 -22.62007,10.96734 -36.32921,10.96734 -34.68414,0 -63.19913,-28.65221 -63.19913,-63.33619 0,-35.09547 28.51499,-62.78785 63.19913,-62.78785 13.70914,0 25.77315,3.56425 36.32921,10.83012 l 0,-51.13507 z m -70.19079,103.0928 c 0,18.9185 16.17676,34.68398 34.68414,34.68398 19.32989,0 35.50665,-15.76548 35.50665,-34.68398 0,-18.91866 -16.17676,-35.09547 -35.50665,-35.09547 -18.50738,0 -34.68414,16.17681 -34.68414,35.09547" />
-                        <path d="m 593.98956,923.13364 c -34.54703,0 -63.19913,-28.65221 -63.19913,-63.33619 0,-35.09547 28.6521,-62.78785 63.19913,-62.78785 13.29791,0 25.7731,3.56425 35.91798,10.83012 l 0,-9.7334 30.16006,0 0,122.14831 -30.16006,0 0,-8.08833 c -10.14488,6.85459 -22.20879,10.96734 -35.91798,10.96734 z m -33.86158,-63.33619 c 0,18.9185 16.17676,34.68398 35.09537,34.68398 18.91866,0 34.68419,-15.76548 34.68419,-34.68398 0,-18.91866 -15.76553,-35.09547 -34.68419,-35.09547 -18.91861,0 -35.09537,16.17681 -35.09537,35.09547" />
-                        <path d="m 93.468866,859.79745 c 0,18.9185 16.176784,34.68398 35.095404,34.68398 19.32987,0 35.50666,-15.76548 35.50666,-34.68398 0,-18.91866 -16.17679,-35.09547 -35.50666,-35.09547 -18.91862,0 -35.095404,16.17681 -35.095404,35.09547 z m 34.272844,63.33619 c -34.684124,0 -63.336218,-28.65221 -63.336218,-63.33619 0,-35.09547 28.652094,-62.78785 63.336218,-62.78785 13.29787,0 25.77319,3.56425 36.32922,10.83012 l 0,-9.7334 29.74883,0 0,122.14831 -29.74883,0 0,-8.08833 c -10.14475,6.85459 -22.62008,10.96734 -36.32922,10.96734" />
-                      </g>
-                    </svg>
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
+                    <img src="/logos/adidas.svg" alt="Adidas" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                   
                   {/* Optiver */}
-                  <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
                     <img src="/logos/optiver.svg" alt="Optiver" className="h-6 md:h-8 w-auto object-contain" />
                   </div>
                   
                   {/* Deloitte */}
-                  <div className="opacity-60 hover:opacity-100 transition-opacity flex items-center font-sans font-bold tracking-tighter text-2xl md:text-3xl">
-                    Deloitte<span className="w-2 h-2 rounded-full bg-gray-400 ml-0.5 mb-1.5"></span>
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
+                    <img src="/logos/deloitte.png" alt="Deloitte" className="h-5 md:h-6.5 w-auto object-contain" />
                   </div>
 
                   {/* BCG Digital Ventures */}
-                  <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity gap-2.5">
-                    <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12 fill-current">
-                      <path d="M50 8 L87 30 L87 70 L50 92 L13 70 L13 30 Z" fill="none" stroke="currentColor" strokeWidth="10" strokeLinejoin="miter"/>
-                    </svg>
-                    <div className="flex flex-col font-sans font-medium text-[10px] md:text-xs leading-[1.1] tracking-tight">
-                      <span>BCG</span>
-                      <span>Digital</span>
-                      <span>Ventures</span>
-                    </div>
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
+                    <img src="/logos/bcg.png" alt="BCG Digital Ventures" className="h-9 md:h-12 w-auto object-contain" />
                   </div>
 
                   {/* Edelman */}
-                  <div className="flex items-center opacity-70 hover:opacity-100 transition-opacity gap-2.5">
-                    <svg viewBox="0 0 100 100" className="w-7 h-7 md:w-9 md:h-9">
-                      <polygon points="50,10 95,50 50,90 50,50" fill="#6B7280" />
-                      <polygon points="5,50 50,50 50,90" fill="currentColor" />
-                    </svg>
-                    <span className="font-sans font-extrabold tracking-[0.01em] text-xl md:text-2xl leading-none text-[var(--text-primary)]">Edelman</span>
+                  <div className="flex items-center opacity-85 hover:opacity-100 transition-opacity">
+                    <img src="/logos/edelman.svg" alt="Edelman" className="h-7 md:h-9 w-auto object-contain" />
                   </div>
                 </div>
               </div>
@@ -612,11 +636,11 @@ export default function App() {
                         {project.type === 'visual' ? (
                           <VisualCard 
                             project={project as any} 
-                            onClick={() => setSelectedProject(project as UnifiedProject)}
+                            onClick={() => openProject(project as UnifiedProject)}
                           />
                         ) : (
                           <div 
-                            onClick={() => setSelectedProject(project as UnifiedProject)}
+                            onClick={() => openProject(project as UnifiedProject)}
                             className="typo-card rounded-3xl aspect-[16/9] min-h-[200px] flex items-center justify-center p-8 bg-gradient-to-tr from-fuchsia-500/15 via-pink-500/10 to-transparent border border-fuchsia-500/20 relative overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:border-fuchsia-500/40 hover:shadow-lg hover:shadow-fuchsia-500/5 cursor-pointer"
                           >
                             <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-fuchsia-500/40 animate-pulse" />
@@ -825,46 +849,21 @@ export default function App() {
         </div>
       </footer>
 
-      {/* About Overlay */}
-      <div 
-        id="about-overlay" 
-        className={isAboutOpen ? 'is-open' : ''}
-        onClick={() => setIsAboutOpen(false)}
-      >
-        {isAboutOpen && <KeyboardListener onClose={() => setIsAboutOpen(false)} />}
-        <div 
-          className="overlay-content max-w-2xl"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight leading-[1.12] text-[var(--text-primary)]">
-            About Ayo
-          </h2>
-          <div className="font-body text-base md:text-[17px] leading-relaxed text-[var(--text-secondary)] mt-6 space-y-4">
-            <p>
-              I started in motion design, helping organizations communicate through animation and visual systems. Over time, I kept seeing the same pattern: strong work often depends as much on collaboration, decision-making, and process as it does on craft.
-            </p>
-            <p>
-              That led me deeper into facilitation and change work. Today, I work across both areas: creating visual communication that brings clarity to ideas, and supporting teams in the work of alignment, transition, and sustainable collaboration.
-            </p>
-            <p>
-              I still care deeply about the quality of the work itself. I also care about the conditions that allow good work to happen.
-            </p>
-          </div>
-          <button
-            onClick={() => setIsAboutOpen(false)}
-            className="mt-8 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-1 hover:text-[var(--text-secondary)] hover:border-[var(--text-secondary)] transition-colors"
-          >
-            CLOSE
-          </button>
-        </div>
-      </div>
+      {/* About Card Overlay */}
+      <AnimatePresence>
+        {isAboutOpen && (
+          <AboutOverlay 
+            onClose={closeAbout} 
+          />
+        )}
+      </AnimatePresence>
 
       {/* Cinematic Fullscreen Theater Lightbox Overlay */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectOverlay 
             project={selectedProject} 
-            onClose={() => setSelectedProject(null)} 
+            onClose={closeProject} 
           />
         )}
       </AnimatePresence>
@@ -884,7 +883,123 @@ function KeyboardListener({ onClose }: { onClose: () => void }) {
   return null;
 }
 
+function AboutOverlay({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[99999] bg-black/10 backdrop-blur-md overflow-y-auto flex items-start justify-center p-4 md:p-8 pt-12 md:pt-16"
+      onClick={onClose}
+    >
+      <KeyboardListener onClose={onClose} />
+      
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-3xl bg-[var(--bg-primary)] rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col my-auto border border-[var(--border-color)]/50"
+      >
+        <div className="text-[var(--text-primary)] relative font-sans">
+          {/* Header */}
+          <header className="px-6 md:px-10 py-6 flex items-center justify-between sticky top-0 bg-[var(--bg-primary)]/90 backdrop-blur-md z-50 border-b border-[var(--border-color)]/30">
+            <div className="text-xs md:text-sm font-bold font-display uppercase tracking-widest text-[var(--text-primary)] truncate pr-4">
+              About Ayo Sebastian Dráb
+            </div>
+            <button 
+              onClick={onClose} 
+              className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-[var(--border-color)]/40 hover:bg-[var(--border-color)] transition-colors text-[var(--text-primary)] cursor-pointer"
+              aria-label="Close"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </header>
+
+          <main className="px-6 md:px-12 py-8 md:py-12 pb-14">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+              className="space-y-8"
+            >
+              {/* Meta Tags */}
+              <div className="flex flex-wrap gap-2">
+                {['Motion Systems', 'Facilitation & Sprints', 'Visual Alignment', 'Amsterdam & Global'].map((tag, idx) => (
+                  <span key={idx} className="px-3 py-1 rounded-full border border-[var(--border-color)] text-[10px] md:text-xs font-medium text-[var(--text-secondary)] tracking-wide uppercase">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Title / Headline */}
+              <h2 className="text-2xl md:text-4xl font-display font-medium tracking-tight text-balance leading-tight text-[var(--text-primary)]">
+                Bringing visual clarity to complex ideas and alignment to the teams moving them forward.
+              </h2>
+
+              {/* Bio Content */}
+              <div className="space-y-4 font-body text-sm md:text-base leading-relaxed text-[var(--text-secondary)] border-t border-[var(--border-color)]/30 pt-6">
+                <p>
+                  I started in motion design, helping organizations communicate through animation and visual systems. Over time, I kept seeing the same pattern: strong work often depends as much on collaboration, decision-making, and process as it does on craft.
+                </p>
+                <p>
+                  That led me deeper into facilitation and change work. Today, I work across both areas: creating visual communication that brings clarity to ideas, and supporting teams in the work of alignment, transition, and sustainable collaboration.
+                </p>
+                <p>
+                  I still care deeply about the quality of the work itself. I also care about the conditions that allow good work to happen.
+                </p>
+              </div>
+
+              {/* Detail Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[var(--border-color)]/30 text-xs md:text-sm">
+                <div className="space-y-2">
+                  <h3 className="font-bold uppercase tracking-widest text-[var(--text-primary)] text-[11px]">Core Capabilities</h3>
+                  <p className="text-[var(--text-secondary)] leading-relaxed">
+                    2D Animation, Motion Design Systems, Infographics, Workshop Design, Group Facilitation, & Decision Support Sprints.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-bold uppercase tracking-widest text-[var(--text-primary)] text-[11px]">Selected Clients & Partners</h3>
+                  <p className="text-[var(--text-secondary)] leading-relaxed">
+                    Mastercard, Adidas, Optiver, Deloitte, BCG Digital Ventures, Edelman.
+                  </p>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="pt-6 border-t border-[var(--border-color)]/30 flex flex-wrap items-center justify-between gap-4">
+                <a 
+                  href="mailto:hello@ayodrab.com"
+                  className="px-6 py-3 rounded-full font-sans font-bold text-xs uppercase tracking-widest bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-sm"
+                >
+                  Get in touch
+                </a>
+                <button
+                  onClick={onClose}
+                  className="font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] border-b border-transparent hover:border-[var(--text-primary)] pb-0.5 transition-colors cursor-pointer"
+                >
+                  CLOSE
+                </button>
+              </div>
+
+            </motion.div>
+          </main>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function ProjectOverlay({ project, onClose }: { project: UnifiedProject, onClose: () => void }) {
   useEffect(() => {
