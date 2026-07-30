@@ -442,11 +442,8 @@ export default function App() {
                   </div>
                   
                   {/* Optiver */}
-                  <div className="opacity-70 hover:opacity-100 transition-opacity flex items-center gap-2">
-                    <span className="font-sans font-light tracking-[-0.02em] text-2xl md:text-3xl leading-none text-[var(--text-primary)]">optiver</span>
-                    <svg viewBox="0 0 40 40" className="w-5 h-5 md:w-6 md:h-6 text-neutral-400 fill-none stroke-current" style={{ color: '#888888' }}>
-                      <polygon points="20,5 37,35 3,35" strokeWidth="4.5" strokeLinejoin="miter" strokeMiterlimit="10"/>
-                    </svg>
+                  <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
+                    <img src="/logos/optiver.svg" alt="Optiver" className="h-6 md:h-8 w-auto object-contain" />
                   </div>
                   
                   {/* Deloitte */}

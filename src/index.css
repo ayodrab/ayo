@@ -445,14 +445,8 @@ section {
 
 /* Glass Header overrides for strict browser support */
 .glass-header {
-  background-color: rgba(244, 243, 239, 0.72); /* Light, translucent warm neutral */
-  backdrop-filter: blur(6px) saturate(130%);
-  -webkit-backdrop-filter: blur(6px) saturate(130%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Force hardware acceleration for webkit backdrop filter */
-.glass-header {
-  transform: translateZ(0);
-  will-change: transform, backdrop-filter;
+  background-color: rgba(244, 243, 239, 0.75);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
