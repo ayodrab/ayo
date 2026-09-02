@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import HeroGooeySmoke from './components/canvas/HeroGooeySmoke';
 import VantaCloudsBackground from './components/canvas/VantaCloudsBackground';
+import { trackAboutOpen, trackContactClick, trackFilterChange, trackProjectView } from './lib/analytics';
 
 // Resolve asset helper for production / github pages deploy base compatibility
 function resolveAsset(url?: string): string {
@@ -290,6 +291,7 @@ export default function App() {
   const openAbout = () => {
     setIsAboutOpen(true);
     setSelectedProject(null);
+    trackAboutOpen();
     if (window.location.hash !== '#about') {
       window.history.pushState(null, '', '#about');
     }
@@ -305,6 +307,7 @@ export default function App() {
   const openProject = (project: UnifiedProject) => {
     setSelectedProject(project);
     setIsAboutOpen(false);
+    trackProjectView(project.id, project.title);
     if (window.location.hash !== `#project-${project.id}`) {
       window.history.pushState(null, '', `#project-${project.id}`);
     }
@@ -627,7 +630,10 @@ export default function App() {
                   {/* Filter Controls */}
                   <div className="flex flex-wrap items-center gap-6 text-xs font-mono">
                     <button
-                      onClick={() => setActiveFilter('all')}
+                      onClick={() => {
+                        setActiveFilter('all');
+                        trackFilterChange('all');
+                      }}
                       className={`pb-1 border-b transition-all ${
                         activeFilter === 'all' 
                           ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
@@ -637,7 +643,10 @@ export default function App() {
                       All
                     </button>
                     <button
-                      onClick={() => setActiveFilter('facilitate')}
+                      onClick={() => {
+                        setActiveFilter('facilitate');
+                        trackFilterChange('facilitate');
+                      }}
                       className={`pb-1 border-b transition-all ${
                         activeFilter === 'facilitate' 
                           ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
@@ -647,7 +656,10 @@ export default function App() {
                       Facilitation
                     </button>
                     <button
-                      onClick={() => setActiveFilter('motion')}
+                      onClick={() => {
+                        setActiveFilter('motion');
+                        trackFilterChange('motion');
+                      }}
                       className={`pb-1 border-b transition-all ${
                         activeFilter === 'motion' 
                           ? 'border-[var(--text-primary)] text-[var(--text-primary)] font-medium' 
@@ -740,12 +752,14 @@ export default function App() {
                 <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
                   <a 
                     href="mailto:hello@ayodrab.com"
+                    onClick={() => trackContactClick('email_cta_button')}
                     className={`inline-block px-8 py-4 rounded-full font-sans font-bold text-xs uppercase tracking-widest text-center transition-all duration-300 ${getCTAButtonClass()}`}
                   >
                     Get in touch
                   </a>
                   <a 
                     href="mailto:hello@ayodrab.com"
+                    onClick={() => trackContactClick('email_cta_text')}
                     className="font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors underline decoration-dotted underline-offset-4"
                   >
                     Or email hello@ayodrab.com
@@ -1016,6 +1030,7 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
               <div className="pt-6 border-t border-[var(--border-color)]/30">
                 <a 
                   href="mailto:hello@ayodrab.com"
+                  onClick={() => trackContactClick('about_modal')}
                   className="inline-block px-6 py-3 rounded-full font-sans font-bold text-xs uppercase tracking-widest bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-sm"
                 >
                   Get in touch
