@@ -5,9 +5,17 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
 
 import HeroGooeySmoke from './components/canvas/HeroGooeySmoke';
 import VantaCloudsBackground from './components/canvas/VantaCloudsBackground';
+import AboutPage from './components/AboutPage';
+import { 
+  TransitionContext, 
+  TRANSITION_VARIATIONS, 
+  StaggerItem, 
+  type TransitionVariationKey 
+} from './transitions';
 import { trackAboutOpen, trackContactClick, trackFilterChange, trackProjectView } from './lib/analytics';
 
 // Resolve asset helper for production / github pages deploy base compatibility
@@ -230,7 +238,7 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full aspect-[16/9] overflow-hidden bg-[#E2DFD5]/40 rounded-3xl cursor-pointer group transition-transform duration-500 hover:scale-[1.01]"
+      className="relative w-full aspect-[16/9] overflow-hidden bg-[#E2DFD5]/40 rounded-xl cursor-pointer group border border-[var(--border-color)]/20"
     >
       {project.hoverVideo ? (
         <video
@@ -245,7 +253,7 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
               videoRef.current.currentTime = 0;
             }
           }}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 group-hover:scale-[1.03]"
         />
       ) : (
         <img 
@@ -266,30 +274,58 @@ function VisualCard({ project, onClick }: { project: UnifiedProject; onClick: ()
   );
 }
 
+function PageTransition({ 
+  children, 
+  routeKey, 
+  transitionStyle = 'smooth-cascade', 
+  ...props 
+}: { 
+  children: React.ReactNode, 
+  routeKey: string, 
+  transitionStyle?: TransitionVariationKey, 
+  [key: string]: any 
+}) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [routeKey]);
+
+  const variation = TRANSITION_VARIATIONS[transitionStyle] || TRANSITION_VARIATIONS['smooth-cascade'];
+
+  return (
+    <TransitionContext.Provider value={transitionStyle}>
+      <motion.div
+        key={routeKey}
+        variants={variation.page}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="relative w-full"
+        {...props}
+      >
+        {children}
+      </motion.div>
+    </TransitionContext.Provider>
+  );
+}
+
 export default function App() {
-  const [view, setView] = useState<'work' | 'legal'>('work');
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [view, setView] = useState<'work' | 'about' | 'legal'>('work');
   const [activeFilter, setActiveFilter] = useState<'all' | 'motion' | 'facilitate'>('all');
   const [selectedProject, setSelectedProject] = useState<UnifiedProject | null>(null);
+  const transitionStyle: TransitionVariationKey = 'smooth-cascade';
 
   // Dynamic color styles matching the active track
   const getHeadingGradient = () => {
-    if (activeFilter === 'facilitate') {
-      return "bg-gradient-to-r from-rose-700 via-pink-600 to-fuchsia-600 bg-clip-text text-transparent";
-    } else if (activeFilter === 'motion') {
-      return "bg-gradient-to-r from-fuchsia-700 via-purple-600 to-pink-600 bg-clip-text text-transparent";
-    } else {
-      return "bg-gradient-to-r from-rose-800 via-pink-700 to-fuchsia-600 bg-clip-text text-transparent";
-    }
+    return "text-[var(--text-primary)]";
   };
 
   const getCTAButtonClass = () => {
     return "bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm hover:opacity-90 hover:scale-[1.01] transition-all duration-300";
   };
 
-  // Helper state & URL modal handlers
+  // Helper state & URL navigation handlers
   const openAbout = () => {
-    setIsAboutOpen(true);
+    setView('about');
     setSelectedProject(null);
     trackAboutOpen();
     if (window.location.hash !== '#about') {
@@ -297,16 +333,16 @@ export default function App() {
     }
   };
 
-  const closeAbout = () => {
-    setIsAboutOpen(false);
-    if (window.location.hash === '#about') {
+  const openWork = () => {
+    setView('work');
+    setSelectedProject(null);
+    if (window.location.hash === '#about' || window.location.hash.startsWith('#project-')) {
       window.history.pushState(null, '', window.location.pathname + window.location.search);
     }
   };
 
   const openProject = (project: UnifiedProject) => {
     setSelectedProject(project);
-    setIsAboutOpen(false);
     trackProjectView(project.id, project.title);
     if (window.location.hash !== `#project-${project.id}`) {
       window.history.pushState(null, '', `#project-${project.id}`);
@@ -324,27 +360,29 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#about') {
-        setIsAboutOpen(true);
+      if (hash === '#about' || hash === '#faq') {
+        setView('about');
         setSelectedProject(null);
       } else if (hash.startsWith('#project-')) {
         const projId = hash.replace('#project-', '');
         const p = FEATURED_PROJECTS.find((proj) => proj.id === projId);
         if (p) {
           setSelectedProject(p);
-          setIsAboutOpen(false);
         } else {
           setSelectedProject(null);
         }
       } else {
-        setIsAboutOpen(false);
-        setSelectedProject(null);
         if (hash === '#facilitate' || hash === '#facilitation') {
+          setView('work');
           setActiveFilter('facilitate');
+          setSelectedProject(null);
         } else if (hash === '#motion' || hash === '#motion-design') {
+          setView('work');
           setActiveFilter('motion');
-        } else {
-          setActiveFilter('all');
+          setSelectedProject(null);
+        } else if (hash === '' || hash === '#work' || hash === '#hero' || hash === '#selected-work') {
+          setView('work');
+          setSelectedProject(null);
         }
       }
     };
@@ -432,10 +470,7 @@ export default function App() {
       {/* Header (Fixed Navigation) */}
       <header className="fixed top-0 left-0 w-full z-[100] py-5 px-6 md:px-12 lg:px-20 flex justify-between items-center transition-all duration-1000 glass-header">
         <div 
-          onClick={() => {
-            setView('work');
-            setIsAboutOpen(false);
-          }}
+          onClick={() => openWork()}
           className="logo-container logo cursor-pointer select-none"
         >
           <div className="text-4xl md:text-5xl tracking-tighter leading-none flex gap-0">
@@ -448,39 +483,49 @@ export default function App() {
         {/* Right Nav buttons */}
         <div className="flex gap-6 items-center">
           <button 
-            id="about-toggle"
-            onClick={() => (isAboutOpen ? closeAbout() : openAbout())}
-            className="group relative flex items-center gap-1.5 font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase text-[var(--text-primary)] py-1 bg-transparent border-0 cursor-pointer outline-none select-none transition-colors"
+            onClick={() => openWork()}
+            className={`font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase py-1 bg-transparent border-0 cursor-pointer outline-none select-none transition-colors ${
+              view === 'work' ? 'text-[var(--text-primary)] border-b border-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
           >
-            <span>{isAboutOpen ? 'CLOSE' : 'ABOUT'}</span>
-            <span className={`w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] transition-transform duration-300 ${
-              isAboutOpen ? 'scale-150 bg-red-500' : 'group-hover:scale-125'
-            }`} />
+            Work
+          </button>
+          
+          <button 
+            id="about-toggle"
+            onClick={() => (view === 'about' ? openWork() : openAbout())}
+            className={`group relative flex items-center font-sans font-bold text-[10.5px] tracking-[0.22em] uppercase py-1 bg-transparent border-0 cursor-pointer outline-none select-none transition-colors ${
+              view === 'about' ? 'text-[var(--text-primary)] border-b border-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
+          >
+            <span>ABOUT & FAQ</span>
           </button>
         </div>
       </header>
 
       {/* Main Container */}
       <main className="relative z-10 w-full">
+        <AnimatePresence mode="wait">
         
         {/* VIEW: WORK (Continuous Scroll Portfolio Grid) */}
         {view === 'work' && (
-          <div className="space-y-0">
-            
-            {/* Section 1: Hero */}
-            <section id="hero" className="relative overflow-hidden border-b border-[var(--border-color)]/30 min-h-[75vh]">
+          <PageTransition key="work" routeKey="work" transitionStyle={transitionStyle}>
+            <div className="space-y-0">
+              
+              {/* Section 1: Hero */}
+            <StaggerItem as="section" id="hero" className="relative overflow-hidden border-b border-[var(--border-color)]/30 min-h-[75vh]">
               <VantaCloudsBackground selector="#hero" />
               
               <div className="section-container relative z-10 space-y-6 pt-24 pb-12 md:pt-28 md:pb-16">
-                <h1 className={`tracking-tight leading-[1.08] text-balance font-display font-medium text-4xl md:text-6xl ${getHeadingGradient()}`}>
-                  Visual clarity. Structural alignment.
+                <h1 className={`tracking-tight leading-[1.08] text-balance font-display text-4xl sm:text-5xl md:text-6xl ${getHeadingGradient()}`}>
+                  Moving complex work forward.
                 </h1>
                 <div className="space-y-6 max-w-3xl">
                   <p className="text-lg md:text-xl font-display text-[var(--text-primary)] font-normal leading-relaxed text-balance">
                     I help teams communicate complex ideas through motion, and I support the workshops, decisions, and collaboration structures that help good work move forward.
                   </p>
                   <p className="text-sm md:text-base text-[var(--text-secondary)] font-normal leading-relaxed text-balance">
-                    Motion design, infographics, social content, workshops, facilitation, and alignment support for complex teams and ideas.
+                    Bringing commercial advertising and motion experience to values-led organizations, research teams, and complex initiatives.
                   </p>
                   <div className="pt-4 flex flex-wrap items-center gap-6">
                     <a 
@@ -498,10 +543,10 @@ export default function App() {
                   </div>
                 </div>
               </div>
-            </section>
+            </StaggerItem>
 
             {/* Section 2: Proof Bar */}
-            <section id="proof-bar" className="border-b border-[var(--border-color)]/30 py-8">
+            <StaggerItem as="section" id="proof-bar" className="border-b border-[var(--border-color)]/30 py-8">
               <div className="section-container flex flex-col items-center gap-8">
                 <span className="text-sm font-mono text-[var(--text-secondary)] tracking-wider uppercase text-center w-full">
                   Trusted by teams including
@@ -538,89 +583,49 @@ export default function App() {
                   </div>
                 </div>
               </div>
-            </section>
+            </StaggerItem>
 
             {/* Section 3: What I Do */}
-            <section id="what-i-do" className="border-b border-[var(--border-color)]/30 pt-12 md:pt-16 pb-8 md:pb-12">
+            <StaggerItem as="section" id="what-i-do" className="border-b border-[var(--border-color)]/30 pt-16 md:pt-24 pb-16 md:pb-24">
               <div className="section-container">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                  {/* Card 1 */}
-                  <div className="bg-gradient-to-tr from-rose-500/5 via-pink-500/5 to-[#EBEAE5]/20 border border-rose-500/10 p-6 md:p-8 rounded-3xl space-y-4 hover:border-rose-500/30 transition-all duration-300 shadow-sm">
-                    <h3 className="font-display font-medium text-2xl md:text-3xl bg-gradient-to-r from-rose-600 via-pink-600 to-fuchsia-600 bg-clip-text text-transparent">
-                      Motion Design
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
+                  {/* Motion & Visuals */}
+                  <div className="space-y-6">
+                    <h3 className="font-display font-medium text-3xl text-[var(--text-primary)] leading-tight">
+                      Motion & Visuals
                     </h3>
-                    <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                    <p className="text-base text-[var(--text-secondary)] leading-relaxed font-body max-w-md">
                       Animation and visual communication that help complex ideas become easier to see, share, and understand.
                     </p>
-                    <div className="pt-4 border-t border-[var(--border-color)]/50">
-                      <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          Explainer animation
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          UI motion
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          Infographics
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          Social content
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          Editorial motion
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/40" />
-                          Presentation visuals
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="text-sm text-[var(--text-secondary)] leading-relaxed font-body space-y-2 pt-2">
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Explainer animation</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> UI motion</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Infographics & Data</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Campaign assets</li>
+                    </ul>
                   </div>
 
-                  {/* Card 2 */}
-                  <div className="bg-gradient-to-tr from-fuchsia-500/5 via-purple-500/5 to-[#EBEAE5]/20 border border-fuchsia-500/10 p-6 md:p-8 rounded-3xl space-y-4 hover:border-fuchsia-500/30 transition-all duration-300 shadow-sm">
-                    <h3 className="font-display font-medium text-2xl md:text-3xl bg-gradient-to-r from-fuchsia-600 via-purple-500 to-pink-600 bg-clip-text text-transparent">
-                      Facilitation and Alignment
+                  {/* Facilitation */}
+                  <div className="space-y-6">
+                    <h3 className="font-display font-medium text-3xl text-[var(--text-primary)] leading-tight">
+                      Facilitation
                     </h3>
-                    <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                    <p className="text-base text-[var(--text-secondary)] leading-relaxed font-body max-w-md">
                       Workshops and collaboration support that help teams align, make decisions, and move complex work forward with less friction.
                     </p>
-                    <div className="pt-4 border-t border-[var(--border-color)]/50">
-                      <ul className="space-y-3 text-sm text-[var(--text-secondary)] font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Workshop design
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Facilitation
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Decision support
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Working rhythms
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500/40" />
-                          Team alignment
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="text-sm text-[var(--text-secondary)] leading-relaxed font-body space-y-2 pt-2">
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Workshop design</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Strategic alignment</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Decision support</li>
+                      <li className="flex gap-3"><span className="text-[var(--text-primary)] opacity-50">—</span> Action roadmaps</li>
+                    </ul>
                   </div>
                 </div>
               </div>
-            </section>
+            </StaggerItem>
 
             {/* Section 4: Selected Work */}
-            <section id="selected-work" className="border-b border-[var(--border-color)]/30 py-8 md:py-12">
+            <StaggerItem as="section" id="selected-work" className="border-b border-[var(--border-color)]/30 py-8 md:py-12">
               <div className="section-container space-y-8">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-6 border-b border-[var(--border-color)]/20 pb-6 mb-4">
                   <h2 className={`text-xl md:text-2xl font-display font-medium tracking-tight ${getHeadingGradient()}`}>
@@ -671,15 +676,15 @@ export default function App() {
                   </div>
                 </div>
 
-                <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full relative">
+                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 w-full relative">
                   <AnimatePresence mode="popLayout">
                     {filteredProjects.map((project) => (
                       <motion.div
                         layout
                         key={project.id}
-                        initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                        initial={{ opacity: 0, scale: 0.95, y: 12 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.92, y: -12 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -12 }}
                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col gap-6"
                       >
@@ -691,40 +696,41 @@ export default function App() {
                         ) : (
                           <div 
                             onClick={() => openProject(project as UnifiedProject)}
-                            className="typo-card rounded-3xl aspect-[16/9] min-h-[200px] flex items-center justify-center p-8 bg-gradient-to-tr from-fuchsia-500/15 via-pink-500/10 to-transparent border border-fuchsia-500/20 relative overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:border-fuchsia-500/40 hover:shadow-lg hover:shadow-fuchsia-500/5 cursor-pointer"
+                            className="rounded-xl md:rounded-2xl aspect-[16/9] flex flex-col justify-between p-8 md:p-12 border border-[var(--border-color)]/30 hover:border-[var(--text-primary)]/50 transition-all duration-500 cursor-pointer group bg-transparent"
                           >
-                            <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-fuchsia-500/40 animate-pulse" />
-                            <div className="absolute top-4 right-4 text-[9px] font-mono uppercase tracking-widest text-fuchsia-700/60 font-semibold">
-                              Facilitation
+                            <div className="flex justify-between items-start w-full">
+                              <span className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] uppercase">
+                                Case Study
+                              </span>
+                              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-sans text-xs">
+                                Read →
+                              </span>
                             </div>
-                            <p className="max-w-xl font-display text-base md:text-lg leading-relaxed text-center font-medium italic text-fuchsia-950/90 pointer-events-none">
+                            <p className="font-display text-2xl md:text-3xl lg:text-4xl leading-snug font-medium italic text-[var(--text-primary)]">
                               “{project.statement}”
                             </p>
                           </div>
                         )}
 
-                        <div className="text-left space-y-4">
-                          <h3 className="text-lg md:text-xl font-display font-medium tracking-tight text-[var(--text-primary)]">
-                            {project.title}
-                          </h3>
+                        <div className="text-left space-y-4 pt-2">
+                          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-[var(--border-color)]/20 pb-4 gap-2">
+                            <h3 className="text-xl md:text-2xl font-display font-medium text-[var(--text-primary)]">
+                              {project.title}
+                            </h3>
+                            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
+                              {project.tags[0]}
+                            </span>
+                          </div>
                           
-                          <div className="text-xs md:text-sm leading-relaxed text-[var(--text-secondary)]">
+                          <div className="text-sm md:text-base leading-relaxed text-[var(--text-secondary)] font-body">
                             {project.description ? (
-                              <p className="text-balance text-[var(--text-primary)] leading-relaxed font-body">
+                              <p className="text-balance text-[var(--text-primary)]">
                                 {project.description}
                               </p>
                             ) : (
-                              <div className="space-y-3.5">
-                                <p className="text-balance">
-                                  <strong className="text-[var(--text-primary)] font-medium">Short context:</strong> {project.context}
-                                </p>
-                                <p className="text-balance">
-                                  <strong className="text-[var(--text-primary)] font-medium">Delivered:</strong> {project.delivered}
-                                </p>
-                                <p className="text-balance">
-                                  <strong className="text-[var(--text-primary)] font-medium">Outcome:</strong> {project.outcome}
-                                </p>
-                              </div>
+                              <p className="text-balance text-[var(--text-primary)]">
+                                {project.context}
+                              </p>
                             )}
                           </div>
                         </div>
@@ -733,10 +739,10 @@ export default function App() {
                   </AnimatePresence>
                 </motion.div>
               </div>
-            </section>
+            </StaggerItem>
 
             {/* Section 5: Contact CTA */}
-            <section id="contact-cta" className="pt-20 pb-10 md:pt-32 md:pb-16">
+            <StaggerItem as="section" id="contact-cta" className="pt-20 pb-10 md:pt-32 md:pb-16">
               <div className="section-container max-w-2xl text-left space-y-8">
                 <h2 className={`font-display font-medium text-3xl md:text-5xl tracking-tight leading-tight ${getHeadingGradient()}`}>
                   Working on something complex?
@@ -757,29 +763,39 @@ export default function App() {
                   >
                     Get in touch
                   </a>
-                  <a 
-                    href="mailto:hello@ayodrab.com"
-                    onClick={() => trackContactClick('email_cta_text')}
-                    className="font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors underline decoration-dotted underline-offset-4"
+                  <button
+                    onClick={() => openAbout()}
+                    className="font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer bg-transparent border-0 underline decoration-dotted underline-offset-4 text-left"
                   >
-                    Or email hello@ayodrab.com
-                  </a>
+                    About & FAQ →
+                  </button>
                 </div>
               </div>
-            </section>
+            </StaggerItem>
 
           </div>
+          </PageTransition>
+        )}
+
+        {/* VIEW: ABOUT & FAQ (Dedicated Editorial Page specialized for NGOs & Mission-Driven Teams) */}
+        {view === 'about' && (
+          <PageTransition key="about" routeKey="about" transitionStyle={transitionStyle}>
+            <AboutPage 
+              onBackToWork={() => openWork()} 
+            />
+          </PageTransition>
         )}
 
         {/* VIEW: LEGAL (German Impressum & Privacy Policy compliance) */}
         {view === 'legal' && (
-          <div className="space-y-12 max-w-5xl animate-fade-in pt-32 pb-16 mx-auto px-6 md:px-12 lg:px-20">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
-              Legal Documentation
-            </span>
+          <PageTransition key="legal" routeKey="legal" transitionStyle={transitionStyle}>
+            <StaggerItem className="space-y-12 max-w-5xl pt-32 pb-16 mx-auto px-6 md:px-12 lg:px-20">
+              <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--text-secondary)] block">
+                Legal Documentation
+              </span>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4">
-              {/* Impressum */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4">
+                {/* Impressum */}
               <div className="space-y-6">
                 <h2 className="text-xl md:text-2xl font-display font-medium uppercase tracking-tight text-[var(--text-primary)]">Impressum</h2>
                 <div className="space-y-4 text-xs font-mono text-[var(--text-secondary)] leading-relaxed">
@@ -874,19 +890,15 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
+            </StaggerItem>
+          </PageTransition>
         )}
+        </AnimatePresence>
       </main>
 
       {/* Footer (The Final CTA) */}
-      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/20 py-8 px-6 md:px-12 lg:px-20 flex flex-col md:flex-row justify-between items-center gap-6 text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
-        <div className="flex gap-2">
-          <span>© {new Date().getFullYear()} Ayo Sebastian Dráb</span>
-          <span>•</span>
-          <span className="uppercase text-[var(--text-primary)] font-bold">Motion & Facilitation</span>
-        </div>
-        
-        <div className="flex gap-6">
+      <footer className="relative z-10 w-full max-w-6xl mx-auto border-t border-[var(--border-color)]/20 py-12 px-6 md:px-12 lg:px-20 flex justify-center md:justify-end items-center text-[9.5px] font-sans font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]">
+        <div className="flex gap-6 items-center">
           <a 
             href="mailto:hello@ayodrab.com" 
             className="text-[var(--text-primary)] font-bold transition-colors hover:text-[var(--text-secondary)] underline decoration-dotted underline-offset-2"
@@ -901,15 +913,6 @@ export default function App() {
           </button>
         </div>
       </footer>
-
-      {/* About Card Overlay */}
-      <AnimatePresence>
-        {isAboutOpen && (
-          <AboutOverlay 
-            onClose={closeAbout} 
-          />
-        )}
-      </AnimatePresence>
 
       {/* Cinematic Fullscreen Theater Lightbox Overlay */}
       <AnimatePresence>
@@ -934,115 +937,6 @@ function KeyboardListener({ onClose }: { onClose: () => void }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
   return null;
-}
-
-function AboutOverlay({ onClose }: { onClose: () => void }) {
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
-
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-[99999] bg-black/10 backdrop-blur-md overflow-y-auto flex items-start justify-center p-4 md:p-8 pt-12 md:pt-16"
-      onClick={onClose}
-    >
-      <KeyboardListener onClose={onClose} />
-      
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-2xl bg-[var(--bg-primary)] rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col my-auto border border-[var(--border-color)]/50"
-      >
-        <div className="text-[var(--text-primary)] relative font-sans">
-          {/* Header */}
-          <header className="px-6 md:px-10 py-5 flex items-center justify-between sticky top-0 bg-[var(--bg-primary)]/90 backdrop-blur-md z-50 border-b border-[var(--border-color)]/30">
-            <span className="text-xs font-bold font-display uppercase tracking-widest text-[var(--text-secondary)]">
-              About
-            </span>
-            <button 
-              onClick={onClose} 
-              className="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full bg-[var(--border-color)]/40 hover:bg-[var(--border-color)] transition-colors text-[var(--text-primary)] cursor-pointer"
-              aria-label="Close"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </header>
-
-          <main className="px-6 md:px-10 py-8 md:py-10 pb-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-              className="space-y-8"
-            >
-              {/* Main Heading */}
-              <h2 className="text-2xl md:text-3xl font-display font-medium tracking-tight text-[var(--text-primary)]">
-                About Ayo Sebastian Dráb
-              </h2>
-
-              {/* Body Copy */}
-              <div className="space-y-5 text-base md:text-lg leading-relaxed text-[var(--text-secondary)] font-body">
-                <p>
-                  My background is in motion design, where I developed visual systems, animation, and explanatory work for teams that needed to communicate complex ideas clearly. Over time, that work led me further upstream: into workshops, decision-making processes, and the conversations that shape what gets made in the first place.
-                </p>
-                <p>
-                  Today my practice sits across both areas. I create motion and information design when teams need ideas to land clearly, and I support facilitation when they need structure, momentum, and better ways of moving work forward.
-                </p>
-                <p>
-                  What ties both sides together is an interest in clarity: not as a style, but as something practical. Clear communication, clear decisions, and shared understanding tend to make good work possible.
-                </p>
-              </div>
-
-              {/* Core capabilities & Clients section */}
-              <div className="space-y-6 pt-6 border-t border-[var(--border-color)]/30">
-                <div className="space-y-1.5">
-                  <h3 className="text-sm font-bold text-[var(--text-primary)]">
-                    Core capabilities
-                  </h3>
-                  <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                    2D animation, motion systems, infographics, workshop design, facilitation, decision support
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  <h3 className="text-sm font-bold text-[var(--text-primary)]">
-                    Selected clients and partners
-                  </h3>
-                  <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
-                    Mastercard, Adidas, Optiver, Deloitte, BCG Digital Ventures, Edelman
-                  </p>
-                </div>
-              </div>
-
-              {/* Single CTA at the end */}
-              <div className="pt-6 border-t border-[var(--border-color)]/30">
-                <a 
-                  href="mailto:hello@ayodrab.com"
-                  onClick={() => trackContactClick('about_modal')}
-                  className="inline-block px-6 py-3 rounded-full font-sans font-bold text-xs uppercase tracking-widest bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-sm"
-                >
-                  Get in touch
-                </a>
-              </div>
-
-            </motion.div>
-          </main>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
 }
 
 function ProjectOverlay({ project, onClose }: { project: UnifiedProject, onClose: () => void }) {
